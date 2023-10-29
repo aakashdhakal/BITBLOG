@@ -198,6 +198,74 @@ hr {
 	place-items: center;
 	place-content: center;
 }
+.author-bio {
+	font-size: 0.8rem;
+	text-align: center;
+	padding: 2px;
+}
+#followBtn {
+	cursor: pointer;
+	padding: 7px 20px;
+	border-radius: 30px;
+	font-size: 0.9rem;
+	transition: all 0.3s ease-in-out;
+	width: 100%;
+}
+.not-followed {
+	background-color: var(--main-theme-color);
+	border: 1.5px solid var(--main-theme-color);
+	color: #000000;
+}
+.followed {
+	border: 1.5px solid var(--text-color);
+	background-color: transparent;
+	color: var(--text-color);
+}
+.followers-count {
+	font-size: 0.9rem;
+}
+.alert-box {
+	position: fixed;
+	padding: 15px 25px;
+	right: 10px;
+	top: 20px;
+	border-radius: 15px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+	transition: all 1s ease-in-out;
+	font-size: 0.9rem;
+	min-width: 20%;
+	z-index: 9999;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 25px;
+	overflow: hidden;
+	transform: translateX(100vw);
+	border-bottom: 4px solid #ff5c5c;
+}
+.alert-box i {
+	font-size: 1.8rem;
+}
+.error {
+	background-color: #ffcdcd;
+	border-bottom: 4px solid #ff5c5c;
+}
+.warning {
+	background-color: #fff3ac;
+	border-bottom: 4px solid #febe10;
+}
+
+.success {
+	background-color: #d5f5d5;
+	border-bottom: 4px solid #00b300;
+}
+#alertHeading {
+	font-size: 1rem;
+	font-weight: 600;
+}
+.show-alert {
+	transform: translateX(0);
+}
 
 /* -----------Navbar----------------- */
 
@@ -809,8 +877,7 @@ footer .logo img {
 	align-items: center;
 	flex-direction: column;
 	width: 80%;
-	margin: 30px;
-	gap: 20px;
+	gap: 25px;
 	height: max-content;
 }
 
@@ -851,6 +918,56 @@ footer .logo img {
 }
 .author-name {
 	font-size: 0.9rem;
+}
+
+/*-------Author List----------*/
+
+#authorsList {
+	width: 100%;
+	height: max-content;
+	display: flex;
+	justify-content: center;
+	margin: 30px 0px;
+}
+
+#authorsList .max-width {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 80%;
+	gap: 20px;
+	height: max-content;
+}
+.author-card img {
+	width: 50px;
+	height: 50px;
+	object-fit: cover;
+	padding: 0;
+	border-radius: 50%;
+	padding: 2px;
+	border: 2px solid var(--main-theme-color);
+}
+#authorsList .authors {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, max-content));
+	column-gap: 35px;
+	align-items: center;
+	width: 100%;
+	height: max-content;
+}
+.author-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	height: 100%;
+}
+.author-card .author-info {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	height: 100%;
 }
 
 @media screen and (max-width: 768px) {

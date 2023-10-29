@@ -20,6 +20,13 @@ session_start();
 <body>
     <button id="themeToggle"><i class="fa-duotone fa-moon"></i></button>
     <button id="scrollToTop"><i class="fa-solid fa-up"></i></button>
+    <div class="alert-box">
+        <i></i>
+        <div class="alert-message">
+            <p id="alertHeading">ERROR!</p>
+            <p id="alertMessage">Please Login to perform this action</p>
+        </div>
+    </div>
 
     <!-- Navigation -->
     <section id="navigation">

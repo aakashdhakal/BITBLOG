@@ -21,12 +21,13 @@ feedbackForm.addEventListener("submit", function (e) {
 			if (xhr.responseText === "success") {
 				feedbackBtn.innerHTML = '<i class="fa-duotone fa-check"></i>';
 				setTimeout(() => {
+					showAlert("success", "Thank you for your feedback!");
 					feedbackBtn.innerHTML = "Send";
 					feedbackBtn.disabled = false;
 					feedbackForm.reset();
 				}, 1000);
 			} else {
-				alert(xhr.responseText);
+				showAlert("error", "Something went wrong. Please try again later.");
 				feedbackBtn.innerHTML = "Send";
 				feedbackBtn.disabled = false;
 				return;
@@ -133,6 +134,97 @@ hamburgerMenu.addEventListener("click", function () {
 		bodyElement.style.overflow = "auto";
 	}
 });
+
+//Follow Script
+let followBtn = document.querySelectorAll("#followBtn");
+
+followBtn.forEach(function (button) {
+	button.addEventListener("click", () => {
+		button.innerHTML = '<i class="fa-duotone fa-spinner-third fa-spin"></i>';
+		button.disabled = true;
+		let author = button.getAttribute("data-author");
+		let action = button.classList.contains("not-followed")
+			? "follow"
+			: "unfollow";
+
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "follow-config.php", true);
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState === 4 && xhr.status === 200) {
+				if (xhr.responseText === "success") {
+					if (action === "follow") {
+						button.innerHTML =
+							'<i class="fa-duotone fa-user-check"></i>&nbsp;Followed';
+						button.classList.remove("not-followed");
+						button.classList.add("followed");
+						button.disabled = false;
+					} else if (action === "unfollow") {
+						button.innerHTML =
+							'<i class="fa-duotone fa-user-plus"></i>&nbsp;Follow';
+						button.classList.remove("followed");
+						button.classList.add("not-followed");
+						button.disabled = false;
+					}
+				} else if (xhr.responseText === "login") {
+					showAlert("warning", "Please login to follow");
+					button.innerHTML =
+						'<i class="fa-duotone fa-user-plus"></i>&nbsp;Follow';
+					button.disabled = false;
+				} else {
+					showAlert("error", "Something went wrong. Please try again later.");
+					button.innerHTML =
+						'<i class="fa-duotone fa-user-plus"></i>&nbsp;Follow';
+					button.disabled = false;
+				}
+			}
+		};
+		xhr.send("author=" + author + "&action=" + action);
+	});
+});
+
+//alert function
+
+let alertBox = document.querySelector(".alert-box");
+let alertMessage = document.querySelector("#alertMessage");
+let alertHeading = document.querySelector("#alertHeading");
+let alertIcon = document.querySelector(".alert-box i");
+
+function showAlert(state, message) {
+	alertBox.classList.add(state);
+	alertMessage.innerHTML = message;
+	alertBox.classList.add("show-alert");
+
+	switch (state) {
+		case "success":
+			alertHeading.innerHTML = "Success!";
+			alertIcon.className = "fa-duotone fa-circle-check";
+			alertIcon.style.setProperty("--fa-primary-color", "#000000");
+			alertIcon.style.setProperty("--fa-secondary-color", "#00ff00");
+			alertIcon.style.setProperty("--fa-secondary-opacity", "0.4");
+			break;
+		case "error":
+			alertHeading.innerHTML = "Error!";
+			alertIcon.className = "fa-duotone fa-circle-xmark";
+			alertIcon.style.setProperty("--fa-primary-color", "#000000");
+			alertIcon.style.setProperty("--fa-secondary-color", "#ff0000");
+			alertIcon.style.setProperty("--fa-secondary-opacity", "0.4");
+			break;
+		case "warning":
+			alertHeading.innerHTML = "Warning!";
+			alertIcon.className = "fa-duotone fa-circle-exclamation";
+			alertIcon.style.setProperty("--fa-primary-color", "#000000");
+			alertIcon.style.setProperty("--fa-secondary-color", "#ffc800");
+			alertIcon.style.setProperty("--fa-secondary-opacity", "0.9");
+			break;
+	}
+
+	setTimeout(() => {
+		alertBox.classList.remove("show-alert");
+		alertBox.classList.remove(state);
+	}, 5000);
+}
+
 //Sub Menu Script
 
 let menu = document.getElementById("subMenu");

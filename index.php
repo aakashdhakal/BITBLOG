@@ -61,7 +61,18 @@
     </div>
 </section>
 
-
+<section id="authorsList">
+    <div class="max-width">
+        <div class="section-heading-wrapper">
+            <h1 class="section-heading">Top Authors</h1>
+            <a href="all-authors.php" class="btn">View More&nbsp;<i class="fa-regular fa-circle-chevron-down fa-rotate-270"></i></a>
+        </div>
+        <hr>
+        <div class="authors">
+            <?php include "author-config.php" ?>
+        </div>
+    </div>
+</section>
 
 
 <section id="authorNotice">
