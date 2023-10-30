@@ -13,14 +13,18 @@ if (isset($_POST['author']) && isset($_POST['action'])) {
         $number = $numberrow['followers'];
 
         if ($action === "follow") {
-            // Follow the author
-            $followSql = "INSERT INTO followers_data (user_username, author_username) VALUES ('$username', '$author')";
-            $followResult = mysqli_query($conn, $followSql);
-            if ($followResult) {
-                $number = $number + 1;
-                echo "success";
+            if ($username == $author) {
+                echo "same";
             } else {
-                echo "error";
+                // Follow the author
+                $followSql = "INSERT INTO followers_data (user_username, author_username) VALUES ('$username', '$author')";
+                $followResult = mysqli_query($conn, $followSql);
+                if ($followResult) {
+                    $number = $number + 1;
+                    echo "success";
+                } else {
+                    echo "error";
+                }
             }
         } elseif ($action === "unfollow") {
             // Unfollow the author

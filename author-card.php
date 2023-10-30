@@ -1,14 +1,12 @@
   <div class="author-card">
+    <img src="<?php echo $author_profilepic ?>" alt="">
+
     <div class="author-info">
-      <img src="<?php echo $author_profilepic ?>" alt="">
-      <div class="author-details">
-        <p><?php echo $author_firstname . " " . $author_lastname ?></p>
-        <p class="followers-count"><i class="fa-duotone fa-users"></i>&nbsp;<?php echo formatNumber($author_followers) ?></p>
-      </div>
+      <p class="author-name"><?php echo $author_name ?></p>
+      <p class="author-username">@<?php echo $author_username ?></p>
 
     </div>
-    <p class="author-bio"><?php echo $author_bio ?></p>
 
 
-    <button id="followBtn" class="<?php echo $follower_class ?>" type="submit" data-author="<?php echo $author_username ?>"><i class="<?php echo $follower_icon ?>"></i>&nbsp;<?php echo $follower_text ?></button>
+    <button id="followBtn" class="<?php echo $follower_class ?>" type="submit" data-author="<?php echo $author_username ?>"><?php echo $follower_text ?></button>
   </div>

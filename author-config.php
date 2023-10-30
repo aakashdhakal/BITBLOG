@@ -3,7 +3,7 @@
 
 $conn = new mysqli("localhost", "root", "", "blogs");
 
-$sql = "SELECT * FROM users WHERE role = 'author' ORDER BY followers DESC LIMIT 4";
+$sql = "SELECT * FROM users WHERE role = 'author' ORDER BY followers DESC LIMIT 5";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -11,16 +11,13 @@ while ($row = $result->fetch_assoc()) {
 
     $author_id = $row["id"];
     $author_username = $row["username"];
-    $author_firstname = $row["firstname"];
-    $author_lastname = $row["lastname"];
+    $author_name = $row["firstname"] . " " . $row["lastname"] . " " . verification_badge($author_username);
     $author_profilepic = $row["profilepic"];
     $author_followers = $row["followers"];
     $author_bio = $row["bio"];
 
     $follower_class = "not-followed";
     $follower_text = "Follow";
-    $follower_icon = "fa-duotone fa-user-plus";
-
 
     if (isset($_SESSION['username'])) {
         $username = $_SESSION['username'];
@@ -37,8 +34,7 @@ while ($row = $result->fetch_assoc()) {
             while ($row1 = mysqli_fetch_assoc($result1)) {;
                 if ($author_username == $row1['author_username']) {
                     $follower_class = "followed";
-                    $follower_text = "Followed";
-                    $follower_icon = "fa-duotone fa-user-check";
+                    $follower_text = "Following";
                 }
             }
         }

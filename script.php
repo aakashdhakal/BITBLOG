@@ -2,7 +2,6 @@
 
 $website_title = "Blogs - Aakash Dhakal";
 include "featured-post-config.php";
-include "top-author-config.php";
 
 function formatNumber($number)
 {
@@ -12,7 +11,7 @@ function formatNumber($number)
         $number /= 1000;
         $index++;
     }
-    return round($number, 1) . $abbreviations[$index];
+    return round($number, 1)  . $abbreviations[$index];
 }
 
 
@@ -83,4 +82,35 @@ function get_author_info($username)
     $result = $stmt->get_result();
     $row = mysqli_fetch_assoc($result);
     return $row;
+}
+
+function check_follow_status($username, $author_username)
+{
+    $conn = new mysqli("localhost", "root", "", "blogs");
+    $sql = "SELECT * FROM followers_data WHERE user_username = ? AND author_username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $username, $author_username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if (mysqli_num_rows($result) > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function verification_badge($username)
+{
+    $conn = new mysqli("localhost", "root", "", "blogs");
+    $sql = "SELECT * FROM users WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = mysqli_fetch_assoc($result);
+    if ($row['is_verified'] == 1) {
+        return '<i class=" fa-solid fa-badge-check" style="color: #2865cc;"></i>';
+    } else {
+        return '';
+    }
 }

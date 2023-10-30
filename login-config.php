@@ -32,7 +32,4 @@ if (!isset($_SESSION['username'])) {
             echo "Invalid username or password";
         }
     }
-} else {
-    session_destroy();
-    header("Location: index.php");
 }

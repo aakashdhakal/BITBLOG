@@ -18,6 +18,7 @@ let loginForm = document.querySelector(".loginForm");
 loginForm.addEventListener("submit", function (e) {
 	e.preventDefault();
 	if (loginUsername.value === "" || loginPassword.value === "") {
+		showAlert("error", "Please fill out all fields.");
 		return;
 	} else {
 		let xhr = new XMLHttpRequest();
@@ -28,7 +29,7 @@ loginForm.addEventListener("submit", function (e) {
 				if (xhr.responseText === "success") {
 					location.reload();
 				} else {
-					alert(xhr.responseText);
+					showAlert("error", "Invalid username or password.");
 					return;
 				}
 			}

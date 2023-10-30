@@ -66,7 +66,7 @@ session_start();
                         <a href=""><i class="fas fa-user"></i>Profile</a>
                         <a href=""><i class="fas fa-gear"></i>Settings</a>
                         <a href=""><i class="fas fa-circle-info"></i>Help</a>
-                        <a as="button" href="login-config.php"><i class="fas fa-right-from-bracket"></i>Logout</a>
+                        <a href="logout.php"><i class="fas fa-right-from-bracket"></i>Logout</a>
                     </div>
                     <div class="sub-menu" id="notificationMenu">
                         <a href="">Mark all as read</a>
@@ -88,8 +88,8 @@ session_start();
             <div class="login-form">
                 <h1>LOGIN</h1>
                 <form action="" method="POST" class="loginForm">
-                    <input type="text" name="username" placeholder="Username" id="loginUsername" required />
-                    <input type="password" name="password" placeholder="Password" id="loginPassword" required />
+                    <input type="text" name="username" placeholder="Username" id="loginUsername" />
+                    <input type="password" name="password" placeholder="Password" id="loginPassword" />
                     <button type="submit" name="loginSubmit" id="loginSubmit">Login</button>
                 </form>
             </div>

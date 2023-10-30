@@ -154,32 +154,57 @@ followBtn.forEach(function (button) {
 			if (xhr.readyState === 4 && xhr.status === 200) {
 				if (xhr.responseText === "success") {
 					if (action === "follow") {
-						button.innerHTML =
-							'<i class="fa-duotone fa-user-check"></i>&nbsp;Followed';
+						button.innerHTML = "Following";
 						button.classList.remove("not-followed");
 						button.classList.add("followed");
 						button.disabled = false;
+						showAlert("success", "You are now following " + author + " !");
 					} else if (action === "unfollow") {
-						button.innerHTML =
-							'<i class="fa-duotone fa-user-plus"></i>&nbsp;Follow';
+						button.innerHTML = "Follow";
 						button.classList.remove("followed");
 						button.classList.add("not-followed");
 						button.disabled = false;
+						showAlert("warning", "You unfollowed " + author + " !");
 					}
 				} else if (xhr.responseText === "login") {
-					showAlert("warning", "Please login to follow");
-					button.innerHTML =
-						'<i class="fa-duotone fa-user-plus"></i>&nbsp;Follow';
+					showAlert("warning", "Please login to follow the author");
+					button.innerHTML = "Follow";
+					button.disabled = false;
+				} else if (xhr.responseText === "same") {
+					showAlert("error", "You cannot follow yourself");
+					button.innerHTML = "Follow";
 					button.disabled = false;
 				} else {
-					showAlert("error", "Something went wrong. Please try again later.");
-					button.innerHTML =
-						'<i class="fa-duotone fa-user-plus"></i>&nbsp;Follow';
+					showAlert(
+						"error",
+						"Something went wrong. Please try again later." + xhr.responseText
+					);
+					button.innerHTML = "Follow";
 					button.disabled = false;
 				}
 			}
 		};
 		xhr.send("author=" + author + "&action=" + action);
+	});
+});
+
+followBtn.forEach(function (button) {
+	button.addEventListener("mouseover", () => {
+		if (button.classList.contains("followed")) {
+			button.innerHTML = "Unfollow ";
+			button.classList.add("unfollow");
+		}
+	});
+});
+
+followBtn.forEach(function (button) {
+	button.addEventListener("mouseout", () => {
+		if (button.classList.contains("followed")) {
+			button.innerHTML = "Following";
+		} else if (button.classList.contains("not-followed")) {
+			button.innerHTML = "Follow";
+		}
+		button.classList.remove("unfollow");
 	});
 });
 
@@ -197,21 +222,21 @@ function showAlert(state, message) {
 
 	switch (state) {
 		case "success":
-			alertHeading.innerHTML = "Success!";
+			alertHeading.innerHTML = "! Success !";
 			alertIcon.className = "fa-duotone fa-circle-check";
 			alertIcon.style.setProperty("--fa-primary-color", "#000000");
 			alertIcon.style.setProperty("--fa-secondary-color", "#00ff00");
 			alertIcon.style.setProperty("--fa-secondary-opacity", "0.4");
 			break;
 		case "error":
-			alertHeading.innerHTML = "Error!";
+			alertHeading.innerHTML = "! Error !";
 			alertIcon.className = "fa-duotone fa-circle-xmark";
 			alertIcon.style.setProperty("--fa-primary-color", "#000000");
 			alertIcon.style.setProperty("--fa-secondary-color", "#ff0000");
 			alertIcon.style.setProperty("--fa-secondary-opacity", "0.4");
 			break;
 		case "warning":
-			alertHeading.innerHTML = "Warning!";
+			alertHeading.innerHTML = "! Warning !";
 			alertIcon.className = "fa-duotone fa-circle-exclamation";
 			alertIcon.style.setProperty("--fa-primary-color", "#000000");
 			alertIcon.style.setProperty("--fa-secondary-color", "#ffc800");

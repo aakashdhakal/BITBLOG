@@ -61,19 +61,50 @@
     </div>
 </section>
 
-<section id="authorsList">
+<section id="postsAuthors">
     <div class="max-width">
-        <div class="section-heading-wrapper">
-            <h1 class="section-heading">Top Authors</h1>
-            <a href="all-authors.php" class="btn">View More&nbsp;<i class="fa-regular fa-circle-chevron-down fa-rotate-270"></i></a>
+        <div class="left">
+            <div class="section-heading-wrapper">
+                <h1 class="section-heading">Browse more articles</h1>
+                <a href="all-authors.php" class="btn">View More&nbsp;<i class="fa-regular fa-circle-chevron-down fa-rotate-270"></i></a>
+            </div>
+            <hr>
+            <div class="category-list">
+                <a href="" class="category">All</a>
+                <?php include "random-category-config.php" ?>
+            </div>
         </div>
-        <hr>
-        <div class="authors">
-            <?php include "author-config.php" ?>
+        <div class="right">
+            <div class="top">
+                <?php include "top-author-config.php" ?>
+                <div class="section-heading-wrapper">
+                    <h1 class="section-heading">Author of the Week</h1>
+                </div>
+                <img src="<?php echo $top_author_profilepic ?>" alt="">
+                <div class="author-name-details">
+                    <p class="author-name"><?php echo $top_author_name ?></p>
+                    <p class="author-username">@<?php echo $top_author_username ?></p>
+                </div>
+                <p class="author-bio"><?php echo $top_author_bio ?></p>
+                <hr>
+                <div class="author-info">
+                    <p><i class="fa-duotone fa-heart"></i>&nbsp;&nbsp;<?php echo formatNumber($top_author_likes) ?></p>
+                    <p><i class="fa-duotone fa-newspaper"></i>&nbsp;&nbsp;<?php echo formatNumber($top_author_posts) ?></p>
+                </div>
+                <hr>
+                <p class="author-followers"><?php echo formatNumber($top_author_followers) ?>&nbsp;Followers</p>
+                <div class="profile-button">
+                    <button id="followBtn" class="<?php echo $follower_class ?>" type="submit" data-author="<?php echo $top_author_username ?>"><?php echo $follower_text ?></button>
+                    <a href="" type="button" class="secondary-btn" id="viewProfile">View Profile</a>
+                </div>
+
+            </div>
+            <div class="bottom">
+                <?php include "author-config.php" ?>
+            </div>
         </div>
     </div>
 </section>
-
 
 <section id="authorNotice">
     <div class="max-width">

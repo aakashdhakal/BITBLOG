@@ -148,7 +148,7 @@ a {
 
 .category {
 	background-color: var(--main-theme-color);
-	padding: 2px 10px;
+	padding: 3px 10px;
 	border-radius: 30px;
 	font-size: 0.9rem;
 	color: #000000;
@@ -165,6 +165,29 @@ hr {
 	display: flex;
 	align-items: center;
 	gap: 10px;
+}
+.primary-btn {
+	background-color: var(--main-theme-color);
+	border: none;
+	cursor: pointer;
+	text-decoration: none;
+	padding: 5px 20px;
+	border-radius: 40px;
+	color: #000000;
+	font-size: 1rem;
+	font-family: Poppins;
+	outline: none;
+}
+.secondary-btn {
+	border: 1.5px solid var(--text-color);
+	background-color: transparent;
+	color: var(--text-color);
+	text-decoration: none;
+	padding: 5px 20px;
+	border-radius: 40px;
+	font-size: 1rem;
+	font-family: Poppins;
+	outline: none;
 }
 
 .section-heading::before {
@@ -199,9 +222,10 @@ hr {
 	place-content: center;
 }
 .author-bio {
-	font-size: 0.8rem;
+	font-size: 0.9rem;
 	text-align: center;
 	padding: 2px;
+	width: 100%;
 }
 #followBtn {
 	cursor: pointer;
@@ -220,6 +244,11 @@ hr {
 	border: 1.5px solid var(--text-color);
 	background-color: transparent;
 	color: var(--text-color);
+}
+.unfollow {
+	background-color: transparent;
+	border: 1.5px solid crimson;
+	color: crimson;
 }
 .followers-count {
 	font-size: 0.9rem;
@@ -658,6 +687,9 @@ footer .logo img {
 	justify-content: flex-end;
 	row-gap: 20px;
 	height: max-content;
+	background-color: var(--hover-bg-color);
+	padding: 20px;
+	border-radius: calc(2rem + 10px);
 }
 #featuredPost .left img,
 #featuredPost .right img {
@@ -895,6 +927,7 @@ footer .logo img {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: space-between;
 	gap: 10px;
 	height: 100%;
 }
@@ -902,7 +935,7 @@ footer .logo img {
 	width: 100%;
 	height: 50%;
 	object-fit: cover;
-	aspect-ratio: 4/3;
+	aspect-ratio: 16/9;
 	border-radius: 2rem;
 	padding: 0;
 }
@@ -920,9 +953,9 @@ footer .logo img {
 	font-size: 0.9rem;
 }
 
-/*-------Author List----------*/
+/*--------------Posts and Authors-------------*/
 
-#authorsList {
+#postsAuthors {
 	width: 100%;
 	height: max-content;
 	display: flex;
@@ -930,44 +963,134 @@ footer .logo img {
 	margin: 30px 0px;
 }
 
-#authorsList .max-width {
+#postsAuthors .max-width {
+	display: flex;
+	align-items: center;
+	width: 80%;
+	gap: 50px;
+	height: max-content;
+}
+
+#postsAuthors .left {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	width: 100%;
+	height: max-content;
+}
+#postsAuthors .right {
+	width: 30%;
+	height: max-content;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 50px;
+}
+#postsAuthors .right img {
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+	border-radius: 50%;
+	padding: 5px;
+	border: 2px solid #d5ac4e;
+}
+#postsAuthors .right .top {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 15px;
+	flex-direction: column;
+	background-color: var(--hover-bg-color);
+	padding: 15px;
+	width: 100%;
+	border-radius: 2rem;
+}
+#postsAuthors .right .section-heading-wrapper {
+	justify-content: center;
+}
+#postsAuthors .right .section-heading-wrapper h1 {
+	font-size: 1.2rem;
+}
+#postsAuthors .right .top .section-heading-wrapper h1::before {
+	content: none;
+}
+#postsAuthors .right .top .author-info {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+	font-size: 1rem;
+	text-align: center;
+	padding: 10px;
+	border-radius: 2rem;
+}
+#postsAuthors .author-name {
+	font-size: 1rem;
+	font-weight: 700;
+}
+.author-username {
+	font-size: 0.85rem;
+	font-weight: 500;
+	text-align: center;
+}
+.author-followers,
+.author-username {
+	color: #818181;
+}
+.profile-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+}
+.profile-button #viewProfile {
+	font-size: 0.8rem;
+}
+.profile-button #followBtn {
+	font-size: 0.8rem;
+	width: 40% !important;
+}
+
+#postsAuthors .right .bottom {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	width: 80%;
-	gap: 20px;
-	height: max-content;
-}
-.author-card img {
-	width: 50px;
-	height: 50px;
-	object-fit: cover;
-	padding: 0;
-	border-radius: 50%;
-	padding: 2px;
-	border: 2px solid var(--main-theme-color);
-}
-#authorsList .authors {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, max-content));
-	column-gap: 35px;
-	align-items: center;
+	gap: 40px;
 	width: 100%;
 	height: max-content;
 }
+#postsAuthors .right .bottom img {
+	width: 50px;
+	height: 50px;
+	object-fit: cover;
+	border-radius: 2rem;
+	padding: 2px;
+}
+
 .author-card {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 10px;
-	height: 100%;
+	display: grid;
+	grid-template-columns: 0fr 1.2fr 0.8fr;
+	column-gap: 9px;
+	place-content: space-between;
+	place-items: center;
+	width: 100%;
+}
+#postsAuthors #followBtn {
+	font-size: 0.8rem;
+	width: 100%;
 }
 .author-card .author-info {
 	display: flex;
-	align-items: center;
-	gap: 10px;
-	height: 100%;
+	justify-content: center;
+	align-items: start;
+	flex-direction: column;
+	width: 100%;
+	font-size: 0.85rem;
 }
 
 @media screen and (max-width: 768px) {
