@@ -150,8 +150,11 @@ a {
 	background-color: var(--main-theme-color);
 	padding: 3px 10px;
 	border-radius: 30px;
-	font-size: 0.9rem;
+	font-size: 0.8rem;
 	color: #000000;
+	outline: none;
+	border: none;
+	cursor: pointer;
 }
 hr {
 	border: none;
@@ -250,8 +253,9 @@ hr {
 	border: 1.5px solid crimson;
 	color: crimson;
 }
-.followers-count {
+.author-followers {
 	font-size: 0.9rem;
+	font-family: Arimo;
 }
 .alert-box {
 	position: fixed;
@@ -271,6 +275,7 @@ hr {
 	overflow: hidden;
 	transform: translateX(100vw);
 	border-bottom: 4px solid #ff5c5c;
+	color: #000000;
 }
 .alert-box i {
 	font-size: 1.8rem;
@@ -294,6 +299,21 @@ hr {
 }
 .show-alert {
 	transform: translateX(0);
+}
+.post-content {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+.post-title {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+.read-more {
+	font-size: 1rem;
 }
 
 /* -----------Navbar----------------- */
@@ -689,7 +709,7 @@ footer .logo img {
 	height: max-content;
 	background-color: var(--hover-bg-color);
 	padding: 20px;
-	border-radius: calc(2rem + 10px);
+	border-radius: 2.5rem;
 }
 #featuredPost .left img,
 #featuredPost .right img {
@@ -697,14 +717,7 @@ footer .logo img {
 	height: 50%;
 	object-fit: cover;
 	aspect-ratio: 16/9;
-	border-radius: 2rem;
-}
-#featuredPost p,
-#featuredPost h1 {
-	display: -webkit-box;
-	-webkit-line-clamp: 3;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
+	border-radius: calc(2.5rem - 20px);
 }
 #featuredPost .left .author-info {
 	grid-template-columns: repeat(auto-fit, minmax(20px, max-content));
@@ -719,10 +732,6 @@ footer .logo img {
 	gap: 10px;
 }
 
-#featuredPost .category {
-	font-size: 0.8rem;
-}
-
 #featuredPost .top-posts {
 	display: grid;
 	grid-template-columns: 0.45fr 1fr;
@@ -730,7 +739,6 @@ footer .logo img {
 	height: min-content;
 }
 #featuredPost .top-posts h1 {
-	-webkit-line-clamp: 2;
 	font-size: 1rem;
 }
 
@@ -927,24 +935,20 @@ footer .logo img {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: space-around;
+	height: max-content;
 	gap: 10px;
-	height: 100%;
 }
 .post-card img {
-	width: 100%;
+	width: 90%;
 	height: 50%;
 	object-fit: cover;
-	aspect-ratio: 16/9;
+	aspect-ratio: 1.66/1;
 	border-radius: 2rem;
 	padding: 0;
 }
 .post-card h1 {
 	font-size: 1rem;
-	display: -webkit-box;
-	-webkit-line-clamp: 3;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
 }
 .post-card .category {
 	font-size: 0.8rem;
@@ -965,7 +969,8 @@ footer .logo img {
 
 #postsAuthors .max-width {
 	display: flex;
-	align-items: center;
+	align-items: start;
+	justify-content: space-between;
 	width: 80%;
 	gap: 50px;
 	height: max-content;
@@ -980,6 +985,64 @@ footer .logo img {
 	width: 100%;
 	height: max-content;
 }
+#postsAuthors .left .category-list {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 15px;
+	width: 100%;
+	height: 100%;
+	margin-top: 10px;
+	padding: 10px;
+}
+
+.active-category {
+	border: 1.5px solid var(--text-color);
+}
+
+.post-list img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	aspect-ratio: 16/9;
+	border-top-left-radius: 2rem;
+	border-bottom-left-radius: 2rem;
+	padding: 0;
+}
+#postsAuthors .posts {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+	width: 100%;
+	height: 100%;
+	margin-top: 20px;
+}
+
+#postsAuthors .post-list .post-info {
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 15px;
+}
+.post-list {
+	display: grid;
+	grid-template-columns: 0.7fr 1fr;
+	column-gap: 20px;
+	width: 100%;
+	border: 2px solid var(--hover-bg-color);
+	height: max-content;
+	border-radius: 2rem;
+}
+.post-list .post-title {
+	font-size: 1.2rem;
+}
+.post-list .post-content {
+	font-size: 0.95rem;
+}
 #postsAuthors .right {
 	width: 30%;
 	height: max-content;
@@ -987,6 +1050,7 @@ footer .logo img {
 	flex-direction: column;
 	align-items: center;
 	gap: 50px;
+	margin-top: 170px;
 }
 #postsAuthors .right img {
 	width: 100px;

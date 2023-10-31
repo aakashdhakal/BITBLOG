@@ -1,6 +1,7 @@
 <?php
 session_start();
-$conn = new mysqli("localhost", "root", "", "blogs");
+include("includes/database-config.php");
+
 
 if (!isset($_SESSION['username'])) {
 

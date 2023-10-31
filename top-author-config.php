@@ -1,5 +1,6 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "blogs");
+include "includes/database-config.php";
+
 
 $sql = "SELECT * FROM users where role ='author' ORDER BY followers DESC LIMIT 1";
 $stmt = $conn->prepare($sql);

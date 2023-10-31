@@ -13,7 +13,7 @@ session_start();
     <link rel="icon" href="images/aakashdhakal.ico">
     <title><?php echo $website_title; ?></title>
     <link rel="stylesheet" href="CSS/style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins|Cabin">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins|Arimo">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
 </head>
 

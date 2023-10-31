@@ -109,7 +109,7 @@ function verification_badge($username)
     $result = $stmt->get_result();
     $row = mysqli_fetch_assoc($result);
     if ($row['is_verified'] == 1) {
-        return '<i class=" fa-solid fa-badge-check" style="color: #2865cc;"></i>';
+        return '<i class=" fa-solid fa-badge-check" style="color: #2865cc;" title="Verified"></i>';
     } else {
         return '';
     }

@@ -1,6 +1,7 @@
 <?php
 session_start();
-$conn = new mysqli("localhost", "root", "", "blogs");
+include("includes/database-config.php");
+
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

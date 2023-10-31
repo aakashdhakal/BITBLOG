@@ -250,6 +250,41 @@ function showAlert(state, message) {
 	}, 5000);
 }
 
+//category filter function
+
+let categoryContainer = document.querySelector(".category-list");
+let categoryList = categoryContainer.querySelectorAll("button");
+let postContainer = document.querySelector("#postsAuthors  .posts");
+
+categoryList[0].classList.add("active-category");
+
+categoryList.forEach(function (button) {
+	button.addEventListener("click", function () {
+		// Remove the "active-category" class from all category buttons
+		categoryList.forEach(function (btn) {
+			btn.classList.remove("active-category");
+		});
+
+		// Add the "active-category" class to the clicked button
+		this.classList.add("active-category");
+
+		// Filter the posts according to the clicked category
+		let category = this.getAttribute("data-category");
+		if (category != "") {
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", "post-list-config.php", true);
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					postContainer.innerHTML =
+						xhr.responseText + '<?php include "script.php"; ?>';
+				}
+			};
+			xhr.send("category=" + category);
+		}
+	});
+});
+
 //Sub Menu Script
 
 let menu = document.getElementById("subMenu");

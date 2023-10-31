@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "blogs");
+include "includes/database-config.php";
 
 $sql = "SELECT category FROM posts GROUP BY category ORDER BY RAND() LIMIT 10";
 $stmt = $conn->prepare($sql);
@@ -8,5 +8,5 @@ $result = $stmt->get_result();
 $row = $result->fetch_assoc();
 while ($row = $result->fetch_assoc()) {
     $category = $row['category'];
-    echo " <a href='' class='category'>$category</a>";
+    echo " <button class='category' data-category='$category'>$category</button>";
 }

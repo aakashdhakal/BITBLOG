@@ -16,7 +16,7 @@
     </div>
 </section>
 
-
+<?php include "featured-post-config.php" ?>
 <section id="featuredPost">
     <div class="max-width">
         <div class="left">
@@ -28,12 +28,12 @@
                     <p><i class="fa-solid fa-clock" style="color: #9e9e9e;"></i>&nbsp;<?php echo $featured_post_date ?></p>
                 </div>
                 <a href="">
-                    <h1><?php echo $featured_post_title ?></h1>
+                    <h1 class="post-title"><?php echo $featured_post_title ?></h1>
                 </a>
-                <p><?php echo $featured_post_content ?></p>
+                <p class="post-content"><?php echo $featured_post_content ?></p>
                 <div class="author-info">
                     <p> <img src="<?php echo $featured_post_author_profilepic ?>" alt="" class="profilepic">
-                        <?php echo $featured_post_author_firstname . "  " . $featured_post_author_lastname ?></p>
+                        <?php echo $featured_post_author_name ?></p>
                     <p><i class="fa-solid fa-eye" style="color: #9e9e9e;"></i><?php echo formatNumber($featured_post_views) ?></p>
                     <p><i class="fa-solid fa-heart" style="color: #9e9e9e;"></i><?php echo formatNumber($featured_post_likes) ?></p>
                     <p><i class="fa-solid fa-comment" style="color: #9e9e9e;"></i><?php echo formatNumber($featured_post_comments) ?></p>
@@ -65,13 +65,16 @@
     <div class="max-width">
         <div class="left">
             <div class="section-heading-wrapper">
-                <h1 class="section-heading">Browse more articles</h1>
+                <h1 class="section-heading">Trending Categories</h1>
                 <a href="all-authors.php" class="btn">View More&nbsp;<i class="fa-regular fa-circle-chevron-down fa-rotate-270"></i></a>
             </div>
             <hr>
             <div class="category-list">
-                <a href="" class="category">All</a>
+                <button class="category" data-category="All">All</button>
                 <?php include "random-category-config.php" ?>
+            </div>
+            <div class="posts">
+                <?php include "post-list-config.php" ?>
             </div>
         </div>
         <div class="right">

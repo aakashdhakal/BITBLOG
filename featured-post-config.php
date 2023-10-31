@@ -1,6 +1,6 @@
 <?php
 
-$conn = new mysqli("localhost", "root", "", "blogs");
+include "includes/database-config.php";
 
 $sql = "SELECT * FROM posts WHERE featured=1";
 $stmt = $conn->prepare($sql);
@@ -22,8 +22,7 @@ $featured_post_views = $featured_post["views"];
 $featured_post_comments = $featured_post["comments"];
 
 $author = get_author_info($featured_post_author);
-$featured_post_author_firstname = $author["firstname"];
-$featured_post_author_lastname = $author["lastname"];
+$featured_post_author_name = $author["firstname"] . " " . $author["lastname"];
 $featured_post_author_profilepic = $author["profilepic"];
 
 

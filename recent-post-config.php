@@ -1,5 +1,6 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "blogs");
+include "includes/database-config.php";
+
 
 $sql = "SELECT * FROM posts ORDER BY date DESC LIMIT 4";
 $stmt = $conn->prepare($sql);

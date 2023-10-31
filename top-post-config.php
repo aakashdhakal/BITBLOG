@@ -1,5 +1,6 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "blogs");
+include "includes/database-config.php";
+
 
 $sql = "SELECT * FROM posts ORDER BY likes DESC LIMIT 4";
 $stmt = $conn->prepare($sql);
@@ -19,8 +20,7 @@ while ($row = $result->fetch_assoc()) {
     $top_post_views = $row["views"];
 
     $author = get_author_info($top_post_author);
-    $top_post_author_firstname = $author["firstname"];
-    $top_post_author_lastname = $author["lastname"];
+    $top_post_author_name = $author["firstname"] . " " . $author["lastname"];
     $top_post_author_profilepic = $author["profilepic"];
     include "top-post.php";
 }
