@@ -62,5 +62,5 @@ jobs:
         with:
           app-name: 'adblogs'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E2091529EB48405FA52FD5C19867C13E }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8E90FA78426049F8897AE209C965DAEB }}
           package: .
