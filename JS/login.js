@@ -1,14 +1,46 @@
 let loginBtn = document.querySelector("#loginBtn");
-let loginDialog = document.querySelector("dialog");
-let closeBtn = document.querySelector("#closeBtn");
+let loginDialog = document.querySelector("#loginForm");
+let signupDialog = document.querySelector("#signupForm");
+let signupBtn = document.querySelector("#signupBtn");
+let closeBtn = document.querySelectorAll("#closeBtn");
 
 loginBtn.addEventListener("click", function () {
-	loginDialog.showModal();
+	dialogOpen(loginDialog);
 });
 
-closeBtn.addEventListener("click", function () {
-	loginDialog.close();
+signupBtn.addEventListener("click", function () {
+	dialogOpen(signupDialog);
 });
+
+closeBtn.forEach((btn) => {
+	btn.addEventListener("click", function () {
+		if (loginDialog.open) {
+			dialogClose(loginDialog);
+		} else if (signupDialog.open) {
+			dialogClose(signupDialog);
+		}
+	});
+});
+
+document.addEventListener("click", function (event) {
+	if (event.target == loginDialog) {
+		dialogClose(loginDialog);
+	} else if (event.target == signupDialog) {
+		dialogClose(signupDialog);
+	}
+});
+
+function dialogOpen(dialogElement) {
+	dialogElement.style.animation = "dialogShow 0.3s ease";
+	dialogElement.showModal();
+}
+
+function dialogClose(dialogElement) {
+	dialogElement.style.animation = "dialogClose 0.3s ease";
+	setTimeout(function () {
+		dialogElement.close();
+	}, 300);
+}
 
 let loginSubmit = document.querySelector("#loginSubmit");
 let loginPassword = document.querySelector("#loginPassword");

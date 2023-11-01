@@ -1,7 +1,6 @@
 <?php
 
 $website_title = "Blogs - Aakash Dhakal";
-include "featured-post-config.php";
 
 function formatNumber($number)
 {
@@ -74,7 +73,7 @@ function getTimeAgo($date)
 }
 function get_author_info($username)
 {
-    $conn = new mysqli("localhost", "root", "", "blogs");
+    include "includes/database-config.php";
     $sql = "SELECT * FROM users WHERE username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
@@ -86,7 +85,7 @@ function get_author_info($username)
 
 function check_follow_status($username, $author_username)
 {
-    $conn = new mysqli("localhost", "root", "", "blogs");
+    include "includes/database-config.php";
     $sql = "SELECT * FROM followers_data WHERE user_username = ? AND author_username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $username, $author_username);
@@ -101,7 +100,7 @@ function check_follow_status($username, $author_username)
 
 function verification_badge($username)
 {
-    $conn = new mysqli("localhost", "root", "", "blogs");
+    include "includes/database-config.php";
     $sql = "SELECT * FROM users WHERE username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);

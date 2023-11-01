@@ -1,5 +1,5 @@
 <?php
-include "script.php";
+include "includes/extra-script.php";
 session_start();
 ?>
 
@@ -94,4 +94,16 @@ session_start();
                 </form>
             </div>
         </dialog>
+        <dialog id="signupForm" name="form">
+            <button id="closeBtn"><i class="fa-solid fa-xmark"></i></button>
+            <div class="signup-form">
+                <h1>REGISTER</h1>
+                <form action="" method="POST" class="signupForm">
+                    <input type="text" name="username" placeholder="Username" id="signupUsername" />
+                    <input type="email" name="email" placeholder="Email" id="signupEmail" />
+                    <input type="password" name="password" placeholder="Password" id="signupPassword" />
+                    <input type="password" name="confirmPassword" placeholder="Confirm Password" id="signupConfirmPassword" />
+                    <button type="submit" name="signupSubmit" id="signupSubmit">Register</button>
+                </form>
+            </div>
     </section>
