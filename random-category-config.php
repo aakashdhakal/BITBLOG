@@ -8,5 +8,5 @@ $result = $stmt->get_result();
 $row = $result->fetch_assoc();
 while ($row = $result->fetch_assoc()) {
     $category = $row['category'];
-    echo " <button class='category' data-category='$category'>$category</button>";
+    echo " <button class='category secondary-btn' data-category='$category'>$category</button>";
 }

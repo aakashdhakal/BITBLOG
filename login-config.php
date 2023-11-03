@@ -27,10 +27,10 @@ if (!isset($_SESSION['username'])) {
                 $_SESSION["email"] = $row["email"];
                 echo "success";
             } else {
-                echo "Invalid username or password";
+                echo "wrong";
             }
         } else {
-            echo "Invalid username or password";
+            echo "wrong";
         }
     }
 }

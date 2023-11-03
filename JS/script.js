@@ -212,7 +212,6 @@ followBtn.forEach(function (button) {
 
 let alertBox = document.querySelector(".alert-box");
 let alertMessage = document.querySelector("#alertMessage");
-let alertHeading = document.querySelector("#alertHeading");
 let alertIcon = document.querySelector(".alert-box i");
 
 function showAlert(state, message) {
@@ -222,21 +221,18 @@ function showAlert(state, message) {
 
 	switch (state) {
 		case "success":
-			alertHeading.innerHTML = "! Success !";
 			alertIcon.className = "fa-duotone fa-circle-check";
 			alertIcon.style.setProperty("--fa-primary-color", "#000000");
 			alertIcon.style.setProperty("--fa-secondary-color", "#00ff00");
 			alertIcon.style.setProperty("--fa-secondary-opacity", "0.4");
 			break;
 		case "error":
-			alertHeading.innerHTML = "! Error !";
 			alertIcon.className = "fa-duotone fa-circle-xmark";
 			alertIcon.style.setProperty("--fa-primary-color", "#000000");
 			alertIcon.style.setProperty("--fa-secondary-color", "#ff0000");
 			alertIcon.style.setProperty("--fa-secondary-opacity", "0.4");
 			break;
 		case "warning":
-			alertHeading.innerHTML = "! Warning !";
 			alertIcon.className = "fa-duotone fa-circle-exclamation";
 			alertIcon.style.setProperty("--fa-primary-color", "#000000");
 			alertIcon.style.setProperty("--fa-secondary-color", "#ffc800");
@@ -256,17 +252,20 @@ let categoryContainer = document.querySelector(".category-list");
 let categoryList = categoryContainer.querySelectorAll("button");
 let postContainer = document.querySelector("#postsAuthors  .posts");
 
-categoryList[0].classList.add("active-category");
+categoryList[0].classList.add("primary-btn");
 
 categoryList.forEach(function (button) {
 	button.addEventListener("click", function () {
+		postContainer.style.opacity = "0.5";
+		postContainer.style.pointerEvents = "none";
 		// Remove the "active-category" class from all category buttons
 		categoryList.forEach(function (btn) {
-			btn.classList.remove("active-category");
+			btn.classList.remove("primary-btn");
+			btn.classList.add("secondary-btn");
 		});
-
 		// Add the "active-category" class to the clicked button
-		this.classList.add("active-category");
+		this.classList.add("primary-btn");
+		this.classList.remove("secondary-btn");
 
 		// Filter the posts according to the clicked category
 		let category = this.getAttribute("data-category");
@@ -276,13 +275,26 @@ categoryList.forEach(function (button) {
 			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhr.onreadystatechange = function () {
 				if (xhr.readyState === 4 && xhr.status === 200) {
-					postContainer.innerHTML =
-						xhr.responseText + '<?php include "script.php"; ?>';
+					postContainer.style.opacity = "1";
+					postContainer.style.pointerEvents = "auto";
+					postContainer.innerHTML = xhr.responseText;
 				}
 			};
 			xhr.send("category=" + category);
 		}
 	});
+});
+
+//Preloader Script
+
+let preloader = document.querySelector(".preloader");
+window.addEventListener("load", () => {
+	setTimeout(() => {
+		preloader.animate({ opacity: "0" }, 1000);
+	}, 1000);
+	setTimeout(() => {
+		preloader.style.display = "none";
+	}, 2000);
 });
 
 //Sub Menu Script

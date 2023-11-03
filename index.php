@@ -121,6 +121,7 @@
 <?php include "includes/footer.php"; ?>
 <script src="JS/script.js" async></script>
 <script src="JS/login.js" defer></script>
+<script src="JS/signup.js" defer></script>
 </body>
 
 </html>
