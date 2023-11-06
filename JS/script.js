@@ -297,6 +297,61 @@ window.addEventListener("load", () => {
 	}, 2000);
 });
 
+//custom select script
+
+// Get all custom select menus on the page
+let customSelects = document.querySelectorAll(".custom-select");
+
+// Loop through each select element
+customSelects.forEach((select) => {
+	let customOptions = select.querySelectorAll(".custom-options li");
+	let selectInput = select.querySelector(".custom-select-display");
+	let customOptionsContainer = select.querySelector(".custom-options");
+
+	selectInput.addEventListener("click", function () {
+		// Toggle the .active class on the container
+		customOptionsContainer.classList.toggle("show-options");
+	});
+
+	document.addEventListener("click", function (event) {
+		if (
+			event.target.closest(".custom-select") === select ||
+			event.target === selectInput
+		)
+			return;
+		customOptionsContainer.classList.remove("show-options");
+	});
+
+	customOptions.forEach((option) => {
+		option.addEventListener("click", function () {
+			// Remove "active-option" class from all options
+			customOptions.forEach((otherOption) => {
+				otherOption.classList.remove("active-option");
+			});
+
+			// Add "active-option" class to the clicked option
+			option.classList.add("active-option");
+			customOptionsContainer.classList.remove("show-options");
+			selectInput.value = option.innerText;
+			selectInput.focus();
+		});
+	});
+});
+
+//file upload custom script
+
+let fileInput = document.getElementById("signupProfilepic");
+let fileSelect = document.getElementsByClassName("file-upload-select")[0];
+fileSelect.addEventListener("click", function (e) {
+	fileInput.click();
+});
+
+fileInput.addEventListener("change", function () {
+	let filename = fileInput.files[0].name;
+	let selectName = document.getElementsByClassName("file-select-name")[0];
+	selectName.innerText = filename;
+});
+
 //Sub Menu Script
 
 let menu = document.getElementById("subMenu");

@@ -88,34 +88,40 @@ loginForm.addEventListener("submit", function (e) {
 	}
 });
 
-let passwordToggle = document.querySelector("#passwordShow");
+let passwordToggle = document.querySelectorAll(".password-show");
 
-passwordToggle.addEventListener("click", function () {
-	if (loginPassword.type === "password") {
-		loginPassword.type = "text";
-		passwordToggle.innerHTML =
-			'<i class="fas fa-eye-slash" style="color:#6e6e6e"></i>';
-	} else {
-		loginPassword.type = "password";
-		passwordToggle.innerHTML =
-			'<i class="fas fa-eye" style="color:#6e6e6e"></i>';
-	}
+passwordToggle.forEach((toggle) => {
+	let passwordInput = toggle.parentElement.children[1];
+	toggle.addEventListener("click", function () {
+		if (passwordInput.type == "password") {
+			passwordInput.type = "text";
+			toggle.innerHTML =
+				'<i class="fas fa-eye-slash" style="color:#6e6e6e"></i>';
+		} else {
+			passwordInput.type = "password";
+			toggle.innerHTML = '<i class="fas fa-eye" style="color:#6e6e6e"></i>';
+		}
+	});
 });
 
 //dialog alert
 
-let dialogAlert = document.querySelector(".alert-box-dialog");
-let dialogAlertMessage = document.querySelector("#dialogAlertMessage");
+let dialogAlert = document.querySelectorAll(".alert-box-dialog");
 
 function showDialogAlert(message) {
-	dialogAlertMessage.innerHTML = message;
-	dialogAlert.style.visibility = "visible";
-	dialogAlert.style.opacity = "1";
+	dialogAlert.forEach((alert) => {
+		alertMessage = alert.querySelector("#dialogAlertMessage");
+		alertMessage.innerHTML = message;
+		alert.style.visibility = "visible";
+		alert.style.opacity = "1";
+	});
 }
 
 function hideDialogAlert() {
-	dialogAlert.style.visibility = "hidden";
-	dialogAlert.style.opacity = "0";
+	dialogAlert.forEach((alert) => {
+		alert.style.visibility = "hidden";
+		alert.style.opacity = "0";
+	});
 }
 
 let signupLink = document.getElementById("signupLink");

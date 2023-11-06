@@ -28,7 +28,7 @@ session_start();
     </div>
     <div class="preloader">
         <div class="logo">
-            <img src="images/aakashdhakal.png" alt="logo" class="logo" />
+            <img src="images/Aakash-Dhakal's-logo.svg" alt="logo" class="logo" />
         </div>
         <img src="images/bouncing-circles.svg" alt="">
     </div>
@@ -101,28 +101,30 @@ session_start();
                     <div class="section-heading-wrapper">
                         <h1 class="section-heading">Sign in to your account</h1>
                     </div>
-                    <form action="" method="POST" class="loginForm">
-                        <div class="input-field">
-                            <i class="fa-solid fa-user" style="color:#6e6e6e"></i>
-                            <input type="text" name="username" placeholder="Username" id="loginUsername" />
-                        </div>
-                        <div class="input-field">
-                            <i class="fa-solid fa-key" style="color:#6e6e6e"></i>
-                            <input type="password" name="password" placeholder="Password" id="loginPassword" />
-                            <button id="passwordShow" type="button"><i class="fa-solid fa-eye" style="color:#6e6e6e"></i></button>
-                        </div>
-                        <div class="remember-recover">
-                            <label for="rememberMe" class="custom-checkbox-label">
-                                <input type="checkbox" name="rememberMe" id="rememberMe" class="custom-checkbox" checked />
-                                <span class="custom-checkbox-box"></span>
-                                <p>Remember Me</p>
-                            </label>
-                            <a href="">Forgot Password ?</a>
-                        </div>
-                        <button type="submit" name="loginSubmit" id="loginSubmit" class="primary-btn">Login</button>
-                        <p>Don't have an account ? &nbsp;<button id="signupLink" type="button">Sign up</button>
-                        </p>
-                    </form>
+                    <div class="login-form-group">
+                        <form action="" method="POST" class="loginForm">
+                            <div class="input-field">
+                                <i class="fa-solid fa-user" style="color:#6e6e6e"></i>
+                                <input type="text" name="username" placeholder="Username" id="loginUsername" />
+                            </div>
+                            <div class="input-field">
+                                <i class="fa-solid fa-key" style="color:#6e6e6e"></i>
+                                <input type="password" name="password" placeholder="Password" id="loginPassword" />
+                                <button class="password-show" type="button"><i class="fa-solid fa-eye" style="color:#6e6e6e"></i></button>
+                            </div>
+                            <div class="remember-recover">
+                                <label for="rememberMe" class="custom-checkbox-label">
+                                    <input type="checkbox" name="rememberMe" id="rememberMe" class="custom-checkbox" checked />
+                                    <span class="custom-checkbox-box"></span>
+                                    <p>Remember Me</p>
+                                </label>
+                                <a href="">Forgot Password ?</a>
+                            </div>
+                            <button type="submit" name="loginSubmit" id="loginSubmit" class="primary-btn">Login</button>
+                            <p>Don't have an account ? &nbsp;<button id="signupLink" type="button">Sign up</button>
+                            </p>
+                        </form>
+                    </div>
                 </div>
             </div>
         </dialog>
@@ -139,7 +141,7 @@ session_start();
                     <div class="section-heading-wrapper">
                         <h1 class="section-heading">Create your account</h1>
                     </div>
-                    <form action="" method="POST" class="signupForm">
+                    <form action="" method="POST" class="signupForm" enctype="multipart/form-data">
                         <div class="form-step">
                             <span class="form-tab">1</span>
                             <span class="form-tab">2</span>
@@ -148,25 +150,20 @@ session_start();
                         </div>
                         <div class="form-group">
                             <div class="input-field">
+                                <i class="fa-solid fa-id-card" style="color:#6e6e6e"></i>
                                 <input type="text" name="firstname" id="signupFirstname" placeholder="" />
                                 <label class="placeholder">First Name<sup>*</sup></label>
                             </div>
                             <div class="input-field">
+                                <i class="fa-solid fa-id-card" style="color:#6e6e6e"></i>
                                 <input type="text" name="lastname" placeholder="" id="signupLastname" />
                                 <label class="placeholder">Last Name<sup>*</sup></label>
 
                             </div>
-                            <div class="date-gender">
-                                <input type="date" name="dateofbirth" placeholder="DOB" id="signupDOB" />
-                                <div class="custom-select">
-                                    <select name="gender" id="signupGender">
-                                        <option value="" disabled selected>Gender <sup>*</sup></option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
-
+                            <div class="input-field">
+                                <i class="fa-solid fa-envelope" style="color:#6e6e6e"></i>
+                                <input type="email" name="email" placeholder="" id="signupEmail" />
+                                <label class="placeholder">Email<sup>*</sup></label>
                             </div>
 
                             <div class="next-prev-button">
@@ -176,16 +173,24 @@ session_start();
                         </div>
                         <div class="form-group">
                             <div class="input-field">
-                                <input type="text" name="username" placeholder="Username" id="signupUsername" />
+                                <i class="fa-solid fa-user" style="color:#6e6e6e"></i>
+                                <input type="text" name="username" placeholder="" id="signupUsername" />
+                                <label class="placeholder">Username<sup>*</sup></label>
+                            </div>
+
+                            <div class="input-field">
+                                <i class="fa-solid fa-key" style="color:#6e6e6e"></i>
+                                <input type="password" name="password" placeholder="" id="signupPassword" />
+                                <label class="placeholder">Password<sup>*</sup></label>
+                                <button class="password-show" type="button"><i class="fa-solid fa-eye" style="color:#6e6e6e"></i></button>
+
                             </div>
                             <div class="input-field">
-                                <input type="email" name="email" placeholder="Email" id="signupEmail" />
-                            </div>
-                            <div class="input-field">
-                                <input type="password" name="password" placeholder="Password" id="signupPassword" />
-                            </div>
-                            <div class="input-field">
-                                <input type="password" name="confirmPassword" placeholder="Confirm Password" id="signupConfirmPassword" />
+                                <i class="fa-solid fa-key" style="color:#6e6e6e"></i>
+                                <input type="password" name="confirmPassword" placeholder="" id="signupConfirmPassword" />
+                                <label class="placeholder">Confirm Password<sup>*</sup></label>
+                                <button class="password-show" type="button"><i class="fa-solid fa-eye" style="color:#6e6e6e"></i></button>
+
                             </div>
                             <div class="next-prev-button">
                                 <button type="button" class="prev-btn  primary-btn">Back</button>
@@ -193,17 +198,30 @@ session_start();
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="input-field">
-                                <input type="file" name="profilepic" placeholder="Profile Picture" id="signupProfilepic" />
-                            </div>
-                            <div class="input-field">
-                                <div class="custom-select">
-                                    <select name="role" id="signupRole">
-                                        <option value="user">User</option>
-                                        <option value="admin">Author</option>
-                                    </select>
+                            <div class="pic-role">
+                                <div class="left">
+                                    <div class="file-upload">
+                                        <div class="file-upload-select">
+                                            <button class="file-select-button primary-btn" type="button"><i class="fa-solid fa-upload"></i>
+                                            </button>
+                                            <div class="file-select-name">Profile Picture</div>
+                                            <input type="file" name="profilepic" id="signupProfilepic">
+                                        </div>
+                                    </div>
+                                    <div class="custom-select">
+                                        <input type="text" readonly class="custom-select-display" placeholder="Role" name="role" id="signupRole">
+                                        <ul class="custom-options">
+                                            <li>Reader</li>
+                                            <li>Author</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <img src="images/noimage.png" alt="" id="profilepicPreview">
                                 </div>
                             </div>
+
+
                             <div class="next-prev-button">
                                 <button type="button" class="prev-btn  primary-btn">Back</button>
                                 <button type="button" class="next-btn  primary-btn">Next</button>
@@ -211,7 +229,9 @@ session_start();
                         </div>
                         <div class="form-group">
                             <div class="input-field">
+                                <i class="fa-solid fa-messages" style="color:#6e6e6e"></i>
                                 <input type="text" name="otpEmail" id="otpEmail" placeholder="Enter 6 digits otp">
+                                <button type="button" class="primary-btn" id="sendOtp">Send OTP</button>
                             </div>
                             <div class="next-prev-button">
                                 <button type="button" class="prev-btn  primary-btn">Back</button>

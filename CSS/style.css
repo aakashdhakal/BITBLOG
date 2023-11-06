@@ -40,11 +40,45 @@ body {
 	background: rgb(185, 185, 185);
 	border-radius: 10px;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
 input[type="checkbox"] {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
 }
+.file-upload .file-upload-select {
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	gap: 10px;
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+	background-color: #dbdbdb;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+}
+.file-upload .file-upload-select .file-select-button {
+	border-radius: 5px;
+}
+
+.file-upload .file-upload-select input[type="file"] {
+	display: none;
+}
+.file-upload .file-select-name {
+	color: #808080;
+	font-size: 0.9rem;
+	overflow: hidden;
+}
+
+input[type="number"] {
+	appearance: textfield !important;
+}
+
 .max-width {
 	max-width: 100%;
 	padding: 5px;
@@ -344,41 +378,61 @@ hr {
 .read-more {
 	font-size: 1rem;
 }
-select {
-	background-color: #dbdbdb;
-	border: none;
-	padding: 5px 10px;
-	width: 200px !important;
-	outline: none;
-	appearance: none;
-	border-radius: 0;
-	position: relative;
-	border-radius: 5px;
-}
-option {
-	appearance: none;
-	border-radius: 0px;
-	border: none;
-	margin-top: 5px;
-}
 .custom-select {
+	width: 100%;
+	height: 100%;
+	background-color: #dbdbdb;
+	border-radius: 5px;
 	position: relative;
 }
 .custom-select::after {
 	content: "\f0d7";
 	font: var(--fa-font-solid);
-	font-size: 1rem;
-	color: #000000;
 	position: absolute;
 	right: 10px;
-	top: calc(50% - 0.5rem);
-	width: max-content;
-	height: max-content;
+	top: calc(50% - 8px);
+	color: #000000;
 	pointer-events: none;
 	transition: all 0.3s ease-in-out;
 }
-select:active + .custom-select::after {
-	transform: rotate(180deg);
+.custom-options {
+	position: absolute;
+	background-color: #dbdbdb;
+	width: 100%;
+	border-radius: 5px !important;
+	font-size: 0.9rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: start;
+	gap: 5px;
+	transition: all 0.3s ease-in-out;
+	margin-top: 1%;
+	max-height: 0;
+	overflow: hidden;
+}
+.custom-options li {
+	list-style: none;
+	padding: 5px 10px;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	width: 100%;
+}
+.custom-options li:hover {
+	background-color: #bdbdbd;
+}
+.custom-select input {
+	cursor: pointer;
+}
+
+.active-option {
+	background-color: #d5ac4e;
+}
+.active-option:hover {
+	background-color: #d5ac4e !important;
+}
+.show-options {
+	max-height: max-content;
 }
 
 /* -----------Navbar----------------- */
@@ -590,7 +644,7 @@ select:active + .custom-select::after {
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 	margin: auto;
 	width: 60%;
-	height: 70%;
+	height: 75%;
 	transition: all 0.3s ease-in-out;
 	padding: 0;
 	background-color: var(--body-bg-color);
@@ -627,7 +681,7 @@ select:active + .custom-select::after {
 }
 .alert-box-dialog {
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	gap: 10px;
 	padding: 10px 20px;
@@ -639,6 +693,7 @@ select:active + .custom-select::after {
 	transition: all 0.3s ease-in-out;
 	font-size: 0.9rem;
 	color: #000000;
+	width: 90%;
 }
 /* Define the custom checkbox appearance */
 .custom-checkbox-box {
@@ -693,7 +748,7 @@ select:active + .custom-select::after {
 }
 #loginForm .right .input-field,
 #signupForm .right .input-field {
-	width: 80%;
+	width: 100%;
 	padding: 5px 10px;
 	border: none;
 	border-radius: 5px;
@@ -703,8 +758,8 @@ select:active + .custom-select::after {
 	gap: 10px;
 	background-color: #dbdbdb;
 }
-#loginForm .right .input-field button,
-#signupForm .right .input-field button {
+#loginForm .password-show,
+#signupForm .password-show {
 	outline: none;
 	border: none;
 	background: transparent;
@@ -742,14 +797,14 @@ select:active + .custom-select::after {
 		color: #ffffff;
 	}
 	#loginSubmit {
-		width: 80%;
+		width: 100%;
 		border-radius: 5px;
 	}
 	.remember-recover {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		width: 80%;
+		width: 100%;
 	}
 	.remember-recover label {
 		display: flex;
@@ -771,6 +826,9 @@ select:active + .custom-select::after {
 		border: none;
 		cursor: pointer;
 		outline: none;
+	}
+	.login-form-group {
+		width: 80%;
 	}
 }
 @keyframes formShow {
@@ -813,17 +871,18 @@ select:active + .custom-select::after {
 		justify-content: center;
 	}
 	.right {
-		width: 100%;
+		width: 80%;
 		height: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
-		gap: 40px;
+		gap: 50px;
 		color: var(--text-color);
 	}
 	.right form {
 		width: 100%;
+		gap: 40px;
 	}
 	.form-step {
 		display: flex;
@@ -866,7 +925,7 @@ select:active + .custom-select::after {
 
 	.form-group {
 		display: none;
-		width: 100%;
+		width: 80%;
 		animation: formShow 0.5s ease-in-out;
 	}
 
@@ -879,15 +938,14 @@ select:active + .custom-select::after {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		gap: 25px;
+		gap: 30px;
 		animation: formShow 0.5s ease-in-out;
 	}
 	.next-prev-button {
 		display: flex;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: center;
-		width: 80%;
-		gap: 50%;
+		width: 100%;
 	}
 	.input-field {
 		position: relative;
@@ -895,7 +953,7 @@ select:active + .custom-select::after {
 	.input-field .placeholder {
 		position: absolute;
 		vertical-align: middle;
-		left: 15px;
+		left: 35px;
 		pointer-events: none;
 		font-size: 0.9rem;
 		color: #808080;
@@ -904,17 +962,43 @@ select:active + .custom-select::after {
 	}
 	.input-field input:focus + .placeholder,
 	.input-field input:not(:placeholder-shown) + .placeholder {
-		transform: translateY(-30px) translateX(-15px);
+		transform: translateY(-30px) translateX(-35px);
 		font-size: 0.8rem;
 		color: var(--main-theme-color);
 	}
-
-	.form-group .date-gender {
+	.pic-role {
 		display: flex;
 		justify-content: space-evenly;
 		align-items: center;
-		width: 80%;
+		width: 100%;
+		height: 100%;
+	}
+	.pic-role .left {
+		flex-direction: column;
+		justify-content: center !important;
+		background: none;
 		gap: 30px;
+		width: 50%;
+	}
+	.pic-role .right {
+		width: 102px;
+		height: 102px;
+		border: 1px solid black;
+		border-radius: 50%;
+		overflow: hidden;
+	}
+	.pic-role .right img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	.pic-role .custom-select {
+		height: max-content;
+	}
+	#sendOtp {
+		font-size: 0.9rem;
+		width: 70%;
+		border-radius: 5px;
 	}
 }
 
