@@ -3,6 +3,14 @@ let nextBtn = document.querySelectorAll(".next-btn");
 let prevBtn = document.querySelectorAll(".prev-btn");
 let activeForm = document.querySelectorAll(".form-group");
 let progress = document.querySelector(".form-step");
+let loginLink = document.querySelector("#loginLink");
+
+loginLink.addEventListener("click", function () {
+	dialogClose(signupDialog);
+	setTimeout(function () {
+		dialogOpen(loginDialog);
+	}, 300);
+});
 
 currentFormTab = 0;
 width = 0;
@@ -70,7 +78,9 @@ imageUpload.addEventListener("change", function () {
 });
 
 function checkFile(file) {
-	if (
+	if (file.files.length == 0) {
+		return true;
+	} else if (
 		file.files[0].type != "image/jpeg" &&
 		file.files[0].type != "image/png" &&
 		file.files[0].type != "image/jpg"
@@ -227,10 +237,10 @@ sendOtp.addEventListener("click", function () {
 			return response.text().then((data) => {
 				if (data == "success") {
 					showDialogAlert("OTP sent to your email address");
-					var timer = 30;
+					var timer = 60;
 					var interval = setInterval(function () {
 						timer--;
-						sendOtp.innerHTML = "Resend in " + timer + " seconds";
+						sendOtp.innerHTML = "Resend in " + timer;
 						if (timer == 0) {
 							clearInterval(interval);
 							sendOtp.disabled = false;
@@ -322,14 +332,10 @@ signupForm.addEventListener("submit", function (e) {
 			.then((response) => {
 				return response.text().then((data) => {
 					if (data == "success") {
-						showDialogAlert("Signup successful");
-						signupForm.reset();
-						signupSubmit.innerHTML = "Sign up";
-						while (currentFormTab != 0) {
-							prevBtn.forEach((btn) => {
-								btn.click();
-							});
-						}
+						setTimeout(function () {
+							showDialogAlert("Account created successfully");
+						});
+						window.location.href = "index.php";
 					} else {
 						console.log(data);
 						showDialogAlert(

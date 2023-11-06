@@ -228,17 +228,22 @@ session_start();
                             </div>
                         </div>
                         <div class="form-group">
+                            <p>Please verify your email</p>
                             <div class="input-field">
                                 <i class="fa-solid fa-messages" style="color:#6e6e6e"></i>
                                 <input type="text" name="otpEmail" id="otpEmail" placeholder="Enter 6 digits otp">
                                 <button type="button" class="primary-btn" id="sendOtp">Send OTP</button>
                             </div>
+                            <p>By signing up, you acknowledge and agree to accept our terms and conditions</p>
                             <div class="next-prev-button">
                                 <button type="button" class="prev-btn  primary-btn">Back</button>
                                 <button type="submit" name="signupSubmit" id="signupSubmit" class="primary-btn">Sign up</button>
                             </div>
                         </div>
+                        <p>Already have and account ? &nbsp;<button id="loginLink" type="button">Log in</button>
+                        </p>
                     </form>
+
                 </div>
             </div>
         </dialog>
