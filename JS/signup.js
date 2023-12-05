@@ -111,17 +111,21 @@ let signupForm = document.querySelector(".signupForm");
 let validCheck = document.querySelector(".valid-check");
 var otpCode;
 
+sendOtp.addEventListener("click", function () {
+	OtpSend();
+});
+
 function checkEmpty(inputField) {
 	if (inputField.value == "") {
-		showDialogAlert("Please fill all the fields");
+		showDialogAlert("Please fill out all the fields");
 		return false;
 	} else {
 		return true;
 	}
 }
 
-function checkDuplicate(data, isUsername) {
-	const endPoint = "signup-validate-config.php";
+async function checkDuplicate(data, isUsername) {
+	const endPoint = "signup-validate-config";
 
 	return fetch(endPoint, {
 		method: "POST",
@@ -220,9 +224,9 @@ function validatePassword(password) {
 		return true;
 	}
 }
-sendOtp.addEventListener("click", function () {
+function OtpSend() {
 	otpCode = Math.floor(100000 + Math.random() * 900000);
-	const endPoint = "otp-config.php";
+	const endPoint = "otp-config";
 	sendOtp.disabled = true;
 	sendOtp.innerHTML = '<i class="fa-duotone fa-spinner-third fa-spin"></i>';
 
@@ -231,7 +235,13 @@ sendOtp.addEventListener("click", function () {
 		headers: {
 			"Content-Type": "application/x-www-form-urlencoded",
 		},
-		body: "otpCode=" + otpCode + "&email=" + signupEmail.value,
+		body:
+			"otpCode=" +
+			otpCode +
+			"&email=" +
+			signupEmail.value +
+			"&username=" +
+			signupUsername.value,
 	})
 		.then((response) => {
 			return response.text().then((data) => {
@@ -244,7 +254,7 @@ sendOtp.addEventListener("click", function () {
 						if (timer == 0) {
 							clearInterval(interval);
 							sendOtp.disabled = false;
-							sendOtp.innerHTML = "Resend OTP";
+							sendOtp.innerHTML = "Resend Code";
 						}
 					}, 1000);
 				} else {
@@ -253,16 +263,16 @@ sendOtp.addEventListener("click", function () {
 						"Something went wrong! Please try again later " + data
 					);
 					sendOtp.disabled = false;
-					sendOtp.innerHTML = "Send OTP";
+					sendOtp.innerHTML = "Send Code";
 				}
 			});
 		})
 		.catch(() => {
 			showDialogAlert("Something went wrong! Please try again later");
 			sendOtp.disabled = false;
-			sendOtp.innerHTML = "Send OTP";
+			sendOtp.innerHTML = "Send Code";
 		});
-});
+}
 
 function validateOtp() {
 	if (!checkEmpty(otpEmail)) {
@@ -305,6 +315,7 @@ async function checkValidation(index) {
 			if (!checkFile(imageUpload)) {
 				break;
 			} else {
+				OtpSend();
 				canProceed = true;
 				break;
 			}
@@ -325,17 +336,19 @@ signupForm.addEventListener("submit", function (e) {
 	} else {
 		let formdata = new FormData(signupForm);
 		formdata.append("profilepic", imageUpload.files[0]);
-		fetch("signup-config.php", {
+		fetch("signup-config", {
 			method: "POST",
 			body: formdata,
 		})
-			.then((response) => {
+			.then(async (response) => {
 				return response.text().then((data) => {
 					if (data == "success") {
+						showDialogAlert("Account created successfully");
 						setTimeout(function () {
-							showDialogAlert("Account created successfully");
-						});
-						window.location.href = "index.php";
+							loginUsername.value = signupUsername.value;
+							loginPassword.value = signupPassword.value;
+							loginSubmit.click();
+						}, 2000);
 					} else {
 						console.log(data);
 						showDialogAlert(

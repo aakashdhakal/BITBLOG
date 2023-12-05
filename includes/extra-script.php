@@ -73,7 +73,7 @@ function getTimeAgo($date)
 }
 function get_author_info($username)
 {
-    include "includes/database-config.php";
+    include "database-config.php";
     $sql = "SELECT * FROM users WHERE username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
@@ -85,7 +85,7 @@ function get_author_info($username)
 
 function check_follow_status($username, $author_username)
 {
-    include "includes/database-config.php";
+    include "database-config.php";
     $sql = "SELECT * FROM followers_data WHERE user_username = ? AND author_username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $username, $author_username);
@@ -100,7 +100,7 @@ function check_follow_status($username, $author_username)
 
 function verification_badge($username)
 {
-    include "includes/database-config.php";
+    include "database-config.php";
     $sql = "SELECT * FROM users WHERE username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
@@ -112,4 +112,14 @@ function verification_badge($username)
     } else {
         return '';
     }
+}
+
+function createSlugUrl($title)
+{
+    $title = strtolower($title);
+    $title = str_replace(array(
+        '\'', '"', ',', ';', '<', '>', ":", "/", "?", "[", "]", "{", "}", "|", "`", "~", "!", "@", "#", "$", "%", "^", "*", "(", ")", "_", "+", "=",
+    ), "", $title);
+    $title = str_replace(" ", "-", $title);
+    return $title;
 }

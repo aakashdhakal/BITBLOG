@@ -1,3 +1,16 @@
+const baseUrl = "http://localhost/A.D-Blogs/";
+//Preloader Script
+
+let preloader = document.querySelector(".preloader");
+window.addEventListener("load", () => {
+	setTimeout(() => {
+		preloader.animate({ opacity: "0" }, 1000);
+	}, 1000);
+	setTimeout(() => {
+		preloader.style.display = "none";
+	}, 2000);
+});
+
 // Feedback Form Script
 
 let feedbackBtn = document.getElementById("feedbackBtn");
@@ -14,7 +27,7 @@ feedbackForm.addEventListener("submit", function (e) {
 			'<i class="fa-duotone fa-spinner-third fa-spin"></i>';
 	}, 1000);
 	let xhr = new XMLHttpRequest();
-	xhr.open("POST", "feedback-config.php", true);
+	xhr.open("POST", "feedback-config", true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState == 4 && xhr.status == 200) {
@@ -148,7 +161,7 @@ followBtn.forEach(function (button) {
 			: "unfollow";
 
 		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "follow-config.php", true);
+		xhr.open("POST", "follow-config", true);
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState === 4 && xhr.status === 200) {
@@ -177,7 +190,7 @@ followBtn.forEach(function (button) {
 				} else {
 					showAlert(
 						"error",
-						"Something went wrong. Please try again later." + xhr.responseText
+						"Something went wrong. Please try again later. " + xhr.responseText
 					);
 					button.innerHTML = "Follow";
 					button.disabled = false;
@@ -271,7 +284,7 @@ categoryList.forEach(function (button) {
 		let category = this.getAttribute("data-category");
 		if (category != "") {
 			var xhr = new XMLHttpRequest();
-			xhr.open("POST", "post-list-config.php", true);
+			xhr.open("POST", "post-list-config", true);
 			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhr.onreadystatechange = function () {
 				if (xhr.readyState === 4 && xhr.status === 200) {
@@ -283,18 +296,6 @@ categoryList.forEach(function (button) {
 			xhr.send("category=" + category);
 		}
 	});
-});
-
-//Preloader Script
-
-let preloader = document.querySelector(".preloader");
-window.addEventListener("load", () => {
-	setTimeout(() => {
-		preloader.animate({ opacity: "0" }, 1000);
-	}, 1000);
-	setTimeout(() => {
-		preloader.style.display = "none";
-	}, 2000);
 });
 
 //custom select script

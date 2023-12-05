@@ -54,13 +54,13 @@ loginForm.addEventListener("submit", function (e) {
 	loginSubmit.disabled = true;
 	loginSubmit.innerHTML = '<i class="fa-duotone fa-spinner-third fa-spin"></i>';
 	if (loginUsername.value === "" || loginPassword.value === "") {
-		showDialogAlert("Do not leave any field empty");
+		showDialogAlert("Please fill all the fields");
 		loginSubmit.disabled = false;
-		loginSubmit.innerHTML = "Login";
+		loginSubmit.innerHTML = "Log in";
 		return;
 	} else {
 		let xhr = new XMLHttpRequest();
-		xhr.open("POST", "login-config.php", true);
+		xhr.open("POST", "login-config", true);
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState == 4 && xhr.status == 200) {
@@ -69,12 +69,12 @@ loginForm.addEventListener("submit", function (e) {
 				} else if (xhr.responseText === "wrong") {
 					showDialogAlert("Incorrect Username or Password");
 					loginSubmit.disabled = false;
-					loginSubmit.innerHTML = "Login";
+					loginSubmit.innerHTML = "Log in";
 					return;
 				} else {
 					showDialogAlert("Something went wrong ! Please try again later");
 					loginSubmit.disabled = false;
-					loginSubmit.innerHTML = "Login";
+					loginSubmit.innerHTML = "Log in";
 					return;
 				}
 			}
@@ -91,15 +91,14 @@ loginForm.addEventListener("submit", function (e) {
 let passwordToggle = document.querySelectorAll(".password-show");
 
 passwordToggle.forEach((toggle) => {
-	let passwordInput = toggle.parentElement.children[1];
+	let passwordInput = toggle.parentElement.children[0];
 	toggle.addEventListener("click", function () {
 		if (passwordInput.type == "password") {
 			passwordInput.type = "text";
-			toggle.innerHTML =
-				'<i class="fas fa-eye-slash" style="color:#6e6e6e"></i>';
+			toggle.innerHTML = '<i class="fas fa-eye-slash"></i>';
 		} else {
 			passwordInput.type = "password";
-			toggle.innerHTML = '<i class="fas fa-eye" style="color:#6e6e6e"></i>';
+			toggle.innerHTML = '<i class="fas fa-eye" ></i>';
 		}
 	});
 });
@@ -110,7 +109,7 @@ let dialogAlert = document.querySelectorAll(".alert-box-dialog");
 
 function showDialogAlert(message) {
 	dialogAlert.forEach((alert) => {
-		alertMessage = alert.querySelector("#dialogAlertMessage");
+		alertMessage = alert.children[1];
 		alertMessage.innerHTML = message;
 		alert.style.visibility = "visible";
 		alert.style.opacity = "1";

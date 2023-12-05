@@ -2,7 +2,7 @@
         <div class="top-footer">
             <div class="left">
                 <div class="logo">
-                    <img src="images/akash.svg" alt="logo" class="logo-image" />
+                    <img src="<?php echo BASE_URL ?>images/akash.svg" alt="logo" class="logo-image" />
                 </div>
                 <p>Exploring the world with words, one click at a time.</p>
                 <ul class="social-links links">
@@ -46,3 +46,6 @@
         </div>
         </div>
     </footer>
+    <script src="<?php echo BASE_URL ?>JS/script.js" defer></script>
+    <script src="<?php echo BASE_URL ?>JS/login.js" defer></script>
+    <script src="<?php echo BASE_URL ?>JS/signup.js" defer></script>
