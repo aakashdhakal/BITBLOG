@@ -60,7 +60,7 @@ loginForm.addEventListener("submit", function (e) {
 		return;
 	} else {
 		let xhr = new XMLHttpRequest();
-		xhr.open("POST", "login-config", true);
+		xhr.open("POST", baseUrl + "login-config", true);
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState == 4 && xhr.status == 200) {

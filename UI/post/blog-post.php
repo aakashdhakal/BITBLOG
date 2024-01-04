@@ -17,7 +17,7 @@ if ($result->num_rows == 0) {
     header("Location: 404");
     exit();
 }
-
+$blog_post_id = $blog_post["id"];
 $blog_post_title = $blog_post["title"];
 $blog_post_content = nl2br($blog_post["content"]);
 $blog_post_author = $blog_post["author"];
@@ -27,7 +27,7 @@ $blog_post_image = $blog_post["thumbnail"];
 $blog_post_status = $blog_post["status"];
 $blog_post_views = formatNumber($blog_post["views"]);
 $blog_post_comments = formatNumber($blog_post["comments"]);
-$blog_post_likes = formatNumber($blog_post["likes"]);
+$blog_post_likes = formatNumber(get_likes_count($blog_post_id));
 
 
 $author = get_author_info($blog_post_author);
@@ -43,11 +43,58 @@ if (!isset($_SESSION["viewed-posts"][$blog_post["id"]])) {
     $_SESSION["viewed-posts"][$blog_post["id"]] = true;
 }
 
+if (isset($_SESSION["username"])) {
+    $username = $_SESSION["username"];
+    $sql = "SELECT * FROM likes WHERE user_username = ? AND post_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("si", $username, $blog_post_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $like_class = "liked";
+        $like_icon = "<i class='fa-solid fa-heart' style='color: #BA0021'></i>";
+    } else {
+        $like_class = "not-liked";
+        $like_icon = "<i class='fa-light fa-heart'></i>";
+    }
+
+    $sql = "SELECT * FROM bookmarks WHERE user_username = ? AND post_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("si", $username, $blog_post_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $bookmark_class = "bookmarked";
+        $bookmark_icon = "<i class='fa-solid fa-bookmark' style='color: #d5ac4e'></i>";
+    } else {
+        $bookmark_class = "not-bookmarked";
+        $bookmark_icon = "<i class='fa-light fa-bookmark'></i>";
+    }
+} else {
+    $like_class = "not-liked";
+    $like_icon = "<i class='fa-light fa-heart'></i>";
+    $bookmark_class = "not-bookmarked";
+    $bookmark_icon = "<i class='fa-light fa-bookmark'></i>";
+}
+
+$follower_class = "not-followed";
+$follower_text = "Follow";
+
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+
+    if (check_follow_status($username, $blog_post_author_username)) {
+        $follower_class = "followed";
+        $follower_text = "Following";
+    }
+}
+
 ?>
 
 <link rel="stylesheet" href="<?php echo BASE_URL ?>CSS/blog-page.css">
 <title><?php echo $blog_post_title ?></title>
 <?php include "includes/navbar.php"; ?>
+<div class="scroll-indicator"></div>
 <section id="blogPost">
     <div class="max-width">
 
@@ -79,9 +126,9 @@ if (!isset($_SESSION["viewed-posts"][$blog_post["id"]])) {
             <p><?php echo $blog_post_content ?></p>
         </article>
         <div class="article-buttons">
-            <button class="secondary-btn" title="Like"><i class="fa-light fa-heart"></i></button><i class="bi bi-dot"></i>
+            <button class="secondary-btn like-btn <?php echo $like_class ?>" title="Like" data-post="<?php echo $blog_post_id ?>"><?php echo $like_icon ?></button><i class="bi bi-dot"></i>
             <button class="secondary-btn" title="Comment"><i class="fa-light fa-comment"></i> </button><i class="bi bi-dot"></i>
-            <button class="secondary-btn" title="Bookmark"><i class="fa-light fa-bookmark"></i></button><i class="bi bi-dot"></i>
+            <button class="secondary-btn bookmark-btn <?php echo $bookmark_class ?>" title="Bookmark" data-post="<?php echo $blog_post_id ?>"><?php echo $bookmark_icon ?></button><i class="bi bi-dot"></i>
             <button class="secondary-btn" title="Share"><i class="fa-light fa-share"></i> </button>
         </div>
         <div class="post-author-details">
@@ -94,7 +141,7 @@ if (!isset($_SESSION["viewed-posts"][$blog_post["id"]])) {
                     </div>
                 </div>
                 <div class="author-follow">
-                    <button class="primary-btn follow-btn" data-author="<?php echo $blog_post_author_username ?>" id="followBtn">Follow</button>
+                    <button class="primary-btn follow-btn <?php echo $follower_class ?>" data-author="<?php echo $blog_post_author_username ?>" id="followBtn"><?php echo $follower_text ?></button>
                 </div>
             </div>
             <div class="author-bio">

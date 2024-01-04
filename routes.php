@@ -13,7 +13,10 @@ get('/A.D-Blogs', 'UI/homepage/home.php');
 get('/A.D-Blogs/home', 'UI/homepage/home.php');
 get('/A.D-Blogs/post/$slug_url', 'UI/post/blog-post.php');
 get('/A.D-Blogs/logout', 'config/logout.php');
+get('/A.D-Blogs/$i', 'UI/homepage/home.php');
 
+post('/A.D-Blogs/bookmark-config', 'config/bookmark-config.php');
+post('/A.D-Blogs/post-like-config', 'config/post-like-config.php');
 post('/A.D-Blogs/follow-config', 'config/follow-config.php');
 post('/A.D-Blogs/post-list-config', 'config/post-list-config.php');
 post('/A.D-Blogs/otp-config', 'config/otp-config.php');
@@ -25,4 +28,4 @@ post('/A.D-Blogs/feedback-config', 'config/feedback-config.php');
 // For GET or POST
 // The 404.php which is inside the views folder will be called
 // The 404.php has access to $_GET and $_POST
-any('/404', 'UI/404.php');
+any('/A.D-Blogs/404', 'UI/404.php');

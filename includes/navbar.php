@@ -1,12 +1,16 @@
 </head>
 
+
 <body>
+
     <button id="themeToggle"><i class="fa-duotone fa-moon"></i></button>
     <button id="scrollToTop"><i class="fa-solid fa-up"></i></button>
-    <div class="alert-box">
-        <i></i>
-        <div class="alert-message">
-            <p id="alertMessage">Please Login to perform this action</p>
+    <div class="alert-box-container">
+        <div class="alert-box">
+            <i></i>
+            <div class="alert-message">
+                <p id="alertMessage">Please Login to perform this action</p>
+            </div>
         </div>
     </div>
     <div class="preloader">
@@ -42,7 +46,7 @@
             <?php } else { ?>
                 <div class="user-control">
                     <p><?php echo $_SESSION["username"]; ?></p>
-                    <img src="<?php echo $_SESSION["profilepic"]; ?>" alt="profilepic" id="userProfile" />
+                    <img src="<?php echo BASE_URL . $_SESSION["profilepic"]; ?>" alt="profilepic" id="userProfile" />
                     <button id="notificationBtn"><i class="fa-duotone fa-bell"></i>
                     </button>
                     <div class="sub-menu" id="subMenu">

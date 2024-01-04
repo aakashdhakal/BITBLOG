@@ -27,7 +27,7 @@ if (isset($_POST['author']) && isset($_POST['action'])) {
                     echo "error";
                 }
             }
-        } elseif ($action === "unfollow") {
+        } else if ($action === "unfollow") {
             // Unfollow the author
             $unfollowSql = "DELETE FROM followers_data WHERE user_username = '$username' AND author_username = '$author'";
             $unfollowResult = mysqli_query($conn, $unfollowSql);

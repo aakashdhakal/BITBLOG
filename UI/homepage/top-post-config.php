@@ -1,12 +1,13 @@
 <?php
 include "includes/database-config.php";
 
-
-$sql = "SELECT * FROM posts ORDER BY likes DESC LIMIT 4";
+$status = 1;
+$sql = "SELECT * FROM posts WHERE status = ? ORDER BY views LIMIT 4";
 $stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $status);
 $stmt->execute();
-
 $result = $stmt->get_result();
+
 while ($row = $result->fetch_assoc()) {
 
     $top_post_title = $row["title"];
@@ -16,7 +17,6 @@ while ($row = $result->fetch_assoc()) {
     $date = $row["date"];
     $top_post_date = date("F j, Y", strtotime($date));
     $top_post_author = $row["author"];
-    $top_post_likes = $row["likes"];
     $top_post_views = $row["views"];
     $top_post_id = $row["id"];
     $top_slug_url = $row["slug_url"];

@@ -19,15 +19,15 @@ $top_author_bio = $row["bio"];
 
 $sql1 = "SELECT * from posts where author = ?";
 $stmt1 = $conn->prepare($sql1);
-$stmt1->bind_param("i", $top_author_username);
+$stmt1->bind_param("s", $top_author_username);
 $stmt1->execute();
 $result1 = $stmt1->get_result();
 $top_author_posts = 0;
 $top_author_likes = 0;
 while ($row1 = $result1->fetch_assoc()) {
     if ($row1['author'] == $top_author_username) {
-        $top_author_posts = $top_author_posts + 1;
-        $top_author_likes = $top_author_likes + $row1['likes'];
+        $top_author_posts = formatNumber($top_author_posts + 1);
+        $top_author_likes = formatNumber($top_author_likes + get_likes_count($row1['id']));
     }
 }
 

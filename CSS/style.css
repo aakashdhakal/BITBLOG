@@ -20,7 +20,7 @@
 	margin: 0px;
 	padding: 0px;
 	box-sizing: border-box;
-	font-family: Lato;
+	font-family: Roboto;
 	scroll-behavior: smooth;
 	line-height: 1.5;
 	/* outline: 1px dotted red; */
@@ -84,7 +84,7 @@ input[type="number"] {
 
 .max-width {
 	max-width: 100%;
-	padding: 5px;
+	padding: 25px 0px;
 }
 
 #themeToggle {
@@ -219,13 +219,16 @@ a {
 }
 
 .category {
-	background-color: var(--main-theme-color);
-	padding: 3px 10px;
-	border-radius: 30px;
-	color: #000000;
 	outline: none;
 	border: none;
 	cursor: pointer;
+	font-size: 0.9rem;
+	letter-spacing: 2px;
+	background-color: transparent;
+	color: #394053;
+	background-color: var(--hover-bg-color);
+	padding: 1px 5px;
+	border-radius: 0.4rem;
 }
 hr {
 	border: none;
@@ -284,18 +287,27 @@ hr {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	flex-direction: column;
 	width: 100%;
 	height: max-content;
+	gap: 5px;
 }
 .section-heading-wrapper a {
 	font-size: 0.95rem;
+}
+.section-heading-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: max-content;
 }
 .tag-date {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	gap: 10px;
-	font-size: smaller;
+	gap: 5px;
+	font-size: 0.9rem;
 }
 .author-info {
 	display: grid;
@@ -308,6 +320,15 @@ hr {
 	text-align: center;
 	padding: 2px;
 	width: 100%;
+}
+.profilepic {
+	width: 35px;
+	height: 35px;
+	object-fit: cover;
+	border-radius: 50%;
+}
+.bi-dot {
+	font-size: 1.2rem;
 }
 #followBtn {
 	cursor: pointer;
@@ -323,37 +344,49 @@ hr {
 	color: #000000;
 }
 .followed {
-	border: 1.5px solid var(--text-color);
+	border: 1.5px solid var(--text-color) !important;
 	background-color: transparent;
 	color: var(--text-color);
 }
 .unfollow {
 	background-color: transparent;
-	border: 1.5px solid crimson;
+	border: 1.5px solid crimson !important;
 	color: crimson;
+	width: 100%;
 }
 .author-followers {
 	font-size: 0.9rem;
 }
-.alert-box {
+.alert-box-container {
 	position: fixed;
+	top: 0;
+	right: 0;
+	width: 20%;
+	height: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+	gap: 10px;
+	z-index: 9999;
+	padding: 20px 20px;
+	pointer-events: none;
+}
+.alert-box {
 	padding: 15px 25px;
-	right: 10px;
-	top: 20px;
 	border-radius: 15px;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 	transition: all 1s ease-in-out;
 	font-size: 0.9rem;
-	min-width: 20%;
-	z-index: 9999;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
 	gap: 25px;
 	overflow: hidden;
-	transform: translateX(100vw);
 	border-bottom: 4px solid #ff5c5c;
 	color: #000000;
+	display: none;
+	width: 100%;
 }
 .alert-box i {
 	font-size: 1.8rem;
@@ -372,8 +405,19 @@ hr {
 	border-bottom: 4px solid #00b300;
 }
 .show-alert {
-	transform: translateX(0);
+	display: flex;
+	animation: alertShow 0.5s ease-in-out;
 }
+
+@keyframes alertShow {
+	0% {
+		transform: translateX(100%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
 .post-content {
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
@@ -382,7 +426,7 @@ hr {
 }
 .post-title {
 	display: -webkit-box;
-	-webkit-line-clamp: 2;
+	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 }
@@ -451,15 +495,15 @@ hr {
 #navigation {
 	width: 100%;
 	height: 130px;
-	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 	gap: 10px;
 	background-color: var(--header-bg-color);
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 #navigation hr {
-	width: 80% !important;
+	width: 70% !important;
 }
 
 .top-nav {
@@ -467,7 +511,7 @@ hr {
 	justify-content: space-around;
 	align-items: center;
 	height: 100%;
-	width: 80%;
+	width: 70%;
 	overflow: hidden;
 }
 
@@ -518,7 +562,7 @@ hr {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 80%;
+	width: 75%;
 	height: 60%;
 	gap: 5%;
 	font-size: 1rem;
@@ -528,10 +572,10 @@ hr {
 	content: "";
 	display: block;
 	width: 100%;
-	height: 4px;
+	height: 3px;
 	background-color: var(--main-theme-color);
 	transition: all 0.3s ease-in-out;
-	transform: scaleX(0) translateY(7px);
+	transform: scaleX(0) translateY(10px);
 	border-radius: 100px;
 }
 
@@ -761,8 +805,7 @@ hr {
 	font-size: 1rem;
 	color: var(--text-color);
 }
-#loginForm .right .input-field,
-#signupForm .right .input-field {
+.input-field {
 	width: 100%;
 	border: none;
 	display: flex;
@@ -1074,14 +1117,14 @@ footer .logo img {
 	color: #7e7d7d;
 	padding: 8px 20px;
 	font-size: 0.9rem;
-	width: 80%;
+	width: 70%;
 }
 
 .top-footer {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: 80%;
+	width: 70%;
 	height: 100%;
 	padding: 25px 20px;
 }

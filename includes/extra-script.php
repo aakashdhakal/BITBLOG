@@ -118,8 +118,38 @@ function createSlugUrl($title)
 {
     $title = strtolower($title);
     $title = str_replace(array(
-        '\'', '"', ',', ';', '<', '>', ":", "/", "?", "[", "]", "{", "}", "|", "`", "~", "!", "@", "#", "$", "%", "^", "*", "(", ")", "_", "+", "=",
+        '\'', '"', ',', ';', '<', '>', ":", "/", "?", "[", "]", "{", "}", "|", "`", "~", "!", "@", "#", "$", "%", "^", "*", "(", ")", "_", "+", "=", "'",
     ), "", $title);
     $title = str_replace(" ", "-", $title);
     return $title;
+}
+
+function get_likes_count($post_id)
+{
+    include "database-config.php";
+    $sql = "SELECT * FROM likes WHERE post_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $post_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $number =  0;
+    while ($row = mysqli_fetch_assoc($result)) {
+        $number++;
+    }
+    return $number;
+}
+
+function is_followed($username, $author_username)
+{
+    include "database-config.php";
+    $sql = "SELECT * FROM followers_data WHERE user_username = ? AND author_username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $username, $author_username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if (mysqli_num_rows($result) > 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
