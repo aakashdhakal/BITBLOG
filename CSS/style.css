@@ -224,9 +224,7 @@ a {
 	cursor: pointer;
 	font-size: 0.9rem;
 	letter-spacing: 2px;
-	background-color: transparent;
-	color: #394053;
-	background-color: var(--hover-bg-color);
+	background-color: #d5ac4e;
 	padding: 1px 5px;
 	border-radius: 0.4rem;
 }

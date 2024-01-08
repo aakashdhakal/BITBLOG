@@ -5,30 +5,36 @@
 	height: max-content;
 	display: flex;
 	justify-content: center;
+	margin: 30px 0px;
 }
 
 #featuredPost .max-width {
 	display: grid;
 	grid-template-columns: 0.9fr 0.7fr;
-	column-gap: 90px;
+	column-gap: 30px;
 	width: 70%;
 }
 
 #featuredPost .left {
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-end;
+	justify-content: flex-start;
+	align-items: center;
 	row-gap: 20px;
 	height: max-content;
 	padding: 20px;
 	border-radius: 2.5rem;
 	position: relative;
+	background-color: var(--hover-bg-color);
 }
 #featuredPost .post-thumbnail {
 	width: 100%;
 	object-fit: cover;
 	aspect-ratio: 16/9;
 	border-radius: calc(2.5rem - 20px);
+}
+#featuredPost .left .post-thumbnail {
+	height: 20%;
 }
 #featuredPost .left .author-info {
 	position: absolute;
@@ -54,23 +60,27 @@
 
 #featuredPost .top-posts {
 	display: grid;
-	grid-template-columns: 0.7fr 1fr;
+	grid-template-columns: 0.6fr 1fr;
 	column-gap: 20px;
 	height: min-content;
 	position: relative;
+	background-color: var(--hover-bg-color);
+	padding: 10px;
+	border-radius: 1rem;
 }
 #featuredPost .top-posts h1 {
-	font-size: 1.2rem;
+	font-size: 1.1rem;
 }
 
 #featuredPost .right img {
-	border-radius: 0.5rem;
+	border-radius: calc(1rem - 10px);
 	height: 100%;
+	width: 100%;
+	object-fit: cover;
 }
 #featuredPost .right {
 	display: grid;
 	grid-template-rows: repeat(auto-fit, minmax(min-content, max-content));
-	row-gap: 25px;
 	place-content: space-between;
 }
 
@@ -93,8 +103,8 @@
 }
 
 #featuredPost .left .post-info img {
-	width: 35px;
-	height: 35px;
+	width: 40px;
+	height: 40px;
 	border-radius: 50%;
 	object-fit: cover;
 	border: 2px solid #d5ac4e;
@@ -119,7 +129,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 5px 0;
+	margin: 55px 0;
+	position: relative;
 }
 #welcome .max-width {
 	display: flex;
@@ -134,21 +145,23 @@
 			rgba(0, 0, 0, 0.7259278711484594) 100%
 		),
 		url(../images/welcome.jpg) no-repeat center center/cover;
-	height: 50vh;
 	color: #ffffff;
 	padding: 50px;
+	height: 30vh;
 	gap: 30px;
 	border-radius: 3rem;
 }
 .search-bar {
-	width: 40%;
+	width: 30%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	gap: 10px;
 	background-color: #ffffff;
-	padding: 5px;
-	border-radius: 30px;
+	padding-left: 5px;
+	border-radius: 1.5rem;
+	position: absolute;
+	bottom: 0;
+	box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.3);
 }
 
 .search-bar input {
@@ -157,16 +170,19 @@
 	border: none;
 	padding: 5px 15px;
 	background: transparent;
-	border-radius: 35px;
+	border-radius: 1rem;
 	outline: none;
+	font-size: 1rem;
 }
 #searchBtn {
 	background-color: #d5ac4e;
 	border: none;
 	cursor: pointer;
-	border-radius: 25px;
-	width: 10%;
-	padding: 5px;
+	border-top-right-radius: 1.5rem;
+	border-bottom-right-radius: 1.5rem;
+	width: 15%;
+	height: 100%;
+	padding: 12px;
 }
 #welcome h1 {
 	font-size: 2.5rem;

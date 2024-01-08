@@ -13,7 +13,7 @@
             <p>Looks like you are not registered. Feel free to read articles and join by creating your account</p>
         <?php } ?>
         <form action="" method="GET" class="search-bar">
-            <input type="text" name="search" id="search" placeholder="Search for blogs or authors" autocomplete="off">
+            <input type="text" name="search" id="search" placeholder="Search..." autocomplete="off">
             <button type="submit" name="submit" id="searchBtn"><i class="fa-solid fa-search"></i></button>
         </form>
     </div>
@@ -32,6 +32,10 @@
                     <p><i class="fa-solid fa-book-open-cover" style="color: #9e9e9e;"></i>&nbsp;&nbsp;<?php echo round(str_word_count($featured_post_content_temp) / 200) ?> min read</p>
                 </div>
                 <hr>
+                <div class="category-featured">
+                    <p class="category"><i class="fa-regular fa-circle-star"></i>&nbsp;Featured</p>
+                    <p class="category"><?php echo $featured_post_category ?></p>
+                </div>
                 <a href="post/<?php echo createSlugUrl($featured_post_title) ?>">
                     <h1 class=" post-title"><?php echo $featured_post_title ?></h1>
                 </a>
@@ -41,10 +45,7 @@
                     <p><i class="fa-regular fa-heart"></i><?php echo formatNumber($featured_post_likes) ?></p>
                     <p><i class="fa-regular fa-comment"></i><?php echo formatNumber($featured_post_comments) ?></p>
                 </div>
-                <div class="category-featured">
-                    <p class="category"><i class="fa-regular fa-circle-star"></i>&nbsp;Featured</p>
-                    <p class="category"><i class="fa-solid fa-folders" style=" color: #9e9e9e;">&nbsp;</i><?php echo $featured_post_category ?></p>
-                </div>
+
             </div>
         </div>
         <div class="right">
