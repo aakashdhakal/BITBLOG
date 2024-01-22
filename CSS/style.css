@@ -428,6 +428,9 @@ hr {
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 }
+.post-title:hover {
+	text-decoration: underline;
+}
 .read-more {
 	font-size: 1rem;
 }

@@ -9,6 +9,7 @@ require_once __DIR__ . '/router.php';
 // Static GET
 // In the URL -> http://localhost
 // The output -> Index
+get('/A.D-Blogs/dashboard', 'UI/dashboard/dashboard.php');
 get('/A.D-Blogs', 'UI/homepage/home.php');
 get('/A.D-Blogs/home', 'UI/homepage/home.php');
 get('/A.D-Blogs/post/$slug_url', 'UI/post/blog-post.php');

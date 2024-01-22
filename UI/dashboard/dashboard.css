@@ -1,0 +1,10 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	outline: 1px dotted red;
+}
+body {
+	font-family: "Roboto", sans-serif;
+	height: 200vh;
+}

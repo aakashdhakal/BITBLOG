@@ -52,7 +52,7 @@
                     <div class="sub-menu" id="subMenu">
                         <p><?php echo $_SESSION["username"]; ?></p>
                         <?php if ($_SESSION["role"] != "user") { ?>
-                            <a href="admin.php"><i class="fa-solid fa-gauge-max"></i>Dashboard</a>
+                            <a href="<?php echo BASE_URL ?>dashboard"><i class="fa-solid fa-gauge-max"></i>Dashboard</a>
                         <?php  } ?>
 
                         <a href=""><i class="fas fa-user"></i>Profile</a>

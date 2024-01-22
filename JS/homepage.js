@@ -91,3 +91,6 @@ fileInput.addEventListener("change", function () {
 	let selectName = document.getElementsByClassName("file-select-name")[0];
 	selectName.innerText = filename;
 });
+
+let subscribeEmail = document.getElementById("subscribeEmail");
+let subscribeBtn = document.getElementById("subscribeBtn");

@@ -25,13 +25,8 @@
         <div class="left">
             <img src="<?php echo $featured_post_image ?>" alt="" class="post-thumbnail">
             <div class="post-info">
-                <div class="tag-date">
-                    <img src="<?php echo $featured_post_author_profilepic ?>" alt="" class="profilepic">
-                    <p><?php echo $featured_post_author_name ?></p><i class="bi bi-dot"></i>
-                    <p><i class="fa-solid fa-calendar" style="color: #9e9e9e;"></i>&nbsp;&nbsp;<?php echo $featured_post_date ?></p><i class="bi bi-dot"></i>
-                    <p><i class="fa-solid fa-book-open-cover" style="color: #9e9e9e;"></i>&nbsp;&nbsp;<?php echo round(str_word_count($featured_post_content_temp) / 200) ?> min read</p>
-                </div>
-                <hr>
+
+
                 <div class="category-featured">
                     <p class="category"><i class="fa-regular fa-circle-star"></i>&nbsp;Featured</p>
                     <p class="category"><?php echo $featured_post_category ?></p>
@@ -45,7 +40,13 @@
                     <p><i class="fa-regular fa-heart"></i><?php echo formatNumber($featured_post_likes) ?></p>
                     <p><i class="fa-regular fa-comment"></i><?php echo formatNumber($featured_post_comments) ?></p>
                 </div>
-
+                <hr>
+                <div class="tag-date">
+                    <img src="<?php echo $featured_post_author_profilepic ?>" alt="" class="profilepic">
+                    <p><?php echo $featured_post_author_name ?></p><i class="bi bi-dot"></i>
+                    <p><i class="fa-solid fa-calendar" style="color: #9e9e9e;"></i>&nbsp;&nbsp;<?php echo $featured_post_date ?></p><i class="bi bi-dot"></i>
+                    <p><i class="fa-solid fa-book-open-cover" style="color: #9e9e9e;"></i>&nbsp;&nbsp;<?php echo round(str_word_count($featured_post_content_temp) / 200) ?> min read</p>
+                </div>
             </div>
         </div>
         <div class="right">

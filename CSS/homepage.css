@@ -16,16 +16,42 @@
 }
 
 #featuredPost .left {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
-	row-gap: 20px;
-	height: max-content;
-	padding: 20px;
-	border-radius: 2.5rem;
 	position: relative;
-	background-color: var(--hover-bg-color);
+	color: #ffffff;
+	background: linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(0, 0, 0, 0.8743872549019608) 100%
+	);
+	overflow: hidden;
+	border-radius: 2rem;
+}
+#featuredPost .left .post-info {
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	gap: 15px;
+	padding: 20px;
+}
+#featuredPost .left .post-info img {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 2px solid #d5ac4e;
+}
+#featuredPost .left .post-thumbnail {
+	position: absolute;
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+	z-index: -999;
+	transition: all 0.3s ease-in-out;
+}
+#featuredPost .left:hover .post-thumbnail {
+	transform: scale(1.1);
 }
 #featuredPost .post-thumbnail {
 	width: 100%;
@@ -33,13 +59,10 @@
 	aspect-ratio: 16/9;
 	border-radius: calc(2.5rem - 20px);
 }
-#featuredPost .left .post-thumbnail {
-	height: 20%;
-}
 #featuredPost .left .author-info {
 	position: absolute;
-	top: 35px;
-	right: 40px;
+	top: 30px;
+	right: 30px;
 	gap: 20px;
 	display: flex;
 	align-items: center;
@@ -54,22 +77,25 @@
 	align-items: center;
 	justify-content: center;
 	gap: 5px;
-	font-size: 0.9rem;
+	font-size: 0.8rem;
 	color: #000000;
 }
 
 #featuredPost .top-posts {
 	display: grid;
-	grid-template-columns: 0.6fr 1fr;
+	grid-template-columns: 0.65fr 1fr;
 	column-gap: 20px;
 	height: min-content;
 	position: relative;
-	background-color: var(--hover-bg-color);
-	padding: 10px;
+	padding: 10px 0;
 	border-radius: 1rem;
 }
 #featuredPost .top-posts h1 {
-	font-size: 1.1rem;
+	font-size: 1.05rem;
+}
+#featuredPost .top-posts .category {
+	width: max-content;
+	font-size: 0.75rem;
 }
 
 #featuredPost .right img {
@@ -94,22 +120,6 @@
 	font-size: 0.9rem;
 }
 
-#featuredPost .left .post-info {
-	display: flex;
-	justify-content: space-between;
-	flex-direction: column;
-	width: 100%;
-	gap: 20px;
-}
-
-#featuredPost .left .post-info img {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	object-fit: cover;
-	border: 2px solid #d5ac4e;
-	padding: 2px;
-}
 #featuredPost .section-heading {
 	display: flex;
 	font-size: 1.4rem;
@@ -120,6 +130,14 @@
 	justify-content: flex-start;
 	align-items: center;
 	gap: 10px;
+}
+#featuredPost .left .post-title {
+	color: #ffffff;
+}
+#featuredPost .left .category {
+	background: transparent;
+	color: #eec584;
+	font-weight: bolder;
 }
 
 /*-------Welcome--------*/
@@ -262,9 +280,9 @@
 
 #recentPosts .max-width .posts {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(305px, max-content));
-	column-gap: 40px;
-	row-gap: 40px;
+	grid-template-columns: repeat(auto-fit, minmax(300px, max-content));
+	column-gap: 70px;
+	row-gap: 50px;
 	align-items: center;
 	width: 100%;
 	height: max-content;
@@ -272,20 +290,16 @@
 
 /*---------Post Card---------*/
 .post-card {
-	display: flex;
-	flex-direction: column;
-	align-items: start;
-	justify-content: flex-start;
-	height: 400px;
-	gap: 20px;
+	display: grid;
+	grid-template-rows: repeat(auto-fit, minmax(min-content, max-content));
+	place-content: space-between;
+	min-height: 400px;
 }
 .post-card img {
 	width: 100%;
-	height: 50%;
 	object-fit: cover;
 	aspect-ratio: 1.66/1;
-	border-top-left-radius: 1rem;
-	border-top-right-radius: 1rem;
+	border-radius: 1rem;
 	padding: 0;
 }
 .post-card h1 {
@@ -297,6 +311,14 @@
 }
 .post-card .author-name {
 	font-size: 0.9rem;
+}
+.post-card .post-info {
+	display: flex;
+	justify-content: space-between;
+	align-items: self-start;
+	flex-direction: column;
+	gap: 20px;
+	padding: 15px;
 }
 
 /*--------------Posts and Authors-------------*/
@@ -314,7 +336,7 @@
 	align-items: start;
 	justify-content: space-between;
 	width: 70%;
-	gap: 50px;
+	gap: 120px;
 	height: max-content;
 }
 
@@ -375,7 +397,7 @@
 	height: 100%;
 }
 .post-list .post-title {
-	font-size: 1.4rem;
+	font-size: 1.2rem;
 }
 .post-list .post-content {
 	font-size: 0.95rem;
@@ -455,7 +477,7 @@
 		gap: 20px;
 	}
 	h1 {
-		font-size: 1.4rem;
+		font-size: 1.3rem;
 	}
 	p {
 		font-size: 0.9rem;

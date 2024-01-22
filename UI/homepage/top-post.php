@@ -1,7 +1,8 @@
 <div class="top-posts">
     <img src="<?php echo $top_post_image ?>" alt="" class="post-thumbnail">
     <div class="post-info">
-
+        <p class="category"><?php echo $top_post_category ?>
+        </p>
         <a href="post/<?php echo $top_slug_url ?>">
             <h1 class="post-title"><?php echo $top_post_title ?></h1>
         </a>
