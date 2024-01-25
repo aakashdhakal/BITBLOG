@@ -59,14 +59,23 @@ loginForm.addEventListener("submit", function (e) {
 		loginSubmit.innerHTML = "Log in";
 		return;
 	} else {
-		let xhr = new XMLHttpRequest();
-		xhr.open("POST", baseUrl + "login-config", true);
-		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		xhr.onreadystatechange = function () {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				if (xhr.responseText === "success") {
+
+		fetch("login-config", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded",
+			},
+			body:
+				"username=" +
+				encodeURIComponent(loginUsername.value) +
+				"&password=" +
+				encodeURIComponent(loginPassword.value),
+		})
+			.then((response) => response.text())
+			.then((data) => {
+				if (data === "success") {
 					location.reload();
-				} else if (xhr.responseText === "wrong") {
+				} else if (data === "wrong") {
 					showDialogAlert("Incorrect Username or Password");
 					loginSubmit.disabled = false;
 					loginSubmit.innerHTML = "Log in";
@@ -77,14 +86,7 @@ loginForm.addEventListener("submit", function (e) {
 					loginSubmit.innerHTML = "Log in";
 					return;
 				}
-			}
-		};
-		xhr.send(
-			"username=" +
-				encodeURIComponent(loginUsername.value) +
-				"&password=" +
-				encodeURIComponent(loginPassword.value)
-		);
+			});
 	}
 });
 

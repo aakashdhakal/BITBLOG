@@ -26,12 +26,6 @@ if (isset($_POST["otpCode"]) && isset($_POST["email"]) && isset($_POST["username
 
     <body style='margin: 0; padding: 0; font-family: sans-serif;'>
 
-      <section id='header' style='width: 83%; height: 20vh; text-align: center; margin: 30px auto 0' >
-        <img src='https://raw.githubusercontent.com/aakashdhakal/A.D-Blogs/main/images/aakashdhakal.png' alt='' style='width: 100%; height: 40%; object-fit: contain; margin: 0 0 20px;'>
-        <h1 style='font-size: 1.2rem; font-weight: 550; text-align: center; font-family: Arial; letter-spacing: 1px;'>Exploring the world with words, one click at a time</h1>
-      </section>
-      <hr style='width: 83%; margin: 30px auto 30px;'>
-
       <section id='body' style='width: 83%; padding: 40px; font-family:Tahoma; margin: auto;'>
         <p style='font-size: 1rem; font-weight: 500; letter-spacing: 1px; line-height: 2;'>Hello &nbsp;<span style='font-weight: 700;'>" . $username . "</span></p>
         <p style='font-size: 1rem; font-weight: 500; letter-spacing: 1px; line-height: 2;'>Thank you for signing up in A.D Blogs. To complete your registration, please use the following verification code:</p>

@@ -26,12 +26,20 @@ feedbackForm.addEventListener("submit", function (e) {
 		feedbackBtn.innerHTML =
 			'<i class="fa-duotone fa-spinner-third fa-spin"></i>';
 	}, 1000);
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", "feedback-config", true);
-	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	xhr.onreadystatechange = function () {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			if (xhr.responseText === "success") {
+	fetch(baseUrl + "feedback-config", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/x-www-form-urlencoded",
+		},
+		body:
+			"message=" +
+			encodeURIComponent(feedback.value) +
+			"&email=" +
+			encodeURIComponent(feedbackEmail.value),
+	})
+		.then((response) => response.text())
+		.then((data) => {
+			if (data === "success") {
 				feedbackBtn.innerHTML = '<i class="fa-duotone fa-check"></i>';
 				setTimeout(() => {
 					showAlert("success", "Thank you for your feedback!");
@@ -45,14 +53,7 @@ feedbackForm.addEventListener("submit", function (e) {
 				feedbackBtn.disabled = false;
 				return;
 			}
-		}
-	};
-	xhr.send(
-		"message=" +
-			encodeURIComponent(feedback.value) + // Corrected variable name
-			"&email=" +
-			encodeURIComponent(feedbackEmail.value) // Corrected variable name
-	);
+		});
 });
 
 // Scroll to Top Script

@@ -22,17 +22,19 @@ categoryList.forEach(function (button) {
 		// Filter the posts according to the clicked category
 		let category = this.getAttribute("data-category");
 		if (category != "") {
-			var xhr = new XMLHttpRequest();
-			xhr.open("POST", "post-list-config", true);
-			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhr.onreadystatechange = function () {
-				if (xhr.readyState === 4 && xhr.status === 200) {
+			fetch("post-list-config", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded",
+				},
+				body: "category=" + category,
+			})
+				.then((response) => response.text())
+				.then((data) => {
 					postContainer.style.opacity = "1";
 					postContainer.style.pointerEvents = "auto";
-					postContainer.innerHTML = xhr.responseText;
-				}
-			};
-			xhr.send("category=" + category);
+					postContainer.innerHTML = data;
+				});
 		}
 	});
 });
