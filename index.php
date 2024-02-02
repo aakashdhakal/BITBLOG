@@ -15,7 +15,7 @@ get('/home', 'UI/homepage/home.php');
 get('/post/$slug_url', 'UI/post/blog-post.php');
 get('/logout', 'config/logout.php');
 get('/$i', 'UI/homepage/home.php');
-get('/api/postAuthors', 'api/postAuthors.php');
+get('/api/postAuthors/$username', 'api/postAuthors.php');
 
 post('/bookmark-config', 'config/bookmark-config.php');
 post('/post-like-config', 'config/post-like-config.php');

@@ -14,20 +14,23 @@ class blog
     public $category;
 }
 
-if (isset($_GET['username'])) {
-    $username = $_GET['username'];
-    $sql = "SELECT * FROM blog WHERE author = ?";
-    $stmt = $conn->prepare($sql);
+$sql = "SELECT * FROM blog WHERE author = ?";
+$stmt = $conn->prepare($sql);
 
-    if ($stmt === false) {
-        echo json_encode(array('message' => 'Database error'));
-        exit;
-    }
+if ($stmt === false) {
+    echo json_encode(array('message' => 'Database error'));
+    exit;
+}
 
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $posts = array();
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$result = $stmt->get_result();
+$posts = array();
+
+if ($result->num_rows === 0) {
+    echo json_encode(array('message' => 'No posts found'));
+    exit;
+} else {
 
     while ($row = $result->fetch_assoc()) {
         $post = new blog();
@@ -42,6 +45,4 @@ if (isset($_GET['username'])) {
     }
 
     echo json_encode($posts);
-} else {
-    echo json_encode(array('message' => 'No post found'));
 }
