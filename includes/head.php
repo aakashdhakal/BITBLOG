@@ -1,7 +1,7 @@
 <?php
 include "extra-script.php";
 session_start();
-define('BASE_URL', 'http://localhost/A.D-Blogs/');
+define('BASE_URL', '');
 ?>
 
 <!DOCTYPE html>
