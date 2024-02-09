@@ -51,8 +51,9 @@
                     </button>
                     <div class="sub-menu" id="subMenu">
                         <p><?php echo $_SESSION["username"]; ?></p>
-                        <?php if ($_SESSION["role"] != "user") { ?>
-                            <a href="<?php echo BASE_URL ?>dashboard"><i class="fa-solid fa-gauge-max"></i>Dashboard</a>
+                        <?php if (isset($_SESSION["username"]) && $_SESSION["role"] != "reader") { ?>
+                            <a href="<?php echo BASE_URL ?>dashboard"><i class="fa-solid fa-gauge-max"></i>Dashboard <p><?php echo $role ?></p>
+                            </a>
                         <?php  } ?>
 
                         <a href=""><i class="fas fa-user"></i>Profile</a>

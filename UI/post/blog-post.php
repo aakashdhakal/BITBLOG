@@ -91,7 +91,7 @@ if (isset($_SESSION['username'])) {
 
 ?>
 
-<link rel="stylesheet" href="<?php echo BASE_URL ?>CSS/blog-page.css">
+<link rel="stylesheet" href="<?php echo BASE_URL ?>/CSS/blog-page.css">
 <title><?php echo $blog_post_title ?></title>
 <?php include "includes/navbar.php"; ?>
 <div class="scroll-indicator"></div>
