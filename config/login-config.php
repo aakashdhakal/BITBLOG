@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("includes/database-config.php");
+include_once("includes/extra-script.php");
 
 
 if (!isset($_SESSION['username'])) {
@@ -25,6 +26,7 @@ if (!isset($_SESSION['username'])) {
                 $_SESSION["profilepic"] = $row["profilepic"];
                 $_SESSION["role"] = $row["role"];
                 $_SESSION["email"] = $row["email"];
+                $_SESSION["name"] = $row["firstname"] . " " . $row["lastname"];
                 echo "success";
             } else {
                 echo "wrong";

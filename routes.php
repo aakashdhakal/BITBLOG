@@ -15,6 +15,10 @@ get('/A.D-Blogs/home', 'UI/homepage/home.php');
 get('/A.D-Blogs/post/$slug_url', 'UI/post/blog-post.php');
 get('/A.D-Blogs/logout', 'config/logout.php');
 get('/A.D-Blogs/$i', 'UI/homepage/home.php');
+get('/A.D-Blogs/dashboard/writePost', 'UI/dashboard/writePost.php');
+get('/A.D-Blogs/dashboard/adminHome', 'UI/dashboard/adminHome.php');
+get('/A.D-Blogs/dashboard/posts', 'UI/dashboard/posts.php');
+get('/A.D-Blogs/dashboard/settings', 'UI/dashboard/settings.php');
 
 
 post('/A.D-Blogs/bookmark-config', 'config/bookmark-config.php');
