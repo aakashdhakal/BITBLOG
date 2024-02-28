@@ -83,25 +83,25 @@ window.addEventListener("load", () => {
 sideLinks.forEach((link) => {
 	link.addEventListener("click", (e) => {
 		e.preventDefault();
-
 		let pageUrl = link.getAttribute("href");
-
+		let scriptSrc = link.getAttribute("data-script");
+		currentScript = localStorage.getItem("currentScript");
+		if (added === 0) {
+			addScript(scriptSrc);
+			localStorage.setItem("currentScript", scriptSrc);
+			added++;
+		} else if (scriptSrc !== currentScript) {
+			removeScript(currentScript);
+			addScript(scriptSrc);
+			localStorage.setItem("currentScript", scriptSrc);
+		}
 		activeLink.classList.remove("active");
 		activeLink = link;
 		link.classList.add("active");
 		changeMainContent(pageUrl);
 		activePageName.textContent = link.getAttribute("data-title");
+		document.title = link.getAttribute("data-title") + " - BITBLOGS";
 	});
-});
-
-createPostBtn.addEventListener("click", () => {
-	changeMainContent("./dashboard/writePost");
-	activeLink.classList.remove("active");
-	activePageName.textContent = "Create article";
-	setTimeout(() => {
-		if (added === 0)
-			addScript("http://localhost/A.D-Blogs/UI/dashboard/blogEditor.js");
-	}, 10);
 });
 
 function changeMainContent(pageUrl) {
@@ -113,10 +113,16 @@ function changeMainContent(pageUrl) {
 }
 
 function addScript(src) {
-	let script = document.createElement("script");
-	script.src = src;
-	script.async = true;
-	document.body.appendChild(script);
-	added = 1;
-	script.type = "module";
+	setTimeout(() => {
+		let script = document.createElement("script");
+		script.src = src;
+		document.body.appendChild(script);
+	}, 100);
+}
+
+function removeScript(src) {
+	let script = document.querySelector(`script[src="${src}"]`);
+	if (script) {
+		script.remove();
+	}
 }

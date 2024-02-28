@@ -23,6 +23,11 @@ define('BASE_URL', 'http://localhost/A.D-Blogs/');
     <title>Admin Panel - BITBLOG</title>
     <link rel="stylesheet" href="<?php echo BASE_URL ?>/UI/dashboard/dashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.snow.css" rel="stylesheet">
+
+
+
+
 
 
 
@@ -39,15 +44,19 @@ define('BASE_URL', 'http://localhost/A.D-Blogs/');
             </div>
             <ul class="side-nav">
 
-                <li title="Dashboard"><a href="<?php echo BASE_URL ?>dashboard/adminHome" class="active" data-title="Dashboard"><i class="fa-solid fa-objects-column"></i>
+                <li title="Dashboard"><a href="<?php echo BASE_URL ?>dashboard/adminHome" class="active" data-title="Dashboard" data-script="<?php echo BASE_URL ?>UI/dashboard/adminHome.js"><i class="fa-solid fa-objects-column"></i>
                         <p class="side-nav-text">Dashboard</p>
                     </a></li>
-                <li title="Posts"><a href="<?php echo BASE_URL ?>dashboard/posts" data-title="Posts"><i class="fa-solid fa-memo"></i>
+                <li title="Posts"><a href="<?php echo BASE_URL ?>dashboard/posts" data-title="Posts" data-script="<?php echo BASE_URL ?>UI/dashboard/posts.js"><i class="fa-solid fa-memo"></i>
                         <p class="side-nav-text">Posts</p>
                     </a></li>
-                <li title="Categories"><a href="<?php echo BASE_URL ?>dashboard/settings" data-title="Settings"><i class="fa-solid fa-gear"></i>
+                <li title="Write Post"><a href="<?php echo BASE_URL ?>dashboard/writePost" data-title="Create Post" data-script="<?php echo BASE_URL ?>UI/dashboard/blogEditor.js"><i class="fa-solid fa-pen-swirl"></i>
                         <p class="side-nav-text">Settings</p>
-                    </a>
+                    </a></li>
+                <li title="Settings"><a href="<?php echo BASE_URL ?>dashboard/settings" data-title="Settings" data-script="<?php echo BASE_URL ?>UI/dashboard/settings.js"><i class="fa-solid fa-gear"></i>
+                        <p class="side-nav-text">Settings</p>
+                    </a></li>
+
             </ul>
         </nav>
         </button>
@@ -72,9 +81,10 @@ define('BASE_URL', 'http://localhost/A.D-Blogs/');
             </div>
 
             <div class="user-profile">
-                <button id="createPost"><i class="fa-solid fa-file-plus"></i>Create Post</button>
+                <!-- <button id="createPost"><i class="fa-solid fa-file-plus"></i>Create Post</button> -->
                 <img src="<?php echo $_SESSION["profilepic"] ?>" alt="user">
                 <p class="user-name"><?php echo $_SESSION["name"] ?></p>
+                <a id="logoutBtn" href="./logout" title="Logout"><i class="fa-solid fa-right-from-bracket"></i></a>
             </div>
         </div>
         <div class="main-content">
