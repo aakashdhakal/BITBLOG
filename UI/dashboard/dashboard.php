@@ -26,11 +26,6 @@ define('BASE_URL', 'http://localhost/A.D-Blogs/');
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.snow.css" rel="stylesheet">
 
 
-
-
-
-
-
 <body>
     <div class="preloader">
         <img src="<?php echo BASE_URL ?>images/BitBlog.svg" alt="">
@@ -44,16 +39,16 @@ define('BASE_URL', 'http://localhost/A.D-Blogs/');
             </div>
             <ul class="side-nav">
 
-                <li title="Dashboard"><a href="<?php echo BASE_URL ?>dashboard/adminHome" class="active" data-title="Dashboard" data-script="<?php echo BASE_URL ?>UI/dashboard/adminHome.js"><i class="fa-solid fa-objects-column"></i>
+                <li title="Dashboard"><a href="<?php echo BASE_URL ?>dashboard/adminHome" class="active" data-title="Dashboard" data-function="adminHome"><i class="fa-solid fa-objects-column"></i>
                         <p class="side-nav-text">Dashboard</p>
                     </a></li>
-                <li title="Posts"><a href="<?php echo BASE_URL ?>dashboard/posts" data-title="Posts" data-script="<?php echo BASE_URL ?>UI/dashboard/posts.js"><i class="fa-solid fa-memo"></i>
+                <li title="Posts"><a href="<?php echo BASE_URL ?>dashboard/posts" data-title="Posts" data-function="posts"><i class="fa-solid fa-memo"></i>
                         <p class="side-nav-text">Posts</p>
                     </a></li>
-                <li title="Write Post"><a href="<?php echo BASE_URL ?>dashboard/writePost" data-title="Create Post" data-script="<?php echo BASE_URL ?>UI/dashboard/blogEditor.js"><i class="fa-solid fa-pen-swirl"></i>
-                        <p class="side-nav-text">Settings</p>
+                <li title="Write Post"><a href="<?php echo BASE_URL ?>dashboard/writePost" data-title="Create Post" data-function="blogEditor"><i class="fa-solid fa-pen-swirl"></i>
+                        <p class="side-nav-text">Write </p>
                     </a></li>
-                <li title="Settings"><a href="<?php echo BASE_URL ?>dashboard/settings" data-title="Settings" data-script="<?php echo BASE_URL ?>UI/dashboard/settings.js"><i class="fa-solid fa-gear"></i>
+                <li title="Settings"><a href="<?php echo BASE_URL ?>dashboard/settings" data-title="Settings" data-function="settings"><i class="fa-solid fa-gear"></i>
                         <p class="side-nav-text">Settings</p>
                     </a></li>
 

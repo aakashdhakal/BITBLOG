@@ -84,23 +84,19 @@ sideLinks.forEach((link) => {
 	link.addEventListener("click", (e) => {
 		e.preventDefault();
 		let pageUrl = link.getAttribute("href");
-		let scriptSrc = link.getAttribute("data-script");
-		currentScript = localStorage.getItem("currentScript");
-		if (added === 0) {
-			addScript(scriptSrc);
-			localStorage.setItem("currentScript", scriptSrc);
-			added++;
-		} else if (scriptSrc !== currentScript) {
-			removeScript(currentScript);
-			addScript(scriptSrc);
-			localStorage.setItem("currentScript", scriptSrc);
-		}
 		activeLink.classList.remove("active");
 		activeLink = link;
 		link.classList.add("active");
 		changeMainContent(pageUrl);
 		activePageName.textContent = link.getAttribute("data-title");
 		document.title = link.getAttribute("data-title") + " - BITBLOGS";
+
+		let functionName = link.getAttribute("data-function");
+		setTimeout(() => {
+			if (functionName) {
+				window[functionName]();
+			}
+		}, 100);
 	});
 });
 
@@ -112,17 +108,26 @@ function changeMainContent(pageUrl) {
 		});
 }
 
-function addScript(src) {
-	setTimeout(() => {
-		let script = document.createElement("script");
-		script.src = src;
-		document.body.appendChild(script);
-	}, 100);
+//Blog editor function
+
+function blogEditor() {
+	console.log("blogEditor");
+	const quill = new Quill("#editor", {
+		theme: "snow",
+	});
 }
 
-function removeScript(src) {
-	let script = document.querySelector(`script[src="${src}"]`);
-	if (script) {
-		script.remove();
-	}
+//adminHome function
+function adminHome() {
+	console.log("adminHome");
+}
+
+//posts function
+function posts() {
+	console.log("posts");
+}
+
+//settings function
+function settings() {
+	console.log("settings");
 }
