@@ -77,7 +77,7 @@ window.addEventListener("load", () => {
 		collapseBtn.click();
 	}
 
-	sideLinks[0].click();
+	sideLinks[2].click();
 });
 
 sideLinks.forEach((link) => {
@@ -168,21 +168,12 @@ function logout() {
 //Blog editor function
 
 function blogEditor() {
-	const toolbarOptions = [
-		["bold", "italic", "underline", "strike"], // toggled buttons
-		["blockquote", "code-block"],
-		["link"],
-
-		[{ header: 1 }, { header: 2 }], // custom button values
-		[{ list: "ordered" }, { list: "bullet" }],
-		[{ script: "sub" }, { script: "super" }], // superscript/subscript
-		["clean"], // remove formatting button
-	];
 	const quill = new Quill("#editor", {
 		modules: {
 			syntax: true,
 			toolbar: "#toolbar",
 		},
+		placeholder: "Write something awesome...",
 	});
 	let html = quill.getSemanticHTML();
 	quill.on("text-change", function () {

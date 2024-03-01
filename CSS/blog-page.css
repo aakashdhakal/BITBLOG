@@ -1,3 +1,9 @@
+.ql-code-block-container {
+	background-color: #242424;
+	padding: 0.2rem 0.5rem;
+	border-radius: 0.5rem;
+	color: #ffffffff;
+}
 #blogPost {
 	display: flex;
 	align-items: center;

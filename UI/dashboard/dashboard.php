@@ -23,7 +23,6 @@ define('BASE_URL', 'http://localhost/A.D-Blogs/');
     <title>Admin Panel - BITBLOG</title>
     <link rel="stylesheet" href="<?php echo BASE_URL ?>/UI/dashboard/dashboard.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" rel="stylesheet">
-    <!-- Include the highlight.js library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.snow.css" rel="stylesheet">

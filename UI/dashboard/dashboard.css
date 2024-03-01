@@ -65,7 +65,13 @@ button {
 	border-radius: 0.5rem;
 	color: var(--light-color);
 }
-
+.ql-code-block {
+	font-family: "Courier New", Courier, monospace;
+}
+.ql-active {
+	background-color: #a8a8a8;
+	color: var(--primary-color);
+}
 .preloader {
 	position: fixed;
 	top: 0;

@@ -27,7 +27,9 @@
         </button>|
         <button class="ql-script" value="super">
             <i class="fa-solid fa-superscript"></i>
-        </button>
+        </button>|
+        <!-- Add a button to clean the editor -->
+        <button class="ql-clean"><i class="fa-solid fa-eraser"></i></button>
     </div>
 
     <div id="editor">
