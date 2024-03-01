@@ -168,8 +168,21 @@ function logout() {
 //Blog editor function
 
 function blogEditor() {
+	const toolbarOptions = [
+		["bold", "italic", "underline", "strike"], // toggled buttons
+		["blockquote", "code-block"],
+		["link"],
+
+		[{ header: 1 }, { header: 2 }], // custom button values
+		[{ list: "ordered" }, { list: "bullet" }],
+		[{ script: "sub" }, { script: "super" }], // superscript/subscript
+		["clean"], // remove formatting button
+	];
 	const quill = new Quill("#editor", {
-		theme: "snow",
+		modules: {
+			syntax: true,
+			toolbar: "#toolbar",
+		},
 	});
 	let html = quill.getSemanticHTML();
 	quill.on("text-change", function () {

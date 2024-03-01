@@ -22,8 +22,12 @@ define('BASE_URL', 'http://localhost/A.D-Blogs/');
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz@6..12&display=swap" rel="stylesheet">
     <title>Admin Panel - BITBLOG</title>
     <link rel="stylesheet" href="<?php echo BASE_URL ?>/UI/dashboard/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" rel="stylesheet">
+    <!-- Include the highlight.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.snow.css" rel="stylesheet">
+
 
 
 <body>
@@ -104,7 +108,7 @@ define('BASE_URL', 'http://localhost/A.D-Blogs/');
         <div class="main-content">
 
         </div>
-x
+
     </main>
     <script src="<?php echo BASE_URL ?>/UI/dashboard/dashboard.js"></script>
 
