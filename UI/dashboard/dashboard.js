@@ -107,6 +107,63 @@ function changeMainContent(pageUrl) {
 			mainContent.innerHTML = data;
 		});
 }
+function closePopup() {
+	let popup = document.querySelector(".popup-box");
+	popup.animate(
+		[
+			{ opacity: "1", transform: "scale(1)" },
+			{ opacity: "0", transform: "scale(0.5)" },
+		],
+		{ duration: 200, fill: "forwards" }
+	);
+	setTimeout(() => {
+		popup.close();
+	}, 200);
+}
+
+function showPopUp(title, message, btnText, btnFunction) {
+	let popup = document.querySelector(".popup-box");
+	let popupTitle = document.querySelector(".popup-title");
+	let popupMessage = document.querySelector(".popup-message");
+	let confirmBtn = document.querySelector("#confirmBtn");
+	popupTitle.textContent = title || "Title";
+	popupMessage.textContent = message || "Message";
+	confirmBtn.textContent = btnText || "Confirm";
+	confirmBtn.addEventListener("click", () => {
+		if (btnFunction) {
+			console.log(btnFunction);
+			window[btnFunction]();
+		}
+		closePopup();
+	});
+	popup.showModal();
+
+	popup.animate(
+		[
+			{ opacity: "0", transform: "scale(0.5)" },
+			{ opacity: "1", transform: "scale(1)" },
+		],
+		{ duration: 200, fill: "forwards" }
+	);
+}
+let closePopupBtn = document.querySelector("#closePopup");
+closePopupBtn.addEventListener("click", closePopup);
+let cancelBtn = document.querySelector("#cancelBtn");
+cancelBtn.addEventListener("click", closePopup);
+
+let logoutBtn = document.querySelector("#logoutBtn");
+logoutBtn.addEventListener("click", () => {
+	showPopUp(
+		"Are you sure to log out?",
+		"Your changes may not be saved. Do you want to continue?",
+		"Logout",
+		"logout"
+	);
+});
+
+function logout() {
+	window.location.href = "/login";
+}
 
 //Blog editor function
 
@@ -120,6 +177,10 @@ function blogEditor() {
 //adminHome function
 function adminHome() {
 	console.log("adminHome");
+	let showPopup = document.querySelector("#showPopup");
+	showPopup.addEventListener("click", () => {
+		showPopUp("Title", "Message", "Confirm", "posts");
+	});
 }
 
 //posts function

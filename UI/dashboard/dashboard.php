@@ -61,10 +61,26 @@ define('BASE_URL', 'http://localhost/A.D-Blogs/');
         </div> -->
 
     </header>
+    <dialog class="popup-box">
+        <div class="popup">
+            <div class="popup-header">
+                <i class="fa-solid fa-brake-warning"></i>
+                <h3 class="popup-title">Are you sure?</h3>
+                <button id="closePopup"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="popup-message">
+                <p>Do you really want to delete this post?</p>
+            </div>
+            <div class="popup-footer">
+                <button id="confirmBtn" class="primary-btn">Delete</button>
+                <button id="cancelBtn" class="tertiary-btn">Cancel</button>
+            </div>
+        </div>
+    </dialog>
 
     <main>
-        <div class="top-nav">
-            <div class="collapse-name"> <button id="collapseSidenav" title="Collapse Menu"><i class="fa-solid fa-bars-staggered"></i></button>
+        <div class=" top-nav">
+            <div class="collapse-name"> <button id="collapseSidenav" title="Collapse Menu" class="tertiary-btn"><i class="fa-solid fa-bars-staggered"></i></button>
                 <h3 class="active-page-name"></h3>
             </div>
 
@@ -79,7 +95,7 @@ define('BASE_URL', 'http://localhost/A.D-Blogs/');
                 <!-- <button id="createPost"><i class="fa-solid fa-file-plus"></i>Create Post</button> -->
                 <img src="<?php echo $_SESSION["profilepic"] ?>" alt="user">
                 <p class="user-name"><?php echo $_SESSION["name"] ?></p>
-                <a id="logoutBtn" href="./logout" title="Logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+                <button id="logoutBtn" title="Logout"><i class="fa-solid fa-right-from-bracket"></i></button>
             </div>
         </div>
         <div class="main-content">
