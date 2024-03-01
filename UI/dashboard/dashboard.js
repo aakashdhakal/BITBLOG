@@ -162,15 +162,19 @@ logoutBtn.addEventListener("click", () => {
 });
 
 function logout() {
-	window.location.href = "/login";
+	window.location.href = "/A.D-Blogs/logout";
 }
 
 //Blog editor function
 
 function blogEditor() {
-	console.log("blogEditor");
 	const quill = new Quill("#editor", {
 		theme: "snow",
+	});
+	let html = quill.getSemanticHTML();
+	quill.on("text-change", function () {
+		html = quill.root.innerHTML;
+		console.log(html);
 	});
 }
 

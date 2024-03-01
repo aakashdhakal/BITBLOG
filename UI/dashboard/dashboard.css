@@ -117,14 +117,16 @@ header {
 	justify-content: space-between;
 	flex-direction: column;
 	align-items: start;
-	background-color: var(--dark-color);
 	height: 100%;
 	width: 11dvw;
 	overflow: hidden;
 	position: fixed;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	padding: 0;
 	z-index: 100;
+	transition: all 0.2s ease-in-out;
+	color: var(--dark-color);
+	border-right: 1px solid #e0e0e0;
+	cursor: pointer;
 }
 
 .logo-name {
@@ -133,10 +135,11 @@ header {
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	color: var(--light-color);
 	gap: 1rem;
 	letter-spacing: 3px;
 	padding: 1rem 0.7rem;
+	border-bottom: 1px solid #e0e0e0;
+	height: 5dvh;
 }
 .logo-name img {
 	width: 1.7rem;
@@ -168,27 +171,26 @@ header {
 
 .side-nav li a {
 	text-decoration: none;
-	color: var(--light-color);
-	font-size: 0.9rem;
+	font-size: 0.8rem;
 	letter-spacing: 2px;
 	display: flex;
 	align-items: center;
 	gap: 1.5rem;
-	transition: all 0.3s ease-in-out;
 	padding: 0.8rem 1rem;
 	width: 100%;
-	justify-content: flex-start;
-	border-left: 5px solid transparent;
 	position: relative;
+	color: var(--dark-color);
+	transition: all 0.2s ease-in-out;
 }
 
 .side-nav li a:hover {
-	background-color: #474c57;
-	color: var(--light-color);
+	background-color: #e6e6e6;
+	color: var(--tertiary-color);
 }
 
 .side-nav li a i {
 	font-size: 1rem;
+	margin: auto;
 }
 .side-nav li a p {
 	width: 100%;
@@ -196,11 +198,10 @@ header {
 }
 
 .side-nav li a.active {
-	background-color: #1a1c20;
-	color: var(--secondary-color);
+	background-color: #cacaca;
+	color: var(--tertiary-color);
 	width: 100%;
 	font-weight: 600;
-	padding: 0;
 }
 .side-nav li a.active::after {
 	content: "";
@@ -231,6 +232,21 @@ header {
 		display: flex;
 		align-items: center;
 		gap: 1rem;
+
+		.user-name-role {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		.user-role {
+			font-size: 0.65rem;
+			color: #616161;
+			letter-spacing: 1.5px;
+		}
+		.user-name {
+			font-size: 1rem;
+			font-weight: 600;
+		}
 	}
 	.user-profile img {
 		width: 2rem;
@@ -256,7 +272,6 @@ header {
 	color: var(--light-color);
 }
 .search-bar {
-	border: 1px solid var(--primary-color);
 	height: max-content;
 	overflow: hidden;
 	border-radius: 2rem;
@@ -287,15 +302,16 @@ header {
 	gap: 0.5rem;
 	width: 15%;
 }
-#logoutBtn {
+/* #logoutBtn {
 	padding: 0.2rem 1rem;
 	color: var(--light-color);
 	font-size: 1rem;
 	background-color: var(--tertiary-color);
 	border-radius: 2rem;
-}
+} */
 #editor {
-	height: 50vh;
+	height: max-content;
+	font-size: large;
 }
 /* Popup Box */
 
@@ -310,6 +326,9 @@ header {
 	width: 30%;
 	height: 30%;
 	opacity: 0;
+}
+.popup-box::backdrop {
+	background-color: rgba(0, 0, 0, 0.5);
 }
 .popup-box .popup {
 	position: relative;

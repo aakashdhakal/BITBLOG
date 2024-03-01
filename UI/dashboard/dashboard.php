@@ -94,13 +94,17 @@ define('BASE_URL', 'http://localhost/A.D-Blogs/');
             <div class="user-profile">
                 <!-- <button id="createPost"><i class="fa-solid fa-file-plus"></i>Create Post</button> -->
                 <img src="<?php echo $_SESSION["profilepic"] ?>" alt="user">
-                <p class="user-name"><?php echo $_SESSION["name"] ?></p>
-                <button id="logoutBtn" title="Logout"><i class="fa-solid fa-right-from-bracket"></i></button>
+                <div class="user-name-role">
+                    <p class="user-name"><?php echo $_SESSION["name"] ?></p>
+                    <p class="user-role"><?php echo strtoupper($_SESSION["role"]) ?></p>
+                </div>
+                <button id="logoutBtn" title="Logout" class="secondary-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
             </div>
         </div>
         <div class="main-content">
 
         </div>
+x
     </main>
     <script src="<?php echo BASE_URL ?>/UI/dashboard/dashboard.js"></script>
 

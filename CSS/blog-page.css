@@ -39,12 +39,15 @@
 		letter-spacing: 1px;
 	}
 
-	.max-width article p {
+	.max-width article p,
+	.max-width article li {
 		font-size: 1.25rem;
-		line-height: 3rem;
-		padding: 30px 0;
+		line-height: 2.75rem;
 	}
-
+	.max-width article ul,
+	.max-width article ol {
+		padding-left: 20px;
+	}
 	.max-width .category {
 		font-size: 0.9rem;
 		letter-spacing: 3px;

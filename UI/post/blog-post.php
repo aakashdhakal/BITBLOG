@@ -90,7 +90,8 @@ if (isset($_SESSION['username'])) {
 }
 
 ?>
-
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.snow.css" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo BASE_URL ?>/CSS/blog-page.css">
 <title><?php echo $blog_post_title ?></title>
 <?php include "includes/navbar.php"; ?>
