@@ -90,8 +90,8 @@ if (isset($_SESSION['username'])) {
 }
 
 ?>
-<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.snow.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
 <link rel="stylesheet" href="<?php echo BASE_URL ?>/CSS/blog-page.css">
 <title><?php echo $blog_post_title ?></title>
 <?php include "includes/navbar.php"; ?>
@@ -123,7 +123,7 @@ if (isset($_SESSION['username'])) {
         <hr>
 
 
-        <article>
+        <article id="article">
             <p><?php echo $blog_post_content ?></p>
         </article>
         <div class="article-buttons">

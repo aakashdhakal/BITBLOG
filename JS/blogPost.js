@@ -112,3 +112,44 @@ bookmarkBtn.forEach(function (button) {
 			});
 	});
 });
+
+//add button to code blocks
+let codeBlock = document.querySelectorAll("pre");
+codeBlock.forEach((block) => {
+	hljs.highlightElement(block);
+	hljs.configure({
+		ignoreUnescapedHTML: true,
+	});
+
+	let button = document.createElement("button");
+	button.innerHTML = "<i class='fa-regular fa-copy'></i>";
+	button.classList.add("copy-btn");
+	block.appendChild(button);
+});
+
+//copy code to clipboard
+let copyBtn = document.querySelectorAll(".copy-btn");
+copyBtn.forEach((button) => {
+	button.addEventListener("click", () => {
+		button.disabled = true;
+		button.innerHTML = "<i class='fa-solid fa-loader fa-spin'></i>";
+		let code = button.parentElement.textContent;
+		setTimeout(() => {
+			navigator.clipboard.writeText(code).then(
+				function () {
+					showAlert("success", "Code copied to clipboard");
+					button.disabled = false;
+					button.innerHTML = "<i class='fa-regular fa-check'></i>";
+				},
+				function () {
+					showAlert("warning", "Failed to copy code");
+					button.disabled = false;
+					button.innerHTML = "<i class='fa-regular fa-copy'></i>";
+				}
+			);
+		}, 500);
+		setTimeout(() => {
+			button.innerHTML = "<i class='fa-regular fa-copy'></i>";
+		}, 2000);
+	});
+});

@@ -28,7 +28,7 @@ while ($row = $result->fetch_assoc()) {
 
     $post_id = $row["id"];
     $post_title = $row["title"];
-    $post_content = substr($row["content"], 0, 500) . "...";
+    $post_content = strip_tags(substr($row["content"], 0, 500)) . "...";
     $post_image = $row["thumbnail"];
     $post_category = $row["category"];
     $date = $row["date"];

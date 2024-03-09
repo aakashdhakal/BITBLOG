@@ -14,10 +14,8 @@
         </div>
     </div>
     <div class="preloader">
-        <div class="logo">
-            <img src="<?php echo BASE_URL ?>images/Aakash-Dhakal's-logo.svg" alt="logo" class="logo" />
-        </div>
-        <i class="fa-duotone fa-spinner-third fa-spin"></i>
+        <img src="<?php echo BASE_URL ?>images/BitBlog.svg" alt="">
+        <span class="loader"></span>
     </div>
 
     <!-- Navigation -->

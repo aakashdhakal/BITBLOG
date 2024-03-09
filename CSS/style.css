@@ -5,6 +5,11 @@
 	--body-bg-color: #fff;
 	--main-theme-color: #c49323;
 	--hover-bg-color: #e9e8e8;
+	--primary-color: #a4243b;
+	--secondary-color: #24a48d;
+	--tertiary-color: #243ba4;
+	--dark-color: #2a2d34;
+	--light-color: #f5f5f5;
 }
 
 .dark {
@@ -123,29 +128,42 @@ input[type="number"] {
 }
 .preloader {
 	position: fixed;
+	top: 0;
+	left: 0;
 	width: 100%;
-	height: 100vh;
-	background-color: var(--body-bg-color);
-	z-index: 9999;
+	height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	gap: 20px;
-	transition: all 0.3s ease-in-out;
+	z-index: 1000;
+	gap: 3rem;
+	background-color: var(--light-color);
 }
-.preloader i {
-	font-size: 2rem;
-	font-weight: bold;
-	color: var(--main-theme-color);
-	animation-duration: 0.7s;
+/* HTML: <div class="loader"></div> */
+.loader {
+	height: 4px;
+	width: 130px;
+	--c: no-repeat linear-gradient(var(--primary-color) 0 0);
+	background: var(--c), var(--c), #dbdbdb;
+	background-size: 60% 100%;
+	animation: l16 3s infinite;
 }
-.preloader .logo {
-	width: 7rem;
-	height: fit-content;
-	object-fit: cover;
+@keyframes l16 {
+	0% {
+		background-position: -150% 0, -150% 0;
+	}
+	66% {
+		background-position: 250% 0, -150% 0;
+	}
+	100% {
+		background-position: 250% 0, 250% 0;
+	}
 }
 
+.preloader img {
+	width: 50px;
+}
 @keyframes appear {
 	0% {
 		bottom: 20px;
@@ -489,6 +507,15 @@ hr {
 }
 .show-options {
 	max-height: max-content;
+}
+pre {
+	background-color: #333333;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	color: var(--light-color);
+	font-size: 1.1em;
+	position: relative;
+	line-height: 2rem;
 }
 
 /* -----------Navbar----------------- */

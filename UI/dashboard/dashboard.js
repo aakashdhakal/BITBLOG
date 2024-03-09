@@ -170,15 +170,25 @@ function logout() {
 function blogEditor() {
 	const quill = new Quill("#editor", {
 		modules: {
-			syntax: true,
 			toolbar: "#toolbar",
+			syntax: true,
 		},
+
 		placeholder: "Write something awesome...",
 	});
-	let html = quill.getSemanticHTML();
+
+	//set js code to quill
+
+	//properly escape html tags
 	quill.on("text-change", function () {
-		html = quill.root.innerHTML;
-		console.log(html);
+		let html = quill.getSemanticHTML();
+		let clean = DOMPurify.sanitize(html, { USE_PROFILES: { html: true } });
+		clean = clean.replace(/<p><\/p>/g, "<br><br>");
+		console.log(clean);
+
+		let delta = quill.getContents();
+		delta = JSON.stringify(delta);
+		console.log(delta);
 	});
 }
 
