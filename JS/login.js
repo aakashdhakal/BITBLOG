@@ -59,8 +59,7 @@ loginForm.addEventListener("submit", function (e) {
 		loginSubmit.innerHTML = "Log in";
 		return;
 	} else {
-
-		fetch("login-config", {
+		fetch(baseUrl + "login-config", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/x-www-form-urlencoded",

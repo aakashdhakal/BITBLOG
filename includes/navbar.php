@@ -49,7 +49,7 @@
                     </button>
                     <div class="sub-menu" id="subMenu">
                         <p><?php echo $_SESSION["username"]; ?></p>
-                        <?php if (isset($_SESSION["username"]) && $_SESSION["role"] != "reader") { ?>
+                        <?php if (isset($_SESSION["username"]) && $_SESSION["role"] != "Reader") { ?>
                             <a href="<?php echo BASE_URL ?>dashboard"><i class="fa-solid fa-gauge-max"></i>Dashboard <p><?php echo $role ?></p>
                             </a>
                         <?php  } ?>

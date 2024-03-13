@@ -9,7 +9,7 @@ define('BASE_URL', "/A.D-Blogs/");
 
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="<?php echo BASE_URL ?>/images/favicon.svg">
+    <link rel="icon" href="<?php echo BASE_URL ?>/images/BitBlog.svg">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo BASE_URL ?>/CSS/style.css">

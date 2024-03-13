@@ -1,6 +1,6 @@
 <?php include "includes/head.php"; ?>
 <link rel="stylesheet" href="CSS/homepage.css">
-<title>Blogs - Aakash Dhakal</title>
+<title>Bitblogs - Exploring the world with words, one click at a time.</title>
 <?php include "includes/navbar.php"; ?>
 
 <section id="welcome">

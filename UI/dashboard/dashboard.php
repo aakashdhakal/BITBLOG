@@ -22,6 +22,11 @@ define('BASE_URL', 'http://localhost/A.D-Blogs/');
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz@6..12&display=swap" rel="stylesheet">
     <title>Admin Panel - BITBLOG</title>
     <link rel="stylesheet" href="<?php echo BASE_URL ?>/UI/dashboard/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.core.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.3/purify.min.js"></script>
 
 
 </head>
@@ -99,7 +104,7 @@ define('BASE_URL', 'http://localhost/A.D-Blogs/');
                     <p class="user-name"><?php echo $_SESSION["name"] ?></p>
                     <p class="user-role"><?php echo strtoupper($_SESSION["role"]) ?></p>
                 </div>
-                <button id="logoutBtn" title="Logout" class="secondary-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
+                <button id="logoutBtn" title="Logout" class="primary-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
             </div>
         </div>
         <div class="main-content">

@@ -125,7 +125,7 @@ function checkEmpty(inputField) {
 }
 
 async function checkDuplicate(data, isUsername) {
-	const endPoint = "signup-validate-config";
+	const endPoint = baseUrl + "signup-validate-config";
 
 	return fetch(endPoint, {
 		method: "POST",
@@ -226,7 +226,7 @@ function validatePassword(password) {
 }
 function OtpSend() {
 	otpCode = Math.floor(100000 + Math.random() * 900000);
-	const endPoint = "otp-config";
+	const endPoint = baseUrl + "otp-config";
 	sendOtp.disabled = true;
 	sendOtp.innerHTML = '<i class="fa-duotone fa-spinner-third fa-spin"></i>';
 
@@ -336,7 +336,7 @@ signupForm.addEventListener("submit", function (e) {
 	} else {
 		let formdata = new FormData(signupForm);
 		formdata.append("profilepic", imageUpload.files[0]);
-		fetch("signup-config", {
+		fetch(baseUrl + "signup-config", {
 			method: "POST",
 			body: formdata,
 		})

@@ -291,15 +291,6 @@ header {
 	height: 100%;
 	position: relative;
 }
-#createPost {
-	padding: 0.3rem 1rem;
-	font-size: 1rem;
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	border-radius: 2rem;
-	color: var(--light-color);
-}
 .search-bar {
 	height: max-content;
 	overflow: hidden;
@@ -331,30 +322,18 @@ header {
 	gap: 0.5rem;
 	width: 15%;
 }
-/* #logoutBtn {
-	padding: 0.2rem 1rem;
-	color: var(--light-color);
-	font-size: 1rem;
-	background-color: var(--tertiary-color);
-	border-radius: 2rem;
-} */
 #editor {
-	min-height: 70dvh;
+	min-height: 30dvh;
 	max-height: max-content;
 	font-size: large;
 	pointer-events: all;
-	margin: 3rem 0;
-}
-.editor-container {
-	border: 1px solid #e0e0e0;
 	border-radius: 2rem;
 	overflow: hidden;
-	padding: 2rem;
 }
 
 #toolbar {
 	position: sticky;
-	top: 20px;
+	top: 60px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -377,27 +356,102 @@ header {
 }
 
 .main-content form {
+	width: 70%;
+	height: 100%;
 	display: flex;
+	justify-content: center;
 	flex-direction: column;
-	gap: 1rem;
+	gap: 25px;
+	border-radius: 1rem;
+	padding: 2rem;
+	margin: auto;
+}
+.input-field {
+	width: 100%;
+	border: none;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+	position: relative;
+	border-radius: 1rem;
+	padding: 5px;
+}
+.input-field .placeholder {
+	position: absolute;
+	vertical-align: middle;
+	left: 15px;
+	pointer-events: none;
+	color: #808080;
+	transition: all 0.5s ease-in-out;
+	padding: 0 5px;
+	font-size: 2rem;
 }
 
-.form-group {
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-}
-.form-group label {
-	font-size: 1rem;
-}
-.form-group input,
-.form-group select {
-	padding: 0.5rem 1rem;
+#postTitle {
+	width: 100%;
+	padding: 10px 10px;
 	border: none;
 	outline: none;
-	border-radius: 0.5rem;
+	resize: none;
+	height: 100%;
+	background: transparent;
+	font-size: 2.25rem;
+	font-weight: 800;
+}
+.input-field input::placeholder {
+	font-size: 2rem;
+	color: #b3b3b3;
+	font-weight: 800;
+	letter-spacing: 2.25px;
 }
 
+.file-upload-area {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 1rem;
+	width: 100%;
+	height: max-content;
+	border: 2px dashed #e0e0e0;
+	padding: 2rem 2rem 4rem;
+	position: relative;
+}
+.file-upload-area input[type="file"] {
+	display: none;
+}
+.cover-img {
+	width: 100%;
+	height: 70vh;
+	object-fit: cover;
+	border-radius: 1rem;
+	display: none;
+}
+.upload-area {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 1rem;
+	width: 100%;
+	height: 100%;
+}
+.upload-area i {
+	font-size: 3rem;
+	color: #808080;
+}
+.upload-area p {
+	font-size: 1.5rem;
+	color: #808080;
+}
+.change-btn {
+	position: absolute;
+	bottom: 15px;
+}
+.dragged {
+	opacity: 0.5;
+}
 /* Popup Box */
 
 .popup-box {
