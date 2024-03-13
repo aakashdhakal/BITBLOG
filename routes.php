@@ -5,34 +5,34 @@ require_once __DIR__ . '/router.php';
 // ##################################################
 // ##################################################
 // ##################################################
-
+$baseUrl = "/A.D-Blogs";
 // Static GET
 // In the URL -> http://localhost
 // The output -> Index
-get('/A.D-Blogs/dashboard', 'UI/dashboard/dashboard.php');
-get('/A.D-Blogs', 'UI/homepage/home.php');
-get('/A.D-Blogs/home', 'UI/homepage/home.php');
-get('/A.D-Blogs/post/$slug_url', 'UI/post/blog-post.php');
-get('/A.D-Blogs/logout', 'config/logout.php');
-get('/A.D-Blogs/$i', 'UI/homepage/home.php');
-get('/A.D-Blogs/dashboard/writePost', 'UI/dashboard/writePost.php');
-get('/A.D-Blogs/dashboard/adminHome', 'UI/dashboard/adminHome.php');
-get('/A.D-Blogs/dashboard/posts', 'UI/dashboard/posts.php');
-get('/A.D-Blogs/dashboard/settings', 'UI/dashboard/settings.php');
+get($baseUrl . '/dashboard', 'UI/dashboard/dashboard.php');
+get($baseUrl, 'UI/homepage/home.php');
+get($baseUrl . '/home', 'UI/homepage/home.php');
+get($baseUrl . '/post/$slug_url', 'UI/post/blog-post.php');
+get($baseUrl . '/logout', 'config/logout.php');
+get($baseUrl . '/$i', 'UI/homepage/home.php');
+get($baseUrl . '/dashboard/writePost', 'UI/dashboard/writePost.php');
+get($baseUrl . '/dashboard/adminHome', 'UI/dashboard/adminHome.php');
+get($baseUrl . '/dashboard/posts', 'UI/dashboard/posts.php');
+get($baseUrl . '/dashboard/settings', 'UI/dashboard/settings.php');
 
 
-post('/A.D-Blogs/bookmark-config', 'config/bookmark-config.php');
-post('/A.D-Blogs/post-like-config', 'config/post-like-config.php');
-post('/A.D-Blogs/follow-config', 'config/follow-config.php');
-post('/A.D-Blogs/post-list-config', 'config/post-list-config.php');
-post('/A.D-Blogs/otp-config', 'config/otp-config.php');
-post('/A.D-Blogs/login-config', 'config/login-config.php');
-post('/A.D-Blogs/signup-config', 'config/signup-config.php');
-post('/signup-validate-config', 'config/signup-validate-config.php');
-post('/A.D-Blogs/feedback-config', 'config/feedback-config.php');
+post($baseUrl . '/bookmark-config', 'config/bookmark-config.php');
+post($baseUrl . '/post-like-config', 'config/post-like-config.php');
+post($baseUrl . '/follow-config', 'config/follow-config.php');
+post($baseUrl . '/post-list-config', 'config/post-list-config.php');
+post($baseUrl . '/otp-config', 'config/otp-config.php');
+post($baseUrl . '/login-config', 'config/login-config.php');
+post($baseUrl . '/signup-config', 'config/signup-config.php');
+post($baseUrl . '/signup-validate-config', 'config/signup-validate-config.php');
+post($baseUrl . '/feedback-config', 'config/feedback-config.php');
 
 // For GET or POST
 // The 404.php which is inside the views folder will be called
 // The 404.php has access to $_GET and $_POST
-any('/A.D-Blogs/404', 'UI/404.php');
-any('/A.D-Blogs/post/404', 'UI/404.php');
+any($baseUrl . '/404', 'UI/404.php');
+any($baseUrl . '/post/404', 'UI/404.php');

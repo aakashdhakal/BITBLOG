@@ -2,18 +2,15 @@
         <div class="input-field">
             <input type="text" name="post-title" placeholder="Article Title" id="postTitle" />
         </div>
-        <div class="file-upload-area">
-            <div class="upload-area">
-                <div class="icon">
-                    <i class="fa-solid fa-cloud-upload"></i>
-                </div>
-                <p>Upload the cover image</p>
-                <input type="file" name="file" id="postThumbnail" />
-                OR
-            </div>
-            <button class="primary-btn upload-thumbnail" type="button">Browse File</button>
-
-            <img class="cover-img"></img>
+        <div class="add-cover">
+            <input type="file" name="cover" id="cover" />
+            <button id="uploadCover" class="primary-btn">
+                <i class="fa-solid fa-upload"></i>Add
+            </button>
+            <button id="removeCover" class="primary-btn">
+                <i class="fa-solid fa-trash"></i>Remove
+            </button>
+            <div class="cover-img"></div>
         </div>
         <div id="toolbar">
             <!-- Add a bold button -->

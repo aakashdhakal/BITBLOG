@@ -192,37 +192,6 @@ function blogEditor() {
 	});
 
 	//upload image
-	let fileInput = document.querySelector("#postThumbnail");
-	let uploadBtn = document.querySelector(".upload-thumbnail");
-	let uploadArea = document.querySelector(".upload-area");
-	let fileUploadArea = document.querySelector(".file-upload-area");
-	let preview = document.querySelector(".cover-img");
-
-	uploadBtn.addEventListener("click", () => {
-		fileInput.click();
-	});
-
-	fileInput.addEventListener("change", () => {
-		let file = fileInput.files[0];
-		addCover(file);
-	});
-
-	//add file on drag and drop
-	fileUploadArea.addEventListener("dragover", (e) => {
-		uploadArea.classList.add("dragged");
-		e.preventDefault();
-	});
-
-	fileUploadArea.addEventListener("dragleave", (e) => {
-		uploadArea.classList.remove("dragged");
-		e.preventDefault();
-	});
-
-	fileUploadArea.addEventListener("drop", (e) => {
-		e.preventDefault();
-		let file = e.dataTransfer.files[0];
-		addCover(file);
-	});
 
 	function addCover(file) {
 		let reader = new FileReader();
