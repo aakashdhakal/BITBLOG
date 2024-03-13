@@ -5,7 +5,7 @@ require_once __DIR__ . '/router.php';
 // ##################################################
 // ##################################################
 // ##################################################
-$baseUrl = "/A.D-Blogs";
+$baseUrl = $_SERVER["SERVER_NAME"] . "/A.D-Blogs";
 // Static GET
 // In the URL -> http://localhost
 // The output -> Index
@@ -35,4 +35,3 @@ post($baseUrl . '/feedback-config', 'config/feedback-config.php');
 // The 404.php which is inside the views folder will be called
 // The 404.php has access to $_GET and $_POST
 any($baseUrl . '/404', 'UI/404.php');
-any($baseUrl . '/post/404', 'UI/404.php');

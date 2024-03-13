@@ -170,10 +170,17 @@ function logout() {
 function blogEditor() {
 	const quill = new Quill("#editor", {
 		modules: {
-			toolbar: "#toolbar",
+			toolbar: {
+				container: "#toolbar",
+				handlers: {
+					link: function () {
+						let urlInput = document.querySelector(".url-input");
+						urlInput.show();
+					},
+				},
+			},
 			syntax: true,
 		},
-
 		placeholder: "Write something awesome...",
 	});
 
@@ -192,18 +199,47 @@ function blogEditor() {
 	});
 
 	//upload image
+	let uploadBtn = document.querySelector("#uploadCover");
+	let removeBtn = document.querySelector("#removeCover");
+	let preview = document.querySelector(".cover-img");
+	let fileInput = document.querySelector("#coverImgUpload");
+
+	uploadBtn.addEventListener("click", () => {
+		fileInput.click();
+	});
+
+	removeBtn.addEventListener("click", () => {
+		removeCover();
+	});
+
+	fileInput.addEventListener("change", () => {
+		let file = fileInput.files[0];
+		if (file) {
+			addCover(file);
+		}
+	});
 
 	function addCover(file) {
 		let reader = new FileReader();
 		reader.onloadend = function () {
 			preview.src = reader.result;
-			uploadArea.style.display = "none";
 			preview.style.display = "block";
 			uploadBtn.classList.add("change-btn");
 			uploadBtn.innerHTML =
 				"<i class='fa-solid fa-pen-to-square'></i> Change cover";
 		};
 		reader.readAsDataURL(file);
+		removeBtn.style.display = "flex";
+	}
+
+	function removeCover() {
+		preview.src = "";
+		preview.style.display = "none";
+		uploadBtn.classList.remove("change-btn");
+		uploadBtn.innerHTML =
+			"<i class='fa-solid fa-upload'></i> Upload Cover Image";
+		removeBtn.style.display = "none";
+		fileInput.value = "";
 	}
 }
 

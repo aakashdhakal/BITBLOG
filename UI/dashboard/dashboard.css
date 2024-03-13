@@ -81,6 +81,7 @@ button {
 	font-size: 1rem;
 	appearance: none;
 	text-align: center;
+	right: 2px;
 }
 .ql-code-block-container select option {
 	background-color: var(--dark-color);
@@ -96,6 +97,13 @@ button {
 .ql-blank {
 	width: 100%;
 	height: 100%;
+}
+.ql-editor blockquote {
+	border-left: 5px solid var(--primary-color);
+	background-color: #f5f5f5;
+	font-size: 1.1rem;
+	font-style: italic;
+	padding: 0.2rem 1rem !important;
 }
 .preloader {
 	position: fixed;
@@ -408,7 +416,18 @@ header {
 .add-cover {
 	display: flex;
 	align-items: center;
+	flex-direction: column-reverse;
 	gap: 1rem;
+	border: 1px dashed #808080;
+	padding: 1rem;
+}
+.cover-upload-btn {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+#removeCover {
+	display: none;
 }
 input[type="file"] {
 	display: none;
@@ -421,29 +440,21 @@ input[type="file"] {
 	border-radius: 1rem;
 	display: none;
 }
-.upload-area {
+
+.url-input {
+	border: none;
+	align-items: center;
+	gap: 10px;
+	position: absolute;
+	border-radius: 1rem;
+	padding: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.url-input .max-width {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	gap: 1rem;
-	width: 100%;
-	height: 100%;
-}
-.upload-area i {
-	font-size: 3rem;
-	color: #808080;
-}
-.upload-area p {
-	font-size: 1.5rem;
-	color: #808080;
-}
-.change-btn {
-	position: absolute;
-	bottom: 15px;
-}
-.dragged {
-	opacity: 0.5;
+	justify-content: space-between;
+	gap: 10px;
 }
 /* Popup Box */
 

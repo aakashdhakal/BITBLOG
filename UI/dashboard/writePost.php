@@ -3,15 +3,28 @@
             <input type="text" name="post-title" placeholder="Article Title" id="postTitle" />
         </div>
         <div class="add-cover">
-            <input type="file" name="cover" id="cover" />
-            <button id="uploadCover" class="primary-btn">
-                <i class="fa-solid fa-upload"></i>Add
-            </button>
-            <button id="removeCover" class="primary-btn">
-                <i class="fa-solid fa-trash"></i>Remove
-            </button>
-            <div class="cover-img"></div>
+            <input type="file" name="cover" id="coverImgUpload" />
+            <div class="cover-upload-btn">
+                <button id="uploadCover" class="primary-btn" type="button">
+                    <i class="fa-solid fa-upload"></i>Upload Cover Image
+                </button>
+                <button id="removeCover" class="primary-btn" type="button">
+                    <i class="fa-solid fa-trash"></i>Remove
+                </button>
+            </div>
+            <img class="cover-img">
         </div>
+
+        <dialog class="url-input">
+            <div class="max-width">
+                <div class="input-field">
+                    <input type="text" name="url-input" placeholder="Image URL" id="imageUrl" />
+                </div>
+                <button id="confirmUrl" class="primary-btn" type="button">Confirm</button>
+            </div>
+        </dialog>
+
+
         <div id="toolbar">
             <!-- Add a bold button -->
             <button class="ql-bold "><strong>B</strong></button>|
@@ -24,9 +37,6 @@
             <!-- Add a code button -->
 
             <button class="ql-code-block"><i class="fa-solid fa-code"></i></button>|
-            <!-- Add a image button -->
-
-            <button class="ql-image"><i class="fa-solid fa-image"></i></button>|
             <!-- Add a list button -->
             <button class="ql-list" value="ordered"><i class="fa-solid fa-list-ol"></i></button>|
             <button class="ql-list" value="bullet"><i class="fa-solid fa-list-ul"></i></button>|

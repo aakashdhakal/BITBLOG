@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost/A.D-Blogs/";
+const baseUrl = "/A.D-Blogs/";
 //Preloader Script
 
 let preloader = document.querySelector(".preloader");
