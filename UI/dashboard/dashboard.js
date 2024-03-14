@@ -168,14 +168,41 @@ function logout() {
 //Blog editor function
 
 function blogEditor() {
+	let urlDialog = document.querySelector(".url-input");
+	let urlInput = document.querySelector(".url-input input");
+	let insertLink = document.querySelector(".url-input button");
 	const quill = new Quill("#editor", {
 		modules: {
 			toolbar: {
 				container: "#toolbar",
 				handlers: {
 					link: function () {
-						let urlInput = document.querySelector(".url-input");
-						urlInput.show();
+						urlDialog.show();
+
+						function insertLinkFunc() {
+							console.log("insertLinkFunc");
+							let value = urlInput.value;
+							if (value) {
+								quill.format("link", value);
+								urlInput.value = "";
+								urlDialog.close();
+							}
+						}
+
+						insertLink.addEventListener("click", insertLinkFunc);
+						urlInput.addEventListener("keypress", (e) => {
+							if (e.key === "Enter") {
+								console.log("Enter");
+								insertLinkFunc();
+							}
+						});
+
+						window.addEventListener("keydown", (e) => {
+							console.log(e.key);
+							if (e.key === "Escape") {
+								urlDialog.close();
+							}
+						});
 					},
 				},
 			},
@@ -241,6 +268,58 @@ function blogEditor() {
 		removeBtn.style.display = "none";
 		fileInput.value = "";
 	}
+
+	//post the blog as draft or published
+
+	let publishBtn = document.querySelector("#publishPost");
+	let draftBtn = document.querySelector("#saveDraft");
+
+	function postBlog(status) {
+		let title = document.querySelector("#postTitle").value;
+		let content = quill.getSemanticHTML();
+		let quillDelta = quill.getContents();
+		quillDelta = JSON.stringify(quillDelta);
+		let cover = fileInput.files[0];
+		let formData = new FormData();
+		formData.append("title", title);
+		formData.append("content", content);
+		formData.append("cover", cover);
+		formData.append("status", status);
+		formData.append("quillDelta", quillDelta);
+
+		console.log(formData);
+
+		//send data to server
+		fetch("/A.D-Blogs/publish-post", {
+			method: "POST",
+			body: formData,
+		})
+			.then((response) => response.text())
+			.then((data) => {
+				console.log(data);
+				if (data === "success") {
+					showPopUp(
+						"Success",
+						"Your blog has been posted successfully",
+						"Ok",
+						"posts"
+					);
+				} else {
+					showPopUp(
+						"Error",
+						"Something went wrong. Please try again. Error" + data,
+						"OK"
+					);
+				}
+			});
+	}
+	publishBtn.addEventListener("click", () => {
+		postBlog(1);
+	});
+
+	draftBtn.addEventListener("click", () => {
+		postBlog(0);
+	});
 }
 
 //adminHome function

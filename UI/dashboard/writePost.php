@@ -15,14 +15,7 @@
             <img class="cover-img">
         </div>
 
-        <dialog class="url-input">
-            <div class="max-width">
-                <div class="input-field">
-                    <input type="text" name="url-input" placeholder="Image URL" id="imageUrl" />
-                </div>
-                <button id="confirmUrl" class="primary-btn" type="button">Confirm</button>
-            </div>
-        </dialog>
+
 
 
         <div id="toolbar">
@@ -32,6 +25,14 @@
             <button class="ql-italic"><i class="fa-solid fa-italic"></i></button>|
             <!-- Add a link button -->
             <button class="ql-link"><i class="fa-solid fa-link"></i></button>|
+            <dialog class="url-input">
+                <div class="max-width">
+                    <div class="input-field">
+                        <input type="text" name="url-input" placeholder="URL" id="linkUrl" />
+                    </div>
+                    <button id="confirmUrl" class="primary-btn" type="button">Insert</button>
+                </div>
+            </dialog>
             <!-- Add a blockquote button -->
             <button class="ql-blockquote"><i class="fa-solid fa-quote-left"></i></button>|
             <!-- Add a code button -->
@@ -54,5 +55,9 @@
 
         <div id="editor">
 
+        </div>
+        <div class="post-buttons">
+            <button id="saveDraft" class="tertiary-btn" type="button">Save Draft</button>
+            <button id="publishPost" class="primary-btn" type="button">Publish</button>
         </div>
     </form>

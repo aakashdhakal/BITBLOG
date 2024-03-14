@@ -28,6 +28,7 @@ body {
 }
 button {
 	border: none;
+	outline: none;
 	cursor: pointer;
 }
 .primary-btn {
@@ -60,7 +61,7 @@ button {
 	color: var(--dark-color);
 }
 .ql-code-block-container {
-	background-color: #242424;
+	background-color: #505050;
 	padding: 1rem;
 	border-radius: 0.5rem;
 	color: var(--light-color);
@@ -81,7 +82,9 @@ button {
 	font-size: 1rem;
 	appearance: none;
 	text-align: center;
-	right: 2px;
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
 }
 .ql-code-block-container select option {
 	background-color: var(--dark-color);
@@ -331,7 +334,7 @@ header {
 	width: 15%;
 }
 #editor {
-	min-height: 30dvh;
+	min-height: 10dvh;
 	max-height: max-content;
 	font-size: large;
 	pointer-events: all;
@@ -407,11 +410,19 @@ header {
 	font-size: 2.25rem;
 	font-weight: 800;
 }
-.input-field input::placeholder {
+#postTitle::placeholder {
 	font-size: 2rem;
 	color: #b3b3b3;
 	font-weight: 800;
 	letter-spacing: 2.25px;
+}
+#postTitle input {
+	font-size: 2rem;
+	color: #b3b3b3;
+	font-weight: 800;
+	letter-spacing: 2.25px;
+	border: none;
+	outline: none;
 }
 .add-cover {
 	display: flex;
@@ -446,15 +457,39 @@ input[type="file"] {
 	align-items: center;
 	gap: 10px;
 	position: absolute;
-	border-radius: 1rem;
-	padding: 5px;
+	border-radius: calc(2rem + 5px);
+	padding: 1px 5px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	position: absolute;
+	bottom: -4.5rem;
+	width: 100%;
+}
+.url-input input {
+	width: 100%;
+	border: none;
+	outline: none;
+	padding: 10px;
+	border-radius: 1rem;
+	font-size: 1rem;
 }
 .url-input .max-width {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 10px;
+}
+.url-input button {
+	background-color: var(--primary-color) !important;
+	height: 100%;
+}
+.url-input button:hover {
+	color: #ffffff !important;
+}
+
+.post-buttons {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
 }
 /* Popup Box */
 

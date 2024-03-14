@@ -30,6 +30,7 @@ post($baseUrl . '/login-config', 'config/login-config.php');
 post($baseUrl . '/signup-config', 'config/signup-config.php');
 post($baseUrl . '/signup-validate-config', 'config/signup-validate-config.php');
 post($baseUrl . '/feedback-config', 'config/feedback-config.php');
+post($baseUrl . '/publish-post', 'UI/dashboard/publish-post.php');
 
 // For GET or POST
 // The 404.php which is inside the views folder will be called

@@ -3,7 +3,8 @@ session_start();
 if (!isset($_SESSION["username"])) {
     header("Location: " . "http://localhost/A.D-Blogs/");
 }
-define('BASE_URL', 'http://localhost/A.D-Blogs/');
+$baseUrl = $_SERVER["SERVER_NAME"] . "/A.D-Blogs";
+define("BASE_URL", "http://" . $baseUrl . "/");
 
 ?>
 <!DOCTYPE html>
