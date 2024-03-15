@@ -48,8 +48,9 @@ button {
 	align-items: center;
 	gap: 0.5rem;
 	border-radius: 2rem;
-	color: var(--light-color);
-	background-color: var(--secondary-color);
+	color: var(--primary-color);
+	border: 2px solid var(--primary-color);
+	background-color: transparent;
 }
 .tertiary-btn {
 	padding: 0.5rem 1rem;
@@ -58,7 +59,8 @@ button {
 	align-items: center;
 	gap: 0.5rem;
 	border-radius: 2rem;
-	color: var(--dark-color);
+	color: var(--primary-color);
+	background-color: transparent;
 }
 .ql-code-block-container {
 	background-color: #505050;
@@ -334,12 +336,12 @@ header {
 	width: 15%;
 }
 #editor {
-	min-height: 10dvh;
+	min-height: 15dvh;
 	max-height: max-content;
 	font-size: large;
 	pointer-events: all;
-	border-radius: 2rem;
 	overflow: hidden;
+	border-bottom: 1px solid #e0e0e0;
 }
 
 #toolbar {
@@ -427,10 +429,15 @@ header {
 .add-cover {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	flex-direction: column-reverse;
-	gap: 1rem;
-	border: 1px dashed #808080;
-	padding: 1rem;
+	gap: 2rem;
+	padding: 10px;
+	background-color: #f5f5f5;
+	border-radius: calc(1rem + 10px);
+	position: relative;
+	height: 70vh;
+	border: 1px solid var(--primary-color);
 }
 .cover-upload-btn {
 	display: flex;
@@ -440,6 +447,20 @@ header {
 #removeCover {
 	display: none;
 }
+
+.cover-img-show-btns {
+	position: absolute;
+	top: 2rem;
+	right: 2rem;
+}
+
+.cover-img-show-btns button {
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	background-color: #757575;
+	color: rgb(255, 255, 255);
+	border: none;
+}
+
 input[type="file"] {
 	display: none;
 }
@@ -450,6 +471,17 @@ input[type="file"] {
 	object-fit: cover;
 	border-radius: 1rem;
 	display: none;
+}
+.cover-details {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	gap: 0.2rem;
+	font-size: 1.1rem;
+}
+.cover-details i {
+	font-size: 4rem;
+	color: var(--primary-color);
 }
 
 .url-input {

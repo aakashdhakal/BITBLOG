@@ -230,7 +230,19 @@ function blogEditor() {
 	let removeBtn = document.querySelector("#removeCover");
 	let preview = document.querySelector(".cover-img");
 	let fileInput = document.querySelector("#coverImgUpload");
+	let coverBtnContainer = document.querySelector(".cover-upload-btn");
+	let coverDetails = document.querySelector(".cover-details");
+	let coverImgContainer = document.querySelector(".add-cover");
 
+	function loadingBtn(status, btn, textAfterLoading) {
+		if (status) {
+			btn.innerHTML = "<i class='fa-solid fa-spinner-third'></i>";
+			btn.disabled = true;
+		} else {
+			btn.innerHTML = textAfterLoading;
+			btn.disabled = false;
+		}
+	}
 	uploadBtn.addEventListener("click", () => {
 		fileInput.click();
 	});
@@ -246,17 +258,35 @@ function blogEditor() {
 		}
 	});
 
+	coverImgContainer.addEventListener("dragover", (e) => {
+		e.preventDefault();
+	});
+
+	coverImgContainer.addEventListener("dragleave", (e) => {
+		e.preventDefault();
+	});
+
+	coverImgContainer.addEventListener("drop", (e) => {
+		e.preventDefault();
+		coverImgContainer.classList.remove("dragover");
+		let file = e.dataTransfer.files[0];
+		if (file) {
+			addCover(file);
+		}
+	});
+
 	function addCover(file) {
 		let reader = new FileReader();
 		reader.onloadend = function () {
 			preview.src = reader.result;
 			preview.style.display = "block";
 			uploadBtn.classList.add("change-btn");
-			uploadBtn.innerHTML =
-				"<i class='fa-solid fa-pen-to-square'></i> Change cover";
+			uploadBtn.innerHTML = "<i class='fa-solid fa-pen-to-square'></i>";
 		};
 		reader.readAsDataURL(file);
 		removeBtn.style.display = "flex";
+		coverBtnContainer.classList.add("cover-img-show-btns");
+		coverDetails.style.display = "none";
 	}
 
 	function removeCover() {
@@ -267,6 +297,8 @@ function blogEditor() {
 			"<i class='fa-solid fa-upload'></i> Upload Cover Image";
 		removeBtn.style.display = "none";
 		fileInput.value = "";
+		coverBtnContainer.classList.remove("cover-img-show-btns");
+		coverDetails.style.display = "flex";
 	}
 
 	//post the blog as draft or published

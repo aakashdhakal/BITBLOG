@@ -105,7 +105,7 @@ define("BASE_URL", "http://" . $baseUrl . "/");
                     <p class="user-name"><?php echo $_SESSION["name"] ?></p>
                     <p class="user-role"><?php echo strtoupper($_SESSION["role"]) ?></p>
                 </div>
-                <button id="logoutBtn" title="Logout" class="primary-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
+                <button id="logoutBtn" title="Logout" class="secondary-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
             </div>
         </div>
         <div class="main-content">

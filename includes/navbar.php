@@ -177,6 +177,7 @@
                                 <button type="button" class="prev-btn  primary-btn">Back</button>
                                 <button type="button" class="next-btn  primary-btn">Next</button>
                             </div>
+
                         </div>
                         <div class="form-group">
                             <div class="pic-role">
@@ -219,6 +220,11 @@
                                 <button type="button" class="prev-btn  primary-btn">Back</button>
                                 <button type="submit" name="signupSubmit" id="signupSubmit" class="primary-btn">Sign up</button>
                             </div>
+                        </div>
+                        OR
+                        <!-- google signup -->
+                        <div class="third-party-auth">
+                            <button type="button" class="primary-btn"><i class="fa-brands fa-google"></i>Sign up with Google</button>
                         </div>
                         <p>Already have and account ? &nbsp;<button id="loginLink" type="button" class="tertairy-btn">Log in</button>
                         </p>

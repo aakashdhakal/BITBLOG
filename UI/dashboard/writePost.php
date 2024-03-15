@@ -1,23 +1,27 @@
     <form action="">
-        <div class="input-field">
-            <input type="text" name="post-title" placeholder="Article Title" id="postTitle" />
-        </div>
         <div class="add-cover">
             <input type="file" name="cover" id="coverImgUpload" />
+
             <div class="cover-upload-btn">
-                <button id="uploadCover" class="primary-btn" type="button">
-                    <i class="fa-solid fa-upload"></i>Upload Cover Image
+
+                <button id="uploadCover" class="secondary-btn" type="button">
+                    <i class="fa-solid fa-up-from-bracket"></i>Upload Cover
                 </button>
-                <button id="removeCover" class="primary-btn" type="button">
-                    <i class="fa-solid fa-trash"></i>Remove
+                <button id="removeCover" class="secondary-btn" type="button">
+                    <i class="fa-solid fa-trash"></i>
                 </button>
+            </div>
+            <div class="cover-details">
+                <i class="fa-solid fa-image-landscape"></i><br>
+                <p>Drag and drop or click to upload</p>
+                <p>Recommended size is 1200 x 600px</p>
+
             </div>
             <img class="cover-img">
         </div>
-
-
-
-
+        <div class="input-field">
+            <input type="text" name="post-title" placeholder="Article Title" id="postTitle" autocomplete="off" />
+        </div>
         <div id="toolbar">
             <!-- Add a bold button -->
             <button class="ql-bold "><strong>B</strong></button>|
@@ -57,7 +61,7 @@
 
         </div>
         <div class="post-buttons">
-            <button id="saveDraft" class="tertiary-btn" type="button">Save Draft</button>
+            <button id="saveDraft" class="secondary-btn" type="button">Save Draft</button>
             <button id="publishPost" class="primary-btn" type="button">Publish</button>
         </div>
     </form>
