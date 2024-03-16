@@ -60,6 +60,13 @@
         <div id="editor">
 
         </div>
+        <div class="category">
+            <div class="input-field">
+                <input type="text" name="category" placeholder="Category" id="category" />
+
+            </div>
+
+        </div>
         <div class="post-buttons">
             <button id="saveDraft" class="secondary-btn" type="button">Save Draft</button>
             <button id="publishPost" class="primary-btn" type="button">Publish</button>

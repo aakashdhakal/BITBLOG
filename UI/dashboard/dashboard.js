@@ -346,11 +346,15 @@ function blogEditor() {
 			});
 	}
 	publishBtn.addEventListener("click", () => {
+		loadingBtn(true, publishBtn, "Publish");
 		postBlog(1);
+		loadingBtn(false, publishBtn, "Publish");
 	});
 
 	draftBtn.addEventListener("click", () => {
+		loadingBtn(true, draftBtn, "Save Draft");
 		postBlog(0);
+		loadingBtn(false, draftBtn, "Save Draft");
 	});
 }
 
