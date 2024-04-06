@@ -9,50 +9,25 @@ let body = document.querySelector("body");
 let mainContent = document.querySelector(".main-content");
 let createPostBtn = document.querySelector("#createPost");
 let activePageName = document.querySelector(".active-page-name");
+let topNav = document.querySelector(".top-nav");
 let added = 0;
 
-collapseBtn.addEventListener("click", () => {
-	sidenav.classList.toggle("collapse");
-	if (sidenav.classList.contains("collapse")) {
-		collapseBtn.title = "Expand Menu";
-		sidenav.animate([{ width: "11dvw" }, { width: "3dvw" }], {
-			duration: 200,
-			fill: "forwards",
-		});
-		main.style.marginLeft = "3dvw";
-		collapseText.forEach((text) => {
-			text.animate(
-				[
-					{ display: "block", opacity: "1" },
-					{ display: "none", opacity: "0" },
-				],
-				{
-					duration: 110,
-					fill: "forwards",
-				}
-			);
-		});
-		localStorage.setItem("collapse", "true");
+window.addEventListener("scroll", () => {
+	if (window.scrollY > 0) {
+		topNav.classList.add("scrolled");
 	} else {
-		collapseBtn.title = "Collapse Menu";
-		sidenav.animate([{ width: "3dvw" }, { width: "11dvw" }], {
-			duration: 200,
-			fill: "forwards",
-		});
-		collapseText.forEach((text) => {
-			text.animate(
-				[
-					{ display: "none", opacity: "0" },
-					{ display: "block", opacity: "1" },
-				],
-				{
-					duration: 110,
-					fill: "forwards",
-				}
-			);
-		});
-		main.style.marginLeft = "11dvw";
+		topNav.classList.remove("scrolled");
+	}
+});
+
+collapseBtn.addEventListener("click", () => {
+	sidenav.classList.toggle("collapsed");
+	if (sidenav.classList.contains("collapsed")) {
+		localStorage.setItem("collapse", "true");
+		collapseBtn.title = "Expand Menu";
+	} else {
 		localStorage.setItem("collapse", "false");
+		collapseBtn.title = "Collapse Menu";
 	}
 });
 
@@ -171,6 +146,7 @@ function blogEditor() {
 	let urlDialog = document.querySelector(".url-input");
 	let urlInput = document.querySelector(".url-input input");
 	let insertLink = document.querySelector(".url-input button");
+	let cancelBtn = document.querySelector("#cancelUrl");
 	const quill = new Quill("#editor", {
 		modules: {
 			toolbar: {
@@ -188,7 +164,9 @@ function blogEditor() {
 								urlDialog.close();
 							}
 						}
-
+						cancelBtn.addEventListener("click", () => {
+							urlDialog.close();
+						});
 						insertLink.addEventListener("click", insertLinkFunc);
 						urlInput.addEventListener("keypress", (e) => {
 							if (e.key === "Enter") {
@@ -232,7 +210,6 @@ function blogEditor() {
 	let fileInput = document.querySelector("#coverImgUpload");
 	let coverBtnContainer = document.querySelector(".cover-upload-btn");
 	let coverDetails = document.querySelector(".cover-details");
-	let coverImgContainer = document.querySelector(".add-cover");
 
 	function loadingBtn(status, btn, textAfterLoading) {
 		if (status) {
@@ -258,23 +235,6 @@ function blogEditor() {
 		}
 	});
 
-	coverImgContainer.addEventListener("dragover", (e) => {
-		e.preventDefault();
-	});
-
-	coverImgContainer.addEventListener("dragleave", (e) => {
-		e.preventDefault();
-	});
-
-	coverImgContainer.addEventListener("drop", (e) => {
-		e.preventDefault();
-		coverImgContainer.classList.remove("dragover");
-		let file = e.dataTransfer.files[0];
-		if (file) {
-			addCover(file);
-		}
-	});
-
 	function addCover(file) {
 		let reader = new FileReader();
 		reader.onloadend = function () {
@@ -293,8 +253,7 @@ function blogEditor() {
 		preview.src = "";
 		preview.style.display = "none";
 		uploadBtn.classList.remove("change-btn");
-		uploadBtn.innerHTML =
-			"<i class='fa-solid fa-upload'></i> Upload Cover Image";
+		uploadBtn.innerHTML = "<i class='fa-regular fa-image'></i> Add Cover";
 		removeBtn.style.display = "none";
 		fileInput.value = "";
 		coverBtnContainer.classList.remove("cover-img-show-btns");
@@ -307,7 +266,8 @@ function blogEditor() {
 	let draftBtn = document.querySelector("#saveDraft");
 
 	function postBlog(status) {
-		let title = document.querySelector("#postTitle").value;
+		let title = document.querySelector("#postTitle").innerHTML;
+		let category = document.querySelector("#postCategory").value;
 		let content = quill.getSemanticHTML();
 		let quillDelta = quill.getContents();
 		quillDelta = JSON.stringify(quillDelta);
@@ -318,6 +278,7 @@ function blogEditor() {
 		formData.append("cover", cover);
 		formData.append("status", status);
 		formData.append("quillDelta", quillDelta);
+		formData.append("category", category);
 
 		console.log(formData);
 
@@ -355,6 +316,43 @@ function blogEditor() {
 		loadingBtn(true, draftBtn, "Save Draft");
 		postBlog(0);
 		loadingBtn(false, draftBtn, "Save Draft");
+	});
+
+	let customOptions = document.querySelector(".custom-options");
+	let postCategory = document.querySelector("#postCategory");
+	let categoryList = document.querySelectorAll(".custom-options li");
+
+	postCategory.addEventListener("input", () => {
+		console.log(postCategory.value);
+		fetch("/A.D-Blogs/get-category", {
+			method: "POST",
+			body: JSON.stringify({ category: postCategory.value }),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				// Clear the current options
+				customOptions.innerHTML = "";
+
+				// Add each category as a new li element
+				data.forEach((category) => {
+					let li = document.createElement("li");
+					li.textContent = category.category;
+					customOptions.appendChild(li);
+
+					// Add click event listener to the new li element
+					li.addEventListener("click", () => {
+						console.log(li.textContent);
+						postCategory.value = li.textContent;
+						customOptions.classList.remove("show-options");
+					});
+				});
+			});
+
+		if (postCategory.value == "") {
+			customOptions.classList.remove("show-options");
+		} else {
+			customOptions.classList.add("show-options");
+		}
 	});
 }
 

@@ -5,14 +5,14 @@ if (!isset($_SESSION["username"])) {
 }
 $baseUrl = $_SERVER["SERVER_NAME"] . "/A.D-Blogs";
 define("BASE_URL", "http://" . $baseUrl . "/");
-
+include_once BASE_URL . "./includes/extra-script.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="<?php echo BASE_URL ?>/images/BitBlog.svg">
+    <link rel="icon" href="<?php echo BASE_URL ?>/images/BitBlog-B.svg">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
@@ -20,7 +20,11 @@ define("BASE_URL", "http://" . $baseUrl . "/");
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz@6..12&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
     <title>Admin Panel - BITBLOG</title>
     <link rel="stylesheet" href="<?php echo BASE_URL ?>/UI/dashboard/dashboard.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" rel="stylesheet">
@@ -35,14 +39,14 @@ define("BASE_URL", "http://" . $baseUrl . "/");
 
 <body>
     <div class="preloader">
-        <img src="<?php echo BASE_URL ?>images/BitBlog.svg" alt="">
+        <img src="<?php echo BASE_URL ?>images/BitBlog-B.svg" alt="">
         <span class="loader"></span>
     </div>
     <header>
         <nav class=" side-navigation">
             <div class="logo-name">
-                <img src="<?php echo BASE_URL ?>/images/BitBlog.svg" alt="logo">
-                <h1 class="side-nav-text">BITBLOG</h1>
+                <img src="<?php echo BASE_URL ?>/images/BitBlog-B.svg" alt="logo">
+                <h1 class="side-nav-text">BITBLOGS</h1>
             </div>
             <ul class="side-nav">
 
@@ -58,10 +62,19 @@ define("BASE_URL", "http://" . $baseUrl . "/");
                 <li title="Settings"><a href="<?php echo BASE_URL ?>dashboard/settings" data-title="Settings" data-function="settings"><i class="fa-solid fa-gear"></i>
                         <p class="side-nav-text">Settings</p>
                     </a></li>
-
             </ul>
+            <!-- notification -->
+
+            <div class="user-profile">
+                <!-- <button id="createPost"><i class="fa-solid fa-file-plus"></i>Create Post</button> -->
+                <img src="<?php echo $_SESSION["profilepic"] ?>" alt="user" class="user-profile-picture">
+                <div class="user-name-role">
+                    <p class="user-name"><?php echo $_SESSION["name"] ?></p>
+                    <p class="user-role"><?php echo strtoupper($_SESSION["role"]) ?></p>
+                </div>
+                <button id="logoutBtn" title="Logout" class="secondary-btn"><i class="fa-solid fa-power-off"></i></button>
+            </div>
         </nav>
-        </button>
         <!-- <div class="copyright">
             <p>© <?php echo date("Y") ?> BITBLOG</p>
 
@@ -87,26 +100,20 @@ define("BASE_URL", "http://" . $baseUrl . "/");
 
     <main>
         <div class=" top-nav">
-            <div class="collapse-name"> <button id="collapseSidenav" title="Collapse Menu" class="tertiary-btn"><i class="fa-solid fa-bars-staggered"></i></button>
+            <div class="collapse-name"> <button id="collapseSidenav" title="Collapse Menu" class="tertiary-btn"><i class="fa-regular fa-circle-arrow-left"></i></button>
                 <h3 class="active-page-name"></h3>
             </div>
 
 
-            <div class="search-bar">
+            <!-- <div class="search-bar">
                 <i class="fa-solid fa-search"></i>
                 <input type="text" placeholder="Search for something">
 
-            </div>
-
-            <div class="user-profile">
-                <!-- <button id="createPost"><i class="fa-solid fa-file-plus"></i>Create Post</button> -->
-                <img src="<?php echo $_SESSION["profilepic"] ?>" alt="user">
-                <div class="user-name-role">
-                    <p class="user-name"><?php echo $_SESSION["name"] ?></p>
-                    <p class="user-role"><?php echo strtoupper($_SESSION["role"]) ?></p>
-                </div>
-                <button id="logoutBtn" title="Logout" class="secondary-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
-            </div>
+            </div> -->
+            <!-- <button id="createPost"><i class="fa-solid fa-file-plus"></i>Create Post</button> -->
+            <!-- notification -->
+            <!-- <button id="notificationBtn" title="Notifications" class="tertiary-btn"><i class="fa-solid fa-bell"></i></button> -->
+            <img src="<?php echo $_SESSION["profilepic"] ?>" alt="user" class="user-profile-picture">
         </div>
         <div class="main-content">
 

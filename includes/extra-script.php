@@ -153,3 +153,17 @@ function is_followed($username, $author_username)
         return false;
     }
 }
+
+function getCategories()
+{
+    include "database-config.php";
+    $sql = "SELECT category FROM posts";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $categories = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        array_push($categories, $row);
+    }
+    return $categories;
+}

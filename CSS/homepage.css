@@ -421,10 +421,10 @@
 		text-align: center;
 		padding: 20px;
 		border-radius: 1rem;
-		height: 20px;
 		box-shadow: 0px 0px 15px 2px var(--rgba-text-color);
 		position: relative;
 		overflow: hidden;
+		width: 100%;
 	}
 	.right img {
 		width: 100px;
@@ -475,6 +475,7 @@
 		align-items: center;
 		flex-direction: column;
 		gap: 20px;
+		width: 100%;
 	}
 	h1 {
 		font-size: 1.3rem;

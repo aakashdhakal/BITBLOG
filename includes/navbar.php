@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="preloader">
-        <img src="<?php echo BASE_URL ?>images/BitBlog.svg" alt="">
+        <img src="<?php echo BASE_URL ?>images/BitBlog-B.svg" alt="">
         <span class="loader"></span>
     </div>
 

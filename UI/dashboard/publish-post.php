@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $author = $_SESSION["username"];
     $status = $_POST["status"];
     $quill_delta = $_POST["quillDelta"];
-    $category = "Uncategorized";
+    $category = $_POST["category"];
 
     if (isset($_FILES["cover"]) && $_FILES["cover"]["error"] == 0) {
         $cover = $_FILES["cover"];
