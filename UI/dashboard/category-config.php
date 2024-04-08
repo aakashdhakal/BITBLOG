@@ -11,6 +11,5 @@ if (isset($input['category'])) {
     $result = mysqli_query($conn, $sql);
     $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
     //give 2 categories as json response
-    $categories = array_slice($categories, 0, 2);
     echo json_encode($categories);
 }

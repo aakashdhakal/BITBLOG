@@ -19,7 +19,7 @@ if ($result->num_rows == 0) {
 }
 $blog_post_id = $blog_post["id"];
 $blog_post_title = $blog_post["title"];
-$blog_post_content = nl2br($blog_post["content"]);
+$blog_post_content = html_entity_decode($blog_post["content"]);
 $blog_post_author = $blog_post["author"];
 $blog_post_date = date("F j, Y", strtotime($blog_post["date"]));
 $blog_post_category = $blog_post["category"];

@@ -10,6 +10,8 @@
 	--tertiary-color: #243ba4;
 	--dark-color: #2a2d34;
 	--light-color: #f7f7f7;
+	--box-shadow: 0 3px 5px #0000000b;
+	--border: 1px solid #e2e8f0;
 }
 
 ::-webkit-scrollbar {
@@ -58,8 +60,7 @@ button {
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	border-radius: 2rem;
-	color: var(--primary-color);
+	border-radius: 1rem;
 	background-color: transparent;
 }
 .ql-code-block-container {
@@ -313,6 +314,13 @@ header {
 	.user-profile-picture:hover {
 		opacity: 0.8;
 	}
+	.active-page-name {
+		font-size: 1rem;
+		font-weight: 600;
+		display: flex;
+		gap: 1rem;
+		width: max-content;
+	}
 }
 
 .top-nav::before {
@@ -413,22 +421,49 @@ header {
 	pointer-events: all;
 	overflow: hidden;
 	border-radius: 1rem;
+	padding: 1rem;
+}
+
+.ql-blank::after {
+	content: "Write Something Awesome ...";
+	color: #bebebe;
+	position: absolute;
+	top: 1.7rem;
+	pointer-events: none;
+}
+.ql-editor p::selection,
+.ql-editor h1::selection,
+.ql-editor h2::selection,
+.ql-editor h3::selection,
+.ql-editor a::selection,
+.ql-editor blockquote::selection,
+.ql-editor pre::selection,
+.ql-editor li::selection,
+.ql-editor b::selection,
+.ql-editor i::selection,
+.ql-editor u::selection,
+.ql-editor s::selection {
+	background-color: #a4243c27;
+	color: var(--primary-color);
 }
 
 #toolbar {
 	position: sticky;
-	top: calc(6dvh + 1.5rem);
+	top: calc(6dvh + 1rem);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 0.7rem;
 	padding: 0.5rem 1rem;
-	background-color: #ffffff;
 	width: 100%;
-	border-radius: 2rem;
 	color: #cacaca;
 	z-index: 99;
-	border: 1px solid #e0e0e0;
+	width: 100%;
+	box-shadow: var(--box-shadow);
+	border-bottom: var(--border);
+	background-color: #ffffff;
+	border-top-left-radius: 1rem;
+	border-top-right-radius: 1rem;
 }
 #toolbar button {
 	padding: 0.5rem 1rem;
@@ -440,19 +475,8 @@ header {
 #toolbar button:hover {
 	color: var(--primary-color);
 }
-
-#toolbar::after {
-	content: "";
-	position: absolute;
-	bottom: calc(5.45vh - 1px);
-	left: 0;
-	width: 100%;
-	height: 70%;
-	backdrop-filter: blur(10px);
-	z-index: -999;
-}
 .write-post form {
-	width: 80%;
+	width: 95%;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -460,8 +484,6 @@ header {
 	margin: auto;
 	padding: 2rem;
 	border-radius: 1rem;
-	background-color: #ffffff;
-	border: 1px solid #e0e0e0;
 }
 .write-post {
 	width: 100%;
@@ -470,8 +492,18 @@ header {
 	justify-content: center;
 	flex-direction: column;
 	gap: 25px;
-	padding: 2rem;
+	padding: 5rem 0 0 0;
 	/* background-color: #ffffff; */
+}
+.write-blog {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	gap: 5px;
+	background-color: #ffffff;
+	box-shadow: var(--box-shadow);
+	border: var(--border);
+	border-radius: 1rem;
 }
 .input-field {
 	width: 100%;
@@ -510,6 +542,8 @@ header {
 	cursor: text;
 	background-color: #ffffff;
 	border-radius: 1rem;
+	border: 1px solid #e2e8f0;
+	box-shadow: 0 3px 5px #0000000b;
 }
 [contentEditable="true"]:empty:before {
 	content: attr(placeholder);
@@ -517,8 +551,8 @@ header {
 }
 .add-cover {
 	display: flex;
-	align-items: start;
-	justify-content: flex-start;
+	align-items: center;
+	justify-content: center;
 	flex-direction: column-reverse;
 	gap: 2rem;
 	padding: 10px;
@@ -538,12 +572,12 @@ header {
 
 .cover-img-show-btns {
 	position: absolute;
-	top: 0.5rem;
-	right: 2rem;
+	bottom: 0.8rem;
+	justify-content: center;
 }
 
 .cover-img-show-btns button {
-	padding: 1rem 1.5rem;
+	padding: 0.5rem 1rem;
 	border-radius: 0.5rem;
 	background-color: white !important;
 	border: none;
@@ -559,11 +593,12 @@ input[type="file"] {
 
 .cover-img {
 	min-height: max-content;
-	width: 100%;
 	max-height: 50vh;
 	object-fit: cover;
 	border-radius: 1rem;
 	display: none;
+	aspect-ratio: 16/9;
+	margin: auto;
 }
 .cover-details {
 	display: flex;
@@ -577,7 +612,9 @@ input[type="file"] {
 	color: var(--primary-color);
 }
 #uploadCover {
-	border: none;
+	color: var(--dark-color);
+	border: var(--border) !important;
+	box-shadow: var(--box-shadow);
 	background-color: transparent;
 	transition: all 0.3s ease-in-out;
 }
@@ -585,7 +622,7 @@ input[type="file"] {
 	background-color: #a4243c27;
 }
 
-.url-input {
+.input-dialog {
 	border: none;
 	align-items: center;
 	gap: 10px;
@@ -594,9 +631,10 @@ input[type="file"] {
 	padding: 1px 5px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 	position: absolute;
-	bottom: -4.5rem;
+	bottom: -4rem;
+	left: 10rem;
 }
-.url-input input {
+.input-dialog input {
 	width: 100%;
 	border: none;
 	outline: none;
@@ -604,14 +642,20 @@ input[type="file"] {
 	border-radius: 1rem;
 	font-size: 1rem;
 }
-.url-input .max-width {
+.input-dialog .max-width {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 10px;
 }
-.url-input button {
+.input-dialog button {
 	font-size: 1.3rem !important;
+}
+.formula-input {
+	left: 17rem;
+}
+.url-input {
+	left: 15rem;
 }
 
 .post-buttons {
@@ -680,18 +724,21 @@ input[type="file"] {
 /* custom select */
 
 .custom-select {
-	width: 30%;
+	width: 100%;
 	height: 100%;
 	background-color: #ffffff;
-	border-radius: 5px;
-	border: 1px solid #e0e0e0;
+	box-shadow: var(--box-shadow);
+	border-radius: 1rem;
 	position: relative;
+	padding: 1rem 2rem;
+	border: var(--border);
 }
 .custom-options {
 	position: absolute;
-	top: 3rem;
+	top: 2.5rem;
+	left: 0;
 	background-color: #ffffff;
-	width: 100%;
+	width: 40%;
 	border-radius: 5px !important;
 	font-size: 1rem;
 	display: flex;
@@ -721,7 +768,6 @@ input[type="file"] {
 	background-color: transparent;
 	border: none;
 	outline: none;
-	padding: 0.8rem 1rem;
 	width: 100%;
 	font-size: 1rem;
 }
@@ -736,4 +782,10 @@ input[type="file"] {
 }
 .show-options {
 	max-height: 19vh;
+}
+/* Post Lists admin */
+.post-list {
+	width: 100%;
+	height: 100%;
+	padding: 5rem 0 0 0;
 }

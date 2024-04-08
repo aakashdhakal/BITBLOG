@@ -24,6 +24,8 @@ include_once BASE_URL . "./includes/extra-script.php";
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.css" integrity="sha384-K1E1xaIzoWihlXfiT5fcmLNabsnrl+dqc0errnRwtMX14tKRA9cCYNDGnXiHEZMs" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.js" integrity="sha384-IolEJdmwZJpJkyCvXBnmGt8wXcP3nvRjxBjPv7/PWW7oODJhZ+qiY1sDpwgjcKLT" crossorigin="anonymous"></script>
 
     <title>Admin Panel - BITBLOG</title>
     <link rel="stylesheet" href="<?php echo BASE_URL ?>/UI/dashboard/dashboard.css">
@@ -101,7 +103,7 @@ include_once BASE_URL . "./includes/extra-script.php";
     <main>
         <div class=" top-nav">
             <div class="collapse-name"> <button id="collapseSidenav" title="Collapse Menu" class="tertiary-btn"><i class="fa-regular fa-circle-arrow-left"></i></button>
-                <h3 class="active-page-name"></h3>
+                <p class="active-page-name"></p>
             </div>
 
 

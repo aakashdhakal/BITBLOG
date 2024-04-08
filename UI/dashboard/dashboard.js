@@ -145,8 +145,10 @@ function logout() {
 function blogEditor() {
 	let urlDialog = document.querySelector(".url-input");
 	let urlInput = document.querySelector(".url-input input");
-	let insertLink = document.querySelector(".url-input button");
-	let cancelBtn = document.querySelector("#cancelUrl");
+	let formulaDialog = document.querySelector(".formula-input");
+	let formulaInput = document.querySelector(".formula-input input");
+	let cancelBtn = document.querySelectorAll("#cancelUrl");
+	let savedSelection = null;
 	const quill = new Quill("#editor", {
 		modules: {
 			toolbar: {
@@ -154,6 +156,7 @@ function blogEditor() {
 				handlers: {
 					link: function () {
 						urlDialog.show();
+						formulaDialog.close();
 
 						function insertLinkFunc() {
 							console.log("insertLinkFunc");
@@ -164,21 +167,53 @@ function blogEditor() {
 								urlDialog.close();
 							}
 						}
-						cancelBtn.addEventListener("click", () => {
+
+						cancelBtn[0].addEventListener("click", () => {
 							urlDialog.close();
 						});
-						insertLink.addEventListener("click", insertLinkFunc);
 						urlInput.addEventListener("keypress", (e) => {
 							if (e.key === "Enter") {
-								console.log("Enter");
 								insertLinkFunc();
 							}
 						});
 
 						window.addEventListener("keydown", (e) => {
-							console.log(e.key);
 							if (e.key === "Escape") {
 								urlDialog.close();
+							}
+						});
+					},
+					formula: function () {
+						formulaDialog.show();
+						urlDialog.close();
+
+						function insertFormulaFunc() {
+							console.log("insertFormulaFunc");
+							let value = formulaInput.value;
+							if (value) {
+								if (savedSelection) {
+									quill.setSelection(savedSelection);
+									quill.insertEmbed(savedSelection.index, "formula", value);
+									formulaInput.value = "";
+									formulaDialog.close();
+								} else {
+									console.log("No selection in the Quill editor");
+								}
+							}
+						}
+
+						cancelBtn[1].addEventListener("click", () => {
+							formulaDialog.close();
+						});
+						formulaInput.addEventListener("keypress", (e) => {
+							if (e.key === "Enter") {
+								insertFormulaFunc();
+							}
+						});
+
+						window.addEventListener("keydown", (e) => {
+							if (e.key === "Escape") {
+								formulaDialog.close();
 							}
 						});
 					},
@@ -186,7 +221,11 @@ function blogEditor() {
 			},
 			syntax: true,
 		},
-		placeholder: "Write something awesome...",
+	});
+	quill.on("selection-change", function (range) {
+		if (range) {
+			savedSelection = range;
+		}
 	});
 
 	//set js code to quill
@@ -194,9 +233,11 @@ function blogEditor() {
 	//properly escape html tags
 	quill.on("text-change", function () {
 		let html = quill.getSemanticHTML();
-		let clean = DOMPurify.sanitize(html, { USE_PROFILES: { html: true } });
-		clean = clean.replace(/<p><\/p>/g, "<br><br>");
-		console.log(clean);
+		html = html
+			.replace(/<p><\/p>/g, "<br>")
+			.replace(/</g, "&lt;")
+			.replace(/>/g, "&gt;");
+		console.log(html);
 
 		let delta = quill.getContents();
 		delta = JSON.stringify(delta);
