@@ -18,6 +18,8 @@ closeBtn.forEach((btn) => {
 			dialogClose(loginDialog);
 		} else if (signupDialog.open) {
 			dialogClose(signupDialog);
+		} else if (forgetPassDialog.open) {
+			dialogClose(forgetPassDialog);
 		}
 	});
 });

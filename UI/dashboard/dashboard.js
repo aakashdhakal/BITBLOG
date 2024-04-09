@@ -52,7 +52,7 @@ window.addEventListener("load", () => {
 		collapseBtn.click();
 	}
 
-	sideLinks[2].click();
+	sideLinks[0].click();
 });
 
 sideLinks.forEach((link) => {
@@ -62,24 +62,19 @@ sideLinks.forEach((link) => {
 		activeLink.classList.remove("active");
 		activeLink = link;
 		link.classList.add("active");
-		changeMainContent(pageUrl);
+		let functionName = link.getAttribute("data-function");
+		changeMainContent(pageUrl, functionName);
 		activePageName.textContent = link.getAttribute("data-title");
 		document.title = link.getAttribute("data-title") + " - BITBLOGS";
-
-		let functionName = link.getAttribute("data-function");
-		setTimeout(() => {
-			if (functionName) {
-				window[functionName]();
-			}
-		}, 100);
 	});
 });
 
-function changeMainContent(pageUrl) {
+function changeMainContent(pageUrl, functionName) {
 	fetch(pageUrl)
 		.then((response) => response.text())
 		.then((data) => {
 			mainContent.innerHTML = data;
+			window[functionName]();
 		});
 }
 function closePopup() {
@@ -147,8 +142,13 @@ function blogEditor() {
 	let urlInput = document.querySelector(".url-input input");
 	let formulaDialog = document.querySelector(".formula-input");
 	let formulaInput = document.querySelector(".formula-input input");
+	let imageDialog = document.querySelector(".image-input");
+	let imageInput = document.querySelector(".image-input input");
+	let imgUploadBtn = document.querySelector(".file-select-button");
+	let imgFromUrl = document.querySelector("#imageLinkUrl");
 	let cancelBtn = document.querySelectorAll("#cancelUrl");
 	let savedSelection = null;
+	let html;
 	const quill = new Quill("#editor", {
 		modules: {
 			toolbar: {
@@ -157,6 +157,7 @@ function blogEditor() {
 					link: function () {
 						urlDialog.show();
 						formulaDialog.close();
+						imageDialog.close();
 
 						function insertLinkFunc() {
 							console.log("insertLinkFunc");
@@ -186,6 +187,7 @@ function blogEditor() {
 					formula: function () {
 						formulaDialog.show();
 						urlDialog.close();
+						imageDialog.close();
 
 						function insertFormulaFunc() {
 							console.log("insertFormulaFunc");
@@ -217,11 +219,63 @@ function blogEditor() {
 							}
 						});
 					},
+					image: function () {
+						imageDialog.show();
+						urlDialog.close();
+						formulaDialog.close();
+
+						imgUploadBtn.addEventListener("click", () => {
+							imageInput.click();
+						});
+
+						function insertImageFunc(file) {
+							if (file) {
+								if (savedSelection) {
+									quill.setSelection(savedSelection);
+									quill.insertEmbed(savedSelection.index, "image", file);
+									imageDialog.close();
+								} else {
+									console.log("No selection in the Quill editor");
+								}
+							}
+						}
+						imgFromUrl.addEventListener("keypress", (e) => {
+							if (e.key === "Enter") {
+								insertImageFunc(imgFromUrl.value);
+							}
+						});
+						imageInput.addEventListener("change", () => {
+							imgUploadBtn.innerHTML =
+								"Uploading  <i class='fa-solid fa-spinner-third'></i>";
+							let formData = new FormData();
+							formData.append("image", imageInput.files[0]);
+							formData.append("action", "upload");
+
+							fetch("/A.D-Blogs/handle-image", {
+								method: "POST",
+								body: formData,
+							})
+								.then((response) => response.text())
+								.then((data) => {
+									insertImageFunc(data);
+								});
+							imgUploadBtn.innerHTML =
+								"<i class='fa-solid fa-up-to-bracket'></i>Upload Image";
+						});
+
+						window.addEventListener("keydown", (e) => {
+							if (e.key === "Escape") {
+								imageDialog.close();
+							}
+						});
+					},
 				},
 			},
 			syntax: true,
 		},
 	});
+	let previousContents = quill.getContents();
+
 	quill.on("selection-change", function (range) {
 		if (range) {
 			savedSelection = range;
@@ -232,7 +286,7 @@ function blogEditor() {
 
 	//properly escape html tags
 	quill.on("text-change", function () {
-		let html = quill.getSemanticHTML();
+		html = quill.getSemanticHTML();
 		html = html
 			.replace(/<p><\/p>/g, "<br>")
 			.replace(/</g, "&lt;")
@@ -241,8 +295,38 @@ function blogEditor() {
 
 		let delta = quill.getContents();
 		delta = JSON.stringify(delta);
-		console.log(delta);
+
+		let currentContents = quill.getContents();
+		let previousImages = getImagesFromContents(previousContents);
+		let currentImages = getImagesFromContents(currentContents);
+
+		previousImages.forEach(function (image) {
+			if (currentImages.indexOf(image) === -1) {
+				// Handle image removal
+				let formData = new FormData();
+				formData.append("image", image);
+				formData.append("action", "delete");
+
+				fetch("/A.D-Blogs/handle-image", {
+					method: "POST",
+					body: formData,
+				})
+					.then((response) => response.text())
+					.then((data) => console.log(data));
+			}
+		});
+
+		previousContents = currentContents;
 	});
+	function getImagesFromContents(contents) {
+		let images = [];
+		contents.ops.forEach(function (op) {
+			if (typeof op.insert === "object" && op.insert.hasOwnProperty("image")) {
+				images.push(op.insert.image);
+			}
+		});
+		return images;
+	}
 
 	//upload image
 	let uploadBtn = document.querySelector("#uploadCover");
@@ -254,7 +338,7 @@ function blogEditor() {
 
 	function loadingBtn(status, btn, textAfterLoading) {
 		if (status) {
-			btn.innerHTML = "<i class='fa-solid fa-spinner-third'></i>";
+			btn.innerHTML = "<i class='fa-solid fa-spinner-third fa-spin'></i>";
 			btn.disabled = true;
 		} else {
 			btn.innerHTML = textAfterLoading;
@@ -305,16 +389,27 @@ function blogEditor() {
 
 	let publishBtn = document.querySelector("#publishPost");
 	let draftBtn = document.querySelector("#saveDraft");
+	let title = document.querySelector("#postTitle");
 
+	title.addEventListener("paste", (e) => {
+		e.preventDefault();
+		let text = e.clipboardData.getData("text/plain");
+		e.clipboardData.clearData();
+		e.clipboardData.setData("text/plain", text);
+		let selection = window.getSelection();
+		if (!selection.rangeCount) return false;
+		selection.deleteFromDocument();
+		selection.getRangeAt(0).insertNode(document.createTextNode(text));
+	});
 	function postBlog(status) {
-		let title = document.querySelector("#postTitle").innerHTML;
+		let titleText = title.innerHTML;
 		let category = document.querySelector("#postCategory").value;
-		let content = quill.getSemanticHTML();
+		let content = html;
 		let quillDelta = quill.getContents();
 		quillDelta = JSON.stringify(quillDelta);
 		let cover = fileInput.files[0];
 		let formData = new FormData();
-		formData.append("title", title);
+		formData.append("title", titleText);
 		formData.append("content", content);
 		formData.append("cover", cover);
 		formData.append("status", status);
@@ -345,18 +440,21 @@ function blogEditor() {
 						"OK"
 					);
 				}
+				if (status == 0) {
+					loadingBtn(false, draftBtn, "Save Draft");
+				} else {
+					loadingBtn(false, publishBtn, "Publish");
+				}
 			});
 	}
 	publishBtn.addEventListener("click", () => {
 		loadingBtn(true, publishBtn, "Publish");
 		postBlog(1);
-		loadingBtn(false, publishBtn, "Publish");
 	});
 
 	draftBtn.addEventListener("click", () => {
 		loadingBtn(true, draftBtn, "Save Draft");
 		postBlog(0);
-		loadingBtn(false, draftBtn, "Save Draft");
 	});
 
 	let customOptions = document.querySelector(".custom-options");

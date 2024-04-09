@@ -5,7 +5,7 @@ require_once __DIR__ . '/router.php';
 // ##################################################
 // ##################################################
 // ##################################################
-$baseUrl = $_SERVER["SERVER_NAME"] . "/A.D-Blogs";
+$baseUrl = "/A.D-Blogs";
 // Static GET
 // In the URL -> http://localhost
 // The output -> Index
@@ -32,6 +32,9 @@ post($baseUrl . '/signup-validate-config', 'config/signup-validate-config.php');
 post($baseUrl . '/feedback-config', 'config/feedback-config.php');
 post($baseUrl . '/publish-post', 'UI/dashboard/publish-post.php');
 post($baseUrl . '/get-category', 'UI/dashboard/category-config.php');
+post($baseUrl . '/handle-image', 'UI/dashboard/image-handler.php');
+post($baseUrl . '/reset-password', 'config/forgot-password-config.php');
+
 
 // For GET or POST
 // The 404.php which is inside the views folder will be called

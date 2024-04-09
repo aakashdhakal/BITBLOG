@@ -453,12 +453,11 @@ header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: 0.7rem;
+	flex-wrap: wrap;
 	padding: 0.5rem 1rem;
 	width: 100%;
 	color: #cacaca;
 	z-index: 99;
-	width: 100%;
 	box-shadow: var(--box-shadow);
 	border-bottom: var(--border);
 	background-color: #ffffff;
@@ -624,15 +623,12 @@ input[type="file"] {
 
 .input-dialog {
 	border: none;
-	align-items: center;
-	gap: 10px;
-	position: absolute;
 	border-radius: calc(2rem + 5px);
 	padding: 1px 5px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-	position: absolute;
-	bottom: -4rem;
-	left: 10rem;
+	top: 3.5rem;
+	left: 60rem;
+	width: 20vw;
 }
 .input-dialog input {
 	width: 100%;
@@ -644,18 +640,48 @@ input[type="file"] {
 }
 .input-dialog .max-width {
 	display: flex;
-	align-items: center;
+	align-items: start;
 	justify-content: space-between;
-	gap: 10px;
+	flex-direction: column;
+	gap: 5px;
+	width: 100%;
+	position: relative;
 }
-.input-dialog button {
-	font-size: 1.3rem !important;
+#cancelUrl {
+	position: absolute;
+	right: 0;
+	top: 0.4rem;
+	font-size: 1.2rem !important;
 }
-.formula-input {
-	left: 17rem;
+.image-input {
+	left: 65rem;
+	height: max-content;
+	border-radius: 1rem;
 }
-.url-input {
-	left: 15rem;
+.file-select-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	color: var(--dark-color);
+	background-color: #ffffff;
+	border: var(--border);
+	border-radius: 1rem;
+	padding: 1rem 1rem !important;
+	width: 100%;
+}
+.file-upload {
+	width: 100%;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
+.file-upload input {
+	border: var(--border);
+	padding: 1rem;
 }
 
 .post-buttons {

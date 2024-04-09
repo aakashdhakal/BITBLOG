@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["username"])) {
-    header("Location: " . "http://localhost/A.D-Blogs/");
+    header("Location: " . "http://" . $_SERVER["SERVER_NAME"] . "/A.D-Blogs");
 }
 $baseUrl = $_SERVER["SERVER_NAME"] . "/A.D-Blogs";
 define("BASE_URL", "http://" . $baseUrl . "/");
@@ -16,7 +16,7 @@ include_once BASE_URL . "./includes/extra-script.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -105,14 +105,14 @@ let signupConfirmPassword = document.querySelector("#signupConfirmPassword");
 let signupUsername = document.querySelector("#signupUsername");
 let signupRole = document.querySelector("#signupRole");
 let signupSubmit = document.querySelector("#signupSubmit");
-let sendOtp = document.querySelector("#sendOtp");
+let sendOtp = document.querySelectorAll(".sendOtp");
 let otpEmail = document.querySelector("#otpEmail");
 let signupForm = document.querySelector(".signupForm");
 let validCheck = document.querySelector(".valid-check");
 var otpCode;
 
-sendOtp.addEventListener("click", function () {
-	OtpSend();
+sendOtp[0].addEventListener("click", async function () {
+	await OtpSend(signupEmail, 0);
 });
 
 function checkEmpty(inputField) {
@@ -134,14 +134,13 @@ async function checkDuplicate(data, isUsername) {
 		},
 		body: isUsername ? "username=" + data : "email=" + data,
 	})
-		.then((response) => {
-			return response.text().then((data) => {
-				if (data == "taken") {
-					return true;
-				} else {
-					return false;
-				}
-			});
+		.then(async (response) => {
+			const data = await response.text();
+			if (data == "taken") {
+				return true;
+			} else {
+				return false;
+			}
 		})
 		.catch(() => {
 			showDialogAlert("Something went wrong! Please try again later");
@@ -203,7 +202,7 @@ async function validateUsername(username) {
 	}
 }
 
-function validatePassword(password) {
+function validatePassword(password, confirmPassword) {
 	if (!checkEmpty(password)) {
 		return false;
 	} else if (password.value.length < 8) {
@@ -217,18 +216,18 @@ function validatePassword(password) {
 			"Password must contain at least one uppercase, lowercase, and a number"
 		);
 		return false;
-	} else if (password.value !== signupConfirmPassword.value) {
+	} else if (password.value !== confirmPassword.value) {
 		showDialogAlert("Passwords do not match");
 		return false;
 	} else {
 		return true;
 	}
 }
-function OtpSend() {
+async function OtpSend(email, n) {
 	otpCode = Math.floor(100000 + Math.random() * 900000);
 	const endPoint = baseUrl + "otp-config";
-	sendOtp.disabled = true;
-	sendOtp.innerHTML = '<i class="fa-duotone fa-spinner-third fa-spin"></i>';
+	sendOtp[n].disabled = true;
+	sendOtp[n].innerHTML = '<i class="fa-duotone fa-spinner-third fa-spin"></i>';
 
 	return fetch(endPoint, {
 		method: "POST",
@@ -239,38 +238,38 @@ function OtpSend() {
 			"otpCode=" +
 			otpCode +
 			"&email=" +
-			signupEmail.value +
+			email.value +
 			"&username=" +
 			signupUsername.value,
 	})
-		.then((response) => {
-			return response.text().then((data) => {
-				if (data == "success") {
-					showDialogAlert("OTP sent to your email address");
-					var timer = 60;
-					var interval = setInterval(function () {
-						timer--;
-						sendOtp.innerHTML = "Resend in " + timer;
-						if (timer == 0) {
-							clearInterval(interval);
-							sendOtp.disabled = false;
-							sendOtp.innerHTML = "Resend Code";
-						}
-					}, 1000);
-				} else {
-					console.log(data);
-					showDialogAlert(
-						"Something went wrong! Please try again later " + data
-					);
-					sendOtp.disabled = false;
-					sendOtp.innerHTML = "Send Code";
-				}
-			});
+		.then(async (response) => {
+			const data = await response.text();
+			if (data == "success") {
+				showDialogAlert("OTP sent to your email address");
+				var timer = 60;
+				var interval = setInterval(function () {
+					timer--;
+					sendOtp[n].innerHTML = "Resend in " + timer;
+					if (timer == 0) {
+						clearInterval(interval);
+						sendOtp[n].disabled = false;
+						sendOtp[n].innerHTML = "Resend Code";
+					}
+				}, 1000);
+				return true;
+			} else {
+				console.log(data);
+				showDialogAlert("Something went wrong! Please try again later " + data);
+				sendOtp[n].disabled = false;
+				sendOtp[n].innerHTML = "Send Code";
+				return false;
+			}
 		})
 		.catch(() => {
 			showDialogAlert("Something went wrong! Please try again later");
-			sendOtp.disabled = false;
-			sendOtp.innerHTML = "Send Code";
+			sendOtp[n].disabled = false;
+			sendOtp[n].innerHTML = "Send Code";
+			return false;
 		});
 }
 
@@ -305,7 +304,7 @@ async function checkValidation(index) {
 		case 1:
 			if (!(await validateUsername(signupUsername))) {
 				break;
-			} else if (!validatePassword(signupPassword)) {
+			} else if (!validatePassword(signupPassword, signupConfirmPassword)) {
 				break;
 			} else {
 				canProceed = true;

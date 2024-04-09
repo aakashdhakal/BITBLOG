@@ -74,7 +74,7 @@
             <li><a href="blog.php">About</a></li>
             <li><a href="blog.php">Contact</a></li>
         </ul>
-        <dialog id="loginForm" name="form">
+        <dialog id="loginForm" name="form" class="popup-dialog">
             <button id="closeBtn"><i class="fa-solid fa-xmark" style="color: #858585;"></i></button>
             <div class="max-width">
                 <div class="left">
@@ -105,7 +105,7 @@
                                     <span class="custom-checkbox-box"></span>
                                     <p>Remember Me</p>
                                 </label>
-                                <button class="tertairy-btn" type="button">Forgot Password ?</button>
+                                <button class="tertairy-btn" type="button" id="forgetPass">Forgot Password ?</button>
                             </div>
                             <button type="submit" name="loginSubmit" id="loginSubmit" class="primary-btn">Log in</button>
                             <p>Don't have an account ? &nbsp;<button id="signupLink" type="button" class="tertairy-btn">Sign up</button>
@@ -115,7 +115,7 @@
                 </div>
             </div>
         </dialog>
-        <dialog id="signupForm" name="form">
+        <dialog id="signupForm" name="form" class="popup-dialog">
             <button id="closeBtn"><i class="fa-solid fa-xmark" style="color: #858585;"></i></button>
             <div class="max-width">
                 <div class="left">
@@ -213,7 +213,7 @@
                             <p>Enter the 6-digits verification code that is sent to your email</p>
                             <div class="input-field">
                                 <input type="text" name="otpEmail" id="otpEmail" placeholder="Enter 6 digits otp">
-                                <button type="button" class="tertairy-btn" id="sendOtp">Send Code</button>
+                                <button type="button" class="tertairy-btn sendOtp" id="sendOtp">Send Code</button>
                             </div>
                             <p>By signing up, you acknowledge and agree to accept our terms and conditions</p>
                             <div class="next-prev-button">
@@ -221,15 +221,58 @@
                                 <button type="submit" name="signupSubmit" id="signupSubmit" class="primary-btn">Sign up</button>
                             </div>
                         </div>
-                        OR
-                        <!-- google signup -->
-                        <div class="third-party-auth">
-                            <button type="button" class="primary-btn"><i class="fa-brands fa-google"></i>Sign up with Google</button>
-                        </div>
                         <p>Already have and account ? &nbsp;<button id="loginLink" type="button" class="tertairy-btn">Log in</button>
                         </p>
                     </form>
 
+                </div>
+            </div>
+        </dialog>
+        <dialog id="forgotPassword" class="popup-dialog">
+            <button id="closeBtn"><i class="fa-solid fa-xmark" style="color: #858585;"></i></button>
+            <div class="max-width">
+                <div class="left">
+                </div>
+                <div class="right">
+                    <div class="alert-box-dialog">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <p id="dialogAlertMessage">Invalid username or password</p>
+                    </div>
+                    <div class="section-heading-wrapper">
+                        <h1 class="section-heading">Forgot Password?</h1>
+                    </div>
+                    <div class="verify-email show-div">
+
+                        <p>Don't worry. Just enter your email so that you can verify it and reset your password<br><br> </p>
+                        <div class="input-field">
+                            <input type="email" name="forgotEmail" placeholder="" id="forgotEmail" />
+                            <label class="placeholder">Email</label>
+                        </div>
+                        <button id="sendOtp" type="button" class="primary-btn next-step">Send Code</button>
+                    </div>
+                    <div class="verify-otp">
+                        <p>Enter the 6-digits verification code that is sent to your email</p>
+                        <div class="input-field">
+                            <input type="text" name="otpEmail" id="otpCode" placeholder="Enter 6 digits otp">
+                            <button type="button" class="tertairy-btn sendOtp">Send Code</button>
+                        </div>
+                        <button id="verifyOtp" type="button" class="primary-btn">Verify Code</button>
+                    </div>
+                    <form action="" id="resetPassword" class="reset-password ">
+                        <p class="password-note">Remember, a good password is like a good joke. It's memorable, it's unique, and you don't share it with everyone. And just like a joke, if you find yourself explaining it to others, it's probably time to come up with a new one!</p>
+                        <div class="input-field">
+                            <input type="password" name="newPassword" placeholder="" id="newPassword" />
+                            <label class="placeholder">New Password</label>
+                            <button class="password-show" type="button"><i class="fa-solid fa-eye" style="color:#6e6e6e"></i></button>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" name="confirmPassword" placeholder="" id="confirmNewPassword" />
+                            <label class="placeholder">Confirm Password</label>
+                            <button class="password-show" type="button"><i class="fa-solid fa-eye" style="color:#6e6e6e"></i></button>
+                        </div>
+                        <button type="submit" name="resetPassword" id="confirmResetPassword" class="primary-btn">Reset Password</button>
+                    </form>
+                    <button class="tertairy-btn back-to-login-btn">Back to login</button>
                 </div>
             </div>
         </dialog>

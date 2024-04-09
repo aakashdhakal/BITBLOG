@@ -49,3 +49,4 @@
     <script src="<?php echo BASE_URL ?>JS/script.js" defer></script>
     <script src="<?php echo BASE_URL ?>JS/login.js" defer></script>
     <script src="<?php echo BASE_URL ?>JS/signup.js" defer></script>
+    <script src="<?php echo BASE_URL ?>JS/forgotPassword.js" defer></script>

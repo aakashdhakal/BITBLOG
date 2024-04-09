@@ -718,14 +718,13 @@ pre {
 }
 /*-------Login Form--------*/
 
-#loginForm,
-#signupForm {
+.popup-dialog {
 	border: none;
 	outline: none;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 	margin: auto;
-	width: 65%;
-	height: 75%;
+	width: 55%;
+	height: 65%;
 	transition: all 0.3s ease-in-out;
 	padding: 0;
 	background-color: var(--body-bg-color);
@@ -756,8 +755,7 @@ pre {
 	}
 }
 
-#loginForm::backdrop,
-#signupForm::backdrop {
+.popup-dialog::backdrop {
 	background-color: rgba(0, 0, 0, 0.5);
 	backdrop-filter: blur(2px);
 }
@@ -805,13 +803,11 @@ pre {
 	color: #000000; /* Color of the checkmark */
 	font-weight: 700;
 }
-#loginForm .section-heading-wrapper,
-#signupForm .section-heading-wrapper {
+.popup-dialog .section-heading-wrapper {
 	justify-content: center;
 	width: 70%;
 }
-#loginForm .right form,
-#signupForm .right form {
+.popup-dialog .right form {
 	width: 100%;
 	height: 100%;
 	display: flex;
@@ -821,8 +817,7 @@ pre {
 	gap: 25px;
 }
 
-#loginForm .right input,
-#signupForm .right input {
+.popup-dialog .right input {
 	width: 100%;
 	padding: 5px 10px;
 	border: none;
@@ -844,8 +839,7 @@ pre {
 	position: relative;
 }
 
-#loginForm .password-show,
-#signupForm .password-show {
+.popup-dialog .password-show {
 	outline: none;
 	border: none;
 	background: transparent;
@@ -870,20 +864,6 @@ pre {
 	font-size: 0.9rem;
 	font-weight: bold;
 	letter-spacing: 0.1rem;
-}
-.third-party-auth {
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-	width: 100%;
-	gap: 20px;
-}
-.third-party-auth button {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 10px;
-	border-radius: 5px;
 }
 
 #loginForm {
@@ -1113,6 +1093,77 @@ pre {
 	.alert-box-dialog {
 		margin-bottom: 10px;
 		position: static;
+	}
+}
+
+#forgotPassword {
+	.max-width {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 2rem;
+	}
+
+	.right {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		gap: 40px;
+		color: var(--text-color);
+		position: relative;
+	}
+	.left {
+		width: 90%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		color: #ffffff;
+		background: url(../images/forgotpassword.svg) no-repeat center center/cover;
+	}
+	.verify-otp {
+		display: none;
+		width: 70%;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 20px;
+	}
+	.reset-password {
+		display: none;
+		width: 70%;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 3rem;
+	}
+	.verify-email {
+		width: 70%;
+		display: none;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.show-div {
+		display: flex;
+		animation: formShow 0.5s ease-in-out forwards;
+	}
+	@keyframes formShow {
+		0% {
+			opacity: 0;
+			transform: translateX(10px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateX(0px);
+		}
 	}
 }
 
