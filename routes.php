@@ -39,4 +39,4 @@ post($baseUrl . '/reset-password', 'config/forgot-password-config.php');
 // For GET or POST
 // The 404.php which is inside the views folder will be called
 // The 404.php has access to $_GET and $_POST
-any($baseUrl . '/404', 'UI/404.php');
+
